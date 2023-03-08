@@ -25,8 +25,11 @@ make cleanall
 ```
 
 
-#$ Links:
+# Links:
 
 * How to update version: https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PaperChecklist_POGitLab#Template_up_to_date
 * ATLAS latex repository: https://gitlab.cern.ch/atlas-physics-office/atlaslatex
 
+# Sync
+
+Use the `sync.sh` script to sincronize with https://gitlab.cern.ch/atlas-physics-office/TRIG/ANA-TRIG-2021-01/ANA-TRIG-2021-01-INT1 
