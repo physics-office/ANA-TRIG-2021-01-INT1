@@ -14,6 +14,34 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.1.0] - 2023-03-08
+
+### Added
+
+- Add option `orcidlogo` to include a visible ORCiD link in the author list.
+- January update of CMS publications.
+- A few small fixes to publications.
+- Add `\xspace` to units in `atlasunit.sty`.
+
+### Deprecated
+
+- The options `math` and `other` are ignored when passed to `atlasphysics`.
+- The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
+  have been moved into the `obsolete` folder (see below).
+
+### Removed
+
+- The packages `atlasmath.sty` and `atlasother.sty` have been moved into the `obsolete` folder.
+  Move them back to the `latex` folder if you want to use them.
+- The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
+  have been moved to the obsolete folder and integrated into `atlasparticle.sty`.
+
+### Fixed
+
+### Security
+
+---
+
 ## [14.0.0] - 2023-01-27
 
 With the removal of the `texlive` option, a summary of what may have to changed
