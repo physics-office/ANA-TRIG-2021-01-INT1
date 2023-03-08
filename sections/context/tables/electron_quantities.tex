@@ -1,0 +1,118 @@
+
+\begin{table*}
+%\caption{Definitions of electron discriminating variables, the types of backgrounds the variables help to discriminate against, and if a variable is used as a likelihood pdf ($\mathcal{L}$) or used as a rectangular cut (C). The $^{*}$ refers to the fact that the $E/p$ and \wstot variables are
+%  only used for electrons with $\pt > 150~\GeV$ for the \Tight identification operating point (in software release 20.7), and are not used for the looser operating points.}
+\caption{Type and description of the quantities used in electron
+  identification.  The columns labelled ``Rejects'' indicate whether a quantity
+  is used to discriminate prompt electrons from light-flavour (LF) jets, photon
+  conversions ($\gamma$), or non-prompt electrons from the semileptonic decay of
+  hadrons containing heavy-flavour (HF) quarks ($b$- or $c$-quarks).  In the
+  column labelled ``Usage,'' an ``LH'' indicates that the probability density
+  estimation (pdf) of this quantity
+  is used in forming $\mathcal{L}_{s}$ and $\mathcal{L}_{b}$ (defined in
+  Eq.~(\ref{eq:likelihoods})) and a ``C'' indicates that this quantity is used
+  directly as a selection criterion.  In the description of the quantities
+  formed using the second layer of the calorimeter, 3$\times$3, 3$\times$5,
+  3$\times$7, and 7$\times$7 refer to areas of $\Delta\eta \times \Delta\phi$
+  space in units of $0.025 \times 0.025$. Extracted from~\cite{aaboud2019electron}
+}%
+\label{tab:IDcuts}
+\scriptsize
+%\renewcommand{\arraystretch}{1.}
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|c|c|c|l|}
+\hline
+Type & Description & Name &  \multicolumn{3}{c|}{Rejects} & Usage  \\
+ & & & LF & $\gamma$ & HF &\\
+\hline
+ Hadronic & Ratio of \et in the first layer of the hadronic calorimeter  & \rhadone & x & & x & LH \\ 
+ leakage & to \et of the EM cluster & & & & & \\
+& (used over the range $|\eta| < 0.8$ or $|\eta| > 1.37$)  & & & & & \\
+\cline{2-7}
+  & Ratio of \et in the hadronic calorimeter &  & & & & \\
+  &  to \et of the EM cluster & \rhad & x & & x & LH  \\
+ & (used over the range $0.8 <|\eta| < 1.37$) & & & & & \\
+\hline
+Third layer of  & Ratio of the energy in the third layer to the total energy in the & & & & &\\
+EM calorimeter  & EM calorimeter. This variable is only used for & & & & & \\
+& $\et < \SI{80}{\GeV}$, due to inefficiencies at high \et, and is& \fIII & x & & & LH \\
+                & also removed from the LH for $|\eta| > 2.37$, where it is& & & & & \\
+                & poorly modelled by the simulation. & & & & & \\
+\hline
+Second layer of  & Lateral shower width, $\sqrt{(\Sigma E_i \eta_i^2)/(\Sigma E_i) -((\Sigma E_i\eta_i)/(\Sigma E_i))^2}$, & & & & & \\
+EM calorimeter  & where $E_i$ is the energy and $\eta_i$ is the pseudorapidity  & \weta & x & x & & LH \\
+ & of cell $i$ and the sum is calculated within a window of 3$\times$5 cells & & & & & \\
+\cline{2-7}
+& Ratio of the energy in 3$\times$3 cells over the energy in 3$\times$7 cells & \rphi & x & x & x & LH  \\
+& centred at the electron cluster position & & & & & \\
+\cline{2-7}
+& Ratio of the energy in 3$\times$7 cells over the energy in 7$\times$7 cells  & \reta & x & x & x & LH  \\
+& centred at the electron cluster position & & & & & \\
+\hline
+First layer of       & Shower width, $\sqrt{(\Sigma E_i (i-i_\mathrm{max})^2)/(\Sigma E_i)}$, where $i$ runs over  &   & & & & \\  
+EM calorimeter       & all strips in a window of $\Delta\eta \times \Delta\phi \approx 0.0625 \times 0.2$,   & \wstot & x & x & x & C \\
+		     & corresponding typically to 20 strips in $\eta$, and $i_\mathrm{max}$ is the & & & & &                  \\
+		     & index of the highest-energy strip, used for \et\ $>$ 150~\gev\ only        &  & & & &   \\
+\cline{2-7}
+                     & Ratio of the energy difference between the maximum &    & & & &  \\
+                     & energy deposit and the energy deposit in a secondary & \deltaEmax & x & x & & LH  \\
+                     & maximum in the cluster to the sum of these energies & & & & &   \\
+\cline{2-7}     
+& Ratio of the energy in the first layer to the total energy  & \fI & x & & & LH  \\
+& in the EM calorimeter &  & & & & \\
+\hline
+Track  & Number of hits in the innermost pixel layer &   $n_\mathrm{Blayer}$ & & x & & C \\
+%conditions & &   $ $  & & & & \\
+%discriminates against photon conversions &   $ $  & & & & \\
+\cline{2-7}
+conditions                     & Number of hits in the pixel detector        &    $n_\mathrm{Pixel}$ & & x & & C \\
+\cline{2-7}
+                     & Total number of hits in the pixel and SCT detectors  &   $n_{\mathrm{Si}}$  & & x & & C \\
+\cline{2-7}
+                     & Transverse impact parameter relative to the beam-line
+		     % cut-based: trackd0_physics:Transverse impact parameter with respect to the beam spot,
+		     % LH: el_trackd0pvunbiased and el_tracksigd0pvunbiased
+		                                                  &       \trackdO  & & x & x & LH \\
+\cline{2-7}
+                     & Significance of transverse impact parameter &       |\dOSignificance|  & & x & x & LH  \\
+                     & defined as the ratio of \trackdO to its uncertainty                     &  & & & &              \\
+\cline{2-7}
+                     &  Momentum lost by the track between the perigee and the last &   \deltapoverp & x & & & LH \\
+                     & measurement point divided by the  momentum at perigee & & & & & \\
+\hline
+%TRT                 & Total number of hits in the TRT      & $n_\mathrm{TRT}$          \\
+%\cline{2-3}
+%TRT                 & Ratio of the number of high-threshold hits to the total number of  hits in the TRT &    \TRTHighTHitsRatio  \\
+%\cline{2-3}
+TRT                       & Likelihood probability based on transition radiation in the TRT &   \TRTPID & x & & & LH  \\
+\hline
+Track--cluster     & $\Delta\eta$ between the cluster position in the first layer &   \deltaeta & x & x & & LH  \\
+matching          &  and the extrapolated track & & & & &   \\
+%\cline{2-3}
+%  matching    & $\Delta\phi$ between the cluster position in the middle layer and the extrapolated & \deltaphires\\
+%&   track, where the track momentum is rescaled to the cluster energy &  \\
+%&   before extrapolating the track to the middle layer of the calorimeter  &  \\
+%\cline{2-7}
+%     & $\Delta\phi$ between the cluster position in the middle layer and & \deltaphi & x & x & & $\mathcal{LH}$  \\
+%  & $ $and the track extrapolated from the perigee & & & & & \\
+%\cline{2-7}
+%&   Defined as  \deltaphi, but the track momentum is rescaled &   & & & &  \\
+%&   to the cluster energy before extrapolating the track from  & \deltaphires & x & x & & $\mathcal{LH}$  \\
+%&   the perigee to the middle layer of the calorimeter  & & & & &  \\
+\cline{2-7}
+&   $\Delta\phi$ between the cluster position in the second layer &   & & & &  \\
+&   of the EM calorimeter and the momentum-rescaled  & \deltaphires & x & x & & LH  \\
+&   track, extrapolated from the perigee, times the charge $q$  & & & & &  \\
+\cline{2-7}
+                    & Ratio of the cluster energy to the track momentum, used for            &       $E/p$   & x & x & & C\\
+                    & \et $>$ 150~\gev\ only & & & & &  \\
+%\hline
+%Conversions         & Veto electron candidates matched to reconstructed photon  conversions            &  isConv \\
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table*}
+
+

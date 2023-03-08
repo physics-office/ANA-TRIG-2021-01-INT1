@@ -1,0 +1,75 @@
+%-------------------------------------------------------------------------------
+% This file contains the title, author and abstract.
+% It also contains all relevant document numbers used for an ATLAS note.
+%-------------------------------------------------------------------------------
+
+% Title
+%\AtlasTitle{NeuralRinger: An Ensemble of Neural Networks Fed from Calorimeter
+%Ring Sums for Triggering on Electrons}
+
+\AtlasTitle{The ATLAS NeuralRinger Algorithm: An Ensemble of Neural Networks Fed from Calorimeter Ring Sums for Triggering on Electrons}
+
+% Draft version:
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+% If given, adds draft version on front page, a 'DRAFT' box on top of each other page, 
+% and line numbers.
+% Comment or remove in final version.
+\AtlasVersion{0.1}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+The ATLAS experiment implements an ensemble of neural networks (NeuralRinger
+algorithm) dedicated to early removal of fake electrons in its first, fast,
+\textcolor{red}{High Level Trigger selection stage}. In the second half of 2017, the
+NeuralRinger was set to operate for the selection of electrons above 15 GeV, as part of an effort to reduce CPU usage to comply with more
+stringent data taking conditions. Inspired by the ensemble of likelihood models
+currently operating in the \textcolor{red}{electron offline selection algorithms}, the NeuralRinger ensemble
+\textcolor{red}{is built from} Multi-Layer Perceptron (MLP) models tuned on pseudo-rapidity and
+transverse energy bins, in order to minimize trigger performance impacts from both
+detector response and shower development \textcolor{red}{energy dependences}. The MLPs are fed from calorimetry information
+formatted into energy sums of concentric rings built around the particle
+axis and normalized by its total transverse energy. This note describes the
+algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60 \% decrease in CPU demands for the lowest-threshold unprescaled
+single-electron trigger, while maintaining electron efficiency nearly unchanged.
+The analysis results show an overall CPU saving of 8 \%, when considering the
+demands of all electron and photon triggers. \textcolor{red}{This increase of performance  results from a higher jet background rejection with respect to previous algorithms}.
+}
+
+
+
+
+
+% Author - this does not work with revtex (add it after \begin{document})
+\author{The ATLAS Collaboration}
+% Authors and list of contributors to the analysis
+% \AtlasAuthorContributor also adds the name to the author list
+% Include package latex/atlascontribute to use this
+% Use authblk package if there are multiple authors, which is included by latex/atlascontribute
+% \usepackage{authblk}
+% % Use the following 3 lines to have all institutes on one line
+% \makeatletter
+% \renewcommand\AB@affilsepx{, \protect\Affilfont}
+% \makeatother
+% \renewcommand\Authands{, } % avoid ``. and'' for last author
+% \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+% \AtlasAuthorContributor{W. S. Freund}{a,c}{Note editing, model development,
+% analysis development and supervision}
+% \AtlasAuthorContributor{J. V. F. Pinto}{a}{Note editing, model development,
+% ATHENA framework developments, analysis development}
+% \AtlasAuthorContributor{M. V. Araujo}{a}{Note editing, low \et developments}
+% \AtlasAuthorContributor{J. M. Seixas}{a}{Model development, PhD supervisor of W.
+% S. Freund and J. V. F. Pinto, note editing}
+% \AtlasAuthorContributor{D. O. Damazio}{b}{Contact person of trigger framework,
+% ATHENA framework developments}
+% \affil[a]{Signal Processing Laboratory (LPS), COPPE/POLI-UFRJ}
+% \affil[b]{Brookhaven National Laboratory (BNL)}
+% \affil[c]{\emph{Laboratoire de Physique Nucléaire et de Hautes Energies} (LPNHE), Sorbonne University}
+
+
+
+
+% ATLAS reference code, to help ATLAS members to locate the paper
+\AtlasRefCode{ANA-TRIG-2021-01}
+
+% ATLAS note number. Can be an COM, INT, PUB or CONF note
+\AtlasNote{ANA-TRIG-2021-01-INT1}

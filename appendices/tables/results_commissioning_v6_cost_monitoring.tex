@@ -1,0 +1,71 @@
+\begin{table}[ht!]
+    \centering
+    \caption{\label{tab:results_commissioning_v6_cost_monitoring}%
+    Total number of \fastcalo and \fastelectron executions requested per monitored
+    trigger in CPU cost evaluations ATR-16656 (run 309640) and ATR-16657 (run
+    327265) using the final 2017 \rnn configuration and evaluated in the nightly release
+    AtlasP1-21.1-2017-07-01. The reduction factor is computed as the fraction of
+    \fastelectron executions in previous trigger (without \rnn) with respect to
+    proposed trigger (with \rnn). See~\cite{Pinto2017} for more details.
+    }
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{%
+    llr
+    S[table-format=4.0, table-number-alignment=center,
+    round-mode=figures, round-precision=2]
+    c
+    }
+    \hline \hline
+    run &
+    \multirow{2}{*}{trigger} &
+    %\begin{tabular}[c]{@{}c@{}}\fastcalo \\
+    %(calls)\end{tabular}
+    \multicolumn{1}{c}{\fastcalo} &
+    \multicolumn{1}{c}{\fastelectron} &
+    \multicolumn{1}{c}{Reduction} \\ \cline{3-4}
+    \multicolumn{1}{c}{number} &
+    &
+    \multicolumn{2}{c}{Total Executions $\times 10^{-3}$ } &
+    \multicolumn{1}{c}{Factor} \\
+    \hline \hline
+    \multirow{6}{*}{309640} & e17\_lhvloose\_nod0\_noringer\_L1EM15VHI &
+    \multirow{2}{*}{\numRF{17989.136}{2}} & 8984.315 &
+    \multicolumn{1}{c}{\multirow{2}{*}{1.71$\times$}} \\ \cline{4-4}
+    
+    & e17\_lhvloose\_nod0\_L1EM15VHI &  & 5234.167 &  \\ \cline{2-5}
+    
+    & e28\_lhtight\_nod0\_noringer\_ivarloose\_L1EM24VHIM &
+    \multirow{2}{*}{\numRF{3084.292}{2}} & 1046.078 &
+    \multicolumn{1}{c}{\multirow{2}{*}{1.69$\times$}} \\ \cline{4-4}
+    
+    & e28\_lhtight\_nod0\_ivarloose\_L1EM24VHIM &  & 618.011 &  \\ \cline{2-5}
+    
+    & e60\_lhmedium\_nod0\_noringer\_L1EM24VHIM & \multirow{2}{*}{\numRF{3084.292}{2}} &
+    1046.078 & \multicolumn{1}{c}{\multirow{2}{*}{4.91$\times$}} \\ \cline{4-4}
+    
+    & e60\_lhmedium\_nod0\_L1EM24VHIM &  & 213.037 &  \\ \hline \hline
+    
+    \multicolumn{1}{l}{\multirow{6}{*}{327265}} &
+    e17\_lhvloose\_nod0\_noringer\_L1EM15VHI & \multirow{2}{*}{\numRF{15609.134}{2}}
+    & 7400.864 &
+    \multicolumn{1}{c}{\multirow{2}{*}{1.52$\times$}} \\ \cline{4-4}
+    
+    \multicolumn{1}{l}{} & e17\_lhvloose\_nod0\_L1EM15VHI &  & 4855.326 &
+    \multicolumn{1}{l}{} \\ \cline{2-5}
+    
+    \multicolumn{1}{l}{} & e28\_lhtight\_nod0\_noringer\_ivarloose\_L1EM24VHIM &
+    \multirow{2}{*}{\numRF{3296.808}{2}} & 1150.932 &
+    \multicolumn{1}{c}{\multirow{2}{*}{1.58$\times$}} \\ \cline{4-4}
+    
+    \multicolumn{1}{l}{} & e28\_lhtight\_nod0\_ivarloose\_L1EM24VHIM &  & 725.655 &
+    \multicolumn{1}{l}{} \\ \cline{2-5}
+    
+    \multicolumn{1}{l}{} & e60\_lhmedium\_nod0\_noringer\_L1EM24VHIM &
+    \multirow{2}{*}{\numRF{3296.808}{2}} & 238.054 &
+    \multicolumn{1}{c}{\multirow{2}{*}{3.10$\times$}} \\ \cline{4-4}
+    
+    \multicolumn{1}{l}{} & e60\_lhmedium\_nod0\_L1EM24VHIM &  & 76.735 &
+    \multicolumn{1}{l}{} \\ \hline \hline
+    \end{tabular}%
+    }
+    \end{table}

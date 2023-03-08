@@ -1,0 +1,142 @@
+\section{Computational Intelligence Perspective}%
+\label{sec:ml_ensemble}
+
+During the 1990's, multi-net systems consolidated as a method to either perform
+tasks that cannot be solved by a single net or to result in a more efficient
+solution due to the usage of modular components or through combination of
+redundant predictors~\cite{SharkeyCombNN}. A \emph{modular} combination is
+strictly used to define solutions decomposing a task into a number of subtasks
+where the task can only be performed with the contribution of all the several
+modules, whereas, in an \emph{ensemble} combination, the components are
+redundant in the aspect that each one can be used as a solution for the task,
+even though they are obtained by different means. It should be noticed that
+modularity does not necessarily require operation of all modules for each
+individual input, but rather needed at the task-level. On other words, the
+distinction is based on the redundancy of the multi-net system, which might
+contain both ensemble and modular combinations. Additionally, although our focus
+is on classification, different predictors may also be combined to perform
+several tasks~\cite{zhou_ensemble}.
+
+Under this definition, the \rnn multi-net system and the likelihood approach are
+both a modular combination system. In this subtopic we are interested in related
+work considering similar combination methods, thus we will restrain ourselves
+to this terminology. Nonetheless, we argue that this rigor does not aggregate at
+a broader discussion level, being neglected by authors for whom such distinction
+is irrelevant (i.e.~\cite{zhou_ensemble}), and therefore we usually refer to the
+combination as an \emph{ensemble} given to the higher popularity of this term.
+
+The motivations behind employing a modular approach are related to the system
+plausibility and performance. In a more general term, biological,
+psychological, hardware and computational motivations can be
+addressed~\cite{Auda1999}. Specifically regarding the latter, better
+performance can be achieved due to the learning complexity. Gradient search
+algorithms, as the currently being used (Section~\ref{sec:tuning}), causes high
+coupling (interdependency) in the nodes of dense
+layers~\cite{Auda1999,Auda1994,Joe1990}. Accordingly, a single network suffers
+with the variation of the modular tasks as the training algorithm will couple
+the nodes in the dense layer to the subtask resulting to larger error
+minimization.  If training continues until the subtasks with lower error
+variation are contemplated, then the coupling will eventually corrupt other
+nodes as a result of memorizing features of individual categories. As long as
+the units are coupled, there will always be some order of under- or
+over-learning of the training data. The coupling effect can be mitigated by
+dividing the task in specific modules for more homogeneous
+subtasks~\cite{Auda1999}. Consequently, each module will require fewer hidden
+units given that the model needs to approximate a less complex decision
+boundary. A better allocation of the model plasticity for each subtask can lead
+to improvements in generalization, that is, achieve higher efficiency in samples
+unseen during the training stage.
+
+Therefore, the exploitation of expert modules defined by the natural frontiers
+provided by the problem (\eteta axis), resulting in distinct decision
+boundaries to be learned, is one way to reduce learning complexity and
+can result in a more appropriated approximation of the statistical properties of
+each task, due to the better allocation of the computational resources. These
+considerations are, then, consistent with the expert knowledge that motivated
+the employment of the ensemble in the \rnn (see Section~\ref{top:nn_ensemble}).
+
+\subsection{Related Work}\label{ssec:ml_related}
+
+In the computational intelligence perspective, related work can be of particular
+interest for the development of modular combinations. We are mainly driven by
+the material found in refs.~\cite{Auda1999,SharkeyCombNN}, containing works up
+to the 2000's decade. As best of our knowledge, few material is available
+considering the usage of natural frontiers on modular combinations later on,
+which might be related to the usage of methods of automatic module definition
+(to be addressed later on this subtopic). Research focus on ensemble
+combination~\cite{zhou_ensemble} and the blossom of deep learning
+field~\cite{Goodfellow2016}, another strategy which allows to facilitate
+learning under such conditions, are other possible causes. Here, we discuss
+insights that can contribute to other physics developments using modular
+combination.
+
+First, a number of other fields profited from the development of modular
+combination of neural-networks, which is defined by domain knowledge, i.e. strong
+understanding of the problem. However, only two modular definitions similar to
+High-Energy Physics (HEP) applications were found: prediction concrete strength
+using ranges of its age~\cite{Lee2003}; or prediction of the survival
+probability with a module for a range of time~\cite{Ohno-Machado1997}. Similar
+to HEP, these problems consider the definition of specialist neural networks in
+continuous variables. Another source of natural boundaries are multiple
+sensors~\cite{Polikar2006}, specially when providing information of
+distinct nature, as the is the case of HEP experiments.
+Cue (stereo, motion) combination for object depth and shape prediction is an
+example~\cite{Fine1999}. A more standard approach considers module division
+through specialist knowledge of classes or subtasks: in civil engineering, the
+regression of the truck velocity and other parameters with dedicated modules for
+each truck type~\cite{Gagarin1994}; speech recognition by assigning speaker
+dependent modules, later retrained using the full structure~\cite{Nakamura1992},
+or through using phonetic groups~\cite{Waibel1989a,Gee-SweePoo1995}; target
+recognition using blocks of the image~\cite{Mundkur1991}; signal detection and
+classification by decomposing modules through signal types (impulsive or
+stationary)~\cite{DeBollivier1991}; behavior-specific modules for artificial
+intelligence in a game~\cite{Schrum2014}; task-specific modules in
+robotics~\cite{Alet2018}. It should be noted that class decomposition can also
+be performed without using domain knowledge~\cite{Anand1995}. Similarly,
+decomposition can be achieved without prior knowledge through unsupervised
+clustering methods~\cite{Auda1999}.
+
+One way of defining ensemble combinations has similarity with the \rnn{} modular
+approach. An important factor for obtaining higher performance in ensembles is a
+good trade-off between diversity and the individual performance of their
+components~\cite{zhou_ensemble}. The most frequent method for generating
+diversity is through variation of the training data
+set~\cite{zhou_ensemble,SharkeyCombNN}. A particular way of achieving it is
+through the separation of data in disjoint (mutually exclusive)
+datasets~\cite{Sharkey1996}. Nonetheless, caveats arise if the disjoint datasets
+are derived by sampling where they do not necessarily result in higher diversity
+than other combining methods but may lead to lower generalization capabilities
+for the components in case their empirical distributions do not capture the
+original process~\cite{SharkeyCombNN}.
+
+% levels of likelihood of myocardial infarction~\cite{}. <- kohonen structure
+%The usage of domain knowledge allows to acquire
+%representative disjoint datasets, each one containing data approximately sampled
+%from distinct distributions. However, for the particular case of the
+%$\et{}\times\abseta{}$ approach, there is some overlap level between the
+%distributions. First, the position and energy measurements are
+%subject to uncertainties\footnote{\fastcalo reconstruction has
+%simpler measurement corrections than offline/HLT analysis.}.
+%Additionally, the ring sums are built using a window which overlaps between the
+%edges of \abseta. Despite important contributions in the ring sum distribution
+%come from the systematic effect of the granularity changes due to the online
+%algorithm (Section~\ref{top:algorithm}), the amount of material
+%(Figure~\ref{fig:cal_em_x0}) changes in \abseta{} creates continuous variation,
+%as it is the case of \et{}.
+%Hence, a way of improving the approach could be to
+%consider that the system components are specialized in overlapping datasets and
+%that the final decision may be composed by some rule regarding the expected
+%importance of an expert to each region of the space. The likelihood approach for
+%smoothening the output over \et, where linear combination rule is employed, can
+%be seen as an example of a rule developed using domain knowledge. However, a
+%well-established method for automatically obtaining definitions of the
+%overlapping datasets and their expert models is known as Expert Mixtures
+%(ME)~\cite{Jacobs1991a}. Although initially developed to be used with neural
+%networks, other models can be considered. More recently, formulations of the ME
+%using Gaussian Processes allow to process input data considering their error
+%terms~\cite{Yuksel2012}. We highlight that this strategy requires more
+%computational resources once that more data must be processed together and,
+%thus, was not evaluated for Run~2.
+
+%% Divide-and-conquer
+%% TODO It should be noticed

@@ -1,0 +1,64 @@
+\section{Alessandro Tricoli's Comments}%
+\label{sec:alessandro_comments}
+
+These comments concern a previous unpublished note with the \rnn{} results in
+2016. We place them here as we are addressing them on this note.
+
+\begin{itemize}
+\item it is not clear in the text why this new technique is applied on
+the fast HLT only and why it may give better performance than the current
+technique, given that the metric is given wrt the current offline technique that
+does not implement the Ringer. In other words, if the Ringer is indeed superior
+to the sliding window it should be implemented offline too and in the precision
+HLT step too, why this is not discussed in the note? I am not say it should be
+implemented in these two cases, but it should be discussed why the Ringer has
+been studied only in the fast HLT step. I guess it is down as a use case and
+further studies will follow. Please clarify the text.
+
+\item The understanding of the note relies on the knowledge of the calorimeter
+sampling. This information is not given in much detail on the note. I believe a
+section should be added with a detailed the description of the calorimeter
+technology, segmentation both longitudinally and laterally. Without this
+detailed information it is difficult for a non-ATLAS reader to appreciate the
+Ringer method.
+
+\item The speed of this new method wrt previous one is not discussed in detail in
+the note, but it is critical to judge to usefulness and applicability of this
+algorithm at trigger level. More space should be dedicated to the speed and
+memory consumption of the Ringer wrt sliding window, you may even add a plot or
+two to back this up.
+
+\item The discriminating variables are never shown. I think it is important to show
+these distributions, especially to compare their discriminating power wrt shower
+shapes. Why a NN is necessary to discriminate over them? wouldn't a simple
+cut-based approach  be sufficient? since the Ringer performances are compared to
+those of the fast calorimeter selection which implements a cut-based approach,
+it would be appropriate to compare the capabilities of the Ringer with a cut
+based approach as well to see how much of the improvement comes form the
+optimisation of the NN discriminant and how much in the different conception of
+the shower shape/ring. This will be important in order to justify any
+improvement wrt the current technique.
+
+\item Related to the previous comment, what is the dependence of the efficiencies
+and fake rejection on the training of the sample based on Z->ee events? I would
+have found more appropriate to train the events on Z->ee events then test the
+efficiencies on other signal processes, e.g. H->WW or H->ZZ, H->gamma gamma or
+Z'->ee, or other benchmarks.
+
+\item Related to the above questions, how dependent are the efficiency and fake rate
+results on the pileup range value used in the training sample? in other words,
+if you choose other pileup values how well does the Ringer algorithm compare
+with the current clustering algorithm in terms of efficiency and rejection?
+
+\item Photons  are never discussed here, but if you change the clustering and
+selection of the fast calorimeter step you need to change this for the photons
+too at trigger level. I think you need to spend a few words discussing this and
+possibly say that this study focuses on electron performance.
+
+\item The text should improve as in a few parts is unclear. The current text is a
+copy of the proceedings for  the ATAC conference, but for an ATLAS note we need
+to expand the text and make it more inline with ATLAS standards. Line-to-line
+suggestions will follow. I also suggest a native speaker to go through the
+English and in some cases it seems can be improved.
+\end{itemize}
+

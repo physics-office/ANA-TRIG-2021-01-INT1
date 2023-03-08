@@ -1,0 +1,61 @@
+\begin{table}[ht]
+    \begin{center}
+    %\captionof{table}{%
+    \caption{%
+    \label{tab:results_commissioning_v6_emulation} Emulated efficiency measurements
+    of the trigger e26\_lhtight\_nod0 executed with and without \rnn using 2016 menu
+    version. The denominator is common for all selection stages and is the number of
+    RoIs matched to an electron object reconstructed by the offline. For
+    uncertainties smaller than 0.01, only central values are shown. Simulated
+    dataset employed Zee and JF17 mc15 datasets (AMI tag:
+    \text{e3848\_s2876\_r7917\_r7676}) respectively for signal and background
+    samples. Collision data are obtained from PhysicsMain and EnhancedBias streams
+    using the selection criteria in Section~\ref{ssec:dataset}.}%
+    \begin{tabular}{lcccc}
+    \hline
+    \hline
+    \hline
+    Chain & FastCalo [\%] & FastElectron [\%] & HLTCalo [\%] & HLT [\%] \\
+    \hline \hline
+    \multicolumn{5}{c}{Run 311244} \\
+    \hline
+    \hline
+    \multicolumn{5}{c}{Signal Efficiency} \\
+    \hline \hline
+    Without \rnn & $96.77 \pm 0.03$ & $96.70 \pm 0.03$ & $95.84 \pm 0.05$ & $89.74 \pm 0.07 $ \\
+    \hline
+    With \rnn & $96.23 \pm 0.03$ & $96.16 \pm 0.03$ & $95.31 \pm 0.04$ & $89.32 \pm 0.08$ \\
+    \hline
+    \hline
+    \multicolumn{5}{c}{Background Efficiency} \\
+    \hline
+    Without \rnn & $ 16.03 \pm 0.02 $ & $15.70 \pm 0.02$ & $12.90 \pm 0.02$ & $0.57$ \\
+    \hline
+    \hline
+    With \rnn & $ 5.41 \pm 0.02$ & $5.12 \pm 0.02$ & $3.40 \pm 0.01$ & $ 0.54 $ \\
+    \hline \hline
+    \multicolumn{5}{c}{Simulation} \\
+    \hline \hline
+    \multicolumn{5}{c}{Signal Efficiency} \\
+    \hline \hline
+    Without \rnn & $ 96.10 \pm 0.01 $ & $ 96.09 \pm 0.01$ &
+    $95.37 \pm 0.01 $ & $89.06 \pm 0.01 $ \\
+    \hline
+    With \rnn & $ 96.11 \pm 0.01 $ & $ 96.09 \pm 0.01$ &
+    $95.38 \pm 0.01 $ & $89.12 \pm 0.01$ \\
+    \hline
+    \hline
+    \multicolumn{5}{c}{Background Efficiency} \\
+    \hline
+    \hline
+    Without \rnn & $8.04 \pm 0.01$ & $7.93 \pm 0.01$ & $6.54 $ &
+    $0.20$ \\
+    \hline
+    With \rnn & $3.69 \pm 0.01$ & $3.59 \pm 0.01$ & $2.55 $ &
+    $0.19$ \\
+    \hline
+    \hline
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}

@@ -1,0 +1,32 @@
+\section{Tuning Work-flow}\label{sec:workflow}
+
+
+%An overview of the tuning work-flow is available in
+%\figurename~\ref{fig:tuning_workflow}.
+% TODO First, events are selected to ROOT files either using the offline or
+% online frameworks.
+%The event selection can be performed by was performed by the online
+%(TrigEgammaAnalysis) framework, except for the developments of the low \et
+%chains (Section~\ref{sec:low_et}), which used the offline (TagAndProbeFrame)
+%framework. The datasets used and event selection strategy is available in
+%Table~\ref{tab:event_selection}.
+The development is carried out outside the ATHENA framework, on two developed
+frameworks. The TuningTools framework allows to approximate inference by
+training neural-networks either on custom \emph{C++} code (FastNet) or using the
+Keras framework.  The models are selected and then used
+under the prometheus framework to fine-tune the working points by minimizing their
+differences with the final HLT efficiencies.  Confirmation is carried out
+through emulation of the chains on the ATHENA framework and, if they match the
+benchmark efficiencies of the baseline chains, the results are reported to the
+collaboration. The standard evaluation can be applied next: reprocessing
+validation, commissioning stage and, finally, set the chains for operation.
+
+%\begin{figure}[h!t]
+%\centering
+%\includegraphics[width=\textwidth]{tuning_workflow}
+%\caption{\label{fig:tuning_workflow}
+%Illustration of the tuning work-flow and steps involved. The circular arrows
+%around a step is used to flag that it is manually evaluated recursively until
+%satisfactory results are obtained.
+%}
+%\end{figure}

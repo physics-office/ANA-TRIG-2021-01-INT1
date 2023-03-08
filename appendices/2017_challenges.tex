@@ -1,0 +1,301 @@
+\section{Additional Trigger Cost Considerations}\label{sec:additional_trigger_cost}
+
+This section contains additional material concerning cost evaluations. The
+trigger challenges for 2017 operation are addressed in
+Section~\ref{ssec:trigger_2017}.  Estimations of the \rnn{} impact in the full
+menu using cost monitoring results is later considered
+(Section~\ref{ssec:cpu_2017_estimations}). Finally, we bring insights from Run~2
+P1 data with strategies to maximize the impact in CPU savings for future
+operations (Section~\ref{ssec:menu_cpu}).
+
+\subsection{Trigger Challenges for 2017 Operation}\label{ssec:trigger_2017}
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=.7\textwidth]{cpu_extrapolations}
+\caption{\label{fig:cpu_extrapolations}
+Exponential fits of the number of cores (non-horizontal dashed lines), where
+40,000 CPUs are normalized to the full processing power available for all
+computational tasks (including \hlt{} processing) performed in P1 during 2016, as
+a function of the online pile-up estimator (\avgmu{}) when employing measurements
+performed in the P1 on different runs and menu versions (configurations in top
+left legend). A horizontal dotted red line represents the expected computing
+power for 2017 (48,000 CPU nodes, see text). The P1 estimations for
+the 2017 preliminary menus dedicated to high luminosity operation
+($\text{1.7e34}$ and \SI[parse-numbers =
+false]{2.0e34}{\per\square\cm\per\second}) are shown by stars at their expected
+pile-up maxima with horizontal dashed lines emphasizing the result of the
+estimation. Circular points show a linear extrapolation based on the standard
+CPU cost estimation (EB) for preliminary menus dedicated for data-taking on
+luminosities up to $\text{1.7e34}$, $\text{1.9e34}$ and \SI[parse-numbers =
+false]{2.0e34}{\per\square\cm\per\second}~\cite{ATR-16227}. Extracted
+from~\cite{Martin2017b}.}
+\end{figure}
+
+Although ATLAS regarded as acceptable pile-up conditions up to $\avgmu=60$
+during the preparation for data-taking after 2017 Technical Stop 1 (TS1), a
+major concern considered the CPU processing power. CPU measurements on actual
+operation of 2016 menu foreseen a minimal requirement of \SI{50}{\%} above 2016
+available processing resources under pile-up conditions expected after TS1
+(Figure~\ref{fig:cpu_extrapolations}), while only \SI{20}{\%} additional power
+was enrolled~\cite{Shaw2017}. To allow measurement of improvements in the menu,
+standard procedure employed for CPU cost measurements were used, which also
+pointed to the direction of an urgent need for optimization of the
+\hlt~\cite{Martin2017a,Shaw2017,Martin2017b}.  The campaign allowed to recover
+\SI{20}{\%} of the processing power~\cite{Shaw2017}. However, a harsh
+development scenario arose due to precision limitations of the standard CPU
+measurements to predict a realistic data-taking scenario. In order to reduce
+uncertainties in the estimations, two runs before TS1 employed a preliminary
+version of the high luminosity menus~\cite{Stelzer2017}. Although extrapolations
+of the new configuration resulted in a much less stringent scenario
+(Figure~\ref{fig:cpu_extrapolations}), the reason for their lower dependency
+with respect to \avgmu was not clear~\cite{ATR-16463}. Even in such projections,
+the menu dedicated for data-taking on luminosity up to
+$\SI{2.0e34}{\per\square\cm\per\second}$ raised concern for its high expected
+CPU demands~\cite{ATR-16463}.
+
+In addition to the aforementioned scenario, complementary processing power
+expected for 2017 was not provided~\cite{Love2017}. Hence, this further required
+a cost-reduction campaign during TS1~\cite{Leonidopoulos2017}, where the \rnn
+was defined to be the baseline algorithm for electron chains. These efforts
+allowed stable operation for the targeted pile-up benchmark despite the
+processing power being kept similar to the available in 2016.
+
+Finally, a problem in the sector 16L2 of the LHC was identified in August 2017
+which required an alternative filling scheme (\emph{8b4e}: eight bunches filled,
+four empty) and resulted in higher pile-up conditions for the same instantaneous
+luminosity when compared to the nominal LHC operation. The menu evaluated for
+these pile-up conditions ($\avgmu=80$) would have impacted in the physics
+programme, thus the leveling of the instantaneous luminosity at
+\SI{1.56e34}{\per\square\cm\per\second}, culminating in $\avgmu=60$, was
+requested to the LHC~\cite{ATL-DAQ-PUB-2018-002}. When all facts are put
+together, the relevance of the improvements performed in terms of CPU
+optimization becomes clear as, otherwise, the conditions for 2017 data-taking
+would impose limitations for some physics analyses.
+
+
+\FloatBarrier
+\subsection{2017 Cost Monitoring Results}\label{ssec:cpu_2017_estimations}
+
+Figure~\ref{fig:chain_cpu_comp_2016_2017}
+summarizes the cost reprocessing results\footnote{Background efficiency
+measurements in Appendix~\ref{ssec:2017_cost_background_eff}.} obtained during
+the first half of 2017. For instance, the tracking algorithms demanded
+\SI{28}{\milli\second\per\text{event}} (\SI{86}{\milli\second\per\text{event}})
+for all electron triggers when the menu was run with (without) \rnn{} as the
+baseline algorithm. A similar reduction can be seen for the \hltcalo{} and the
+final \hlt{} selection steps. These are due to the better \rnn{} discrimination
+at the \fastcalo{}, i.e.\@ resulting in an increase of the fake rate reduction
+factor from \SI{3.64}{$\times$} to \SI{9.11}{$\times$} (central value) for the
+configuration as similar as possible to the lowest-energy-threshold unprescaled
+single electron trigger monitored in these data reprocessing.
+
+Taking into account the raw measurements, a \SI{25}{\%}
+reduction in CPU demand of the full electron and photon triggers (\egamma{}
+slice) was estimated when adopting the \rnn{} algorithm. Later, these results
+were found to be lacking adjustments to account for differences in processing
+conditions (LCG sites, load during processing time etc.). The reduction factor
+after applying the correction procedure is of \SI{8}{\%}, yet relevant
+specially when considering that \rnn{} affected only electron trigger legs above
+\SI{15}{\GeV}.
+
+Finally, it is worth mentioning that although the 2016 menu was evaluated with a
+distinct set of triggers (MC\_v6\_tightperf), the reported results are similar
+to the equivalent physics menu~\cite{RyanComment_ATR-15989}. In 2016, a
+likelihood selection based only on shower-shape variables was being employed. It
+was removed for 2017 execution, and the menu was optimized to maximize caching
+in triggers assessing the same RoI. The \rnn-based menu is applied on top of the
+caching improvements.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{chain_comp_2016_2017}%
+\caption{%
+\label{fig:chain_cpu_comp_2016_2017}%
+\hlt CPU time (central value) per event of bunch-crossing evaluated on EB stream
+of run 309640 with 2016 menu on top (AtlasP1-21.0.9, MC\_v6\_tightperf,
+ATR-15453), 2017 menu without \rnn on middle (AtlasP1-20.0.11,
+Physics\_v7\_tight, ATR-15954) and the final 2017 menu, with \rnn, on bottom
+(AtlasP1-20.0.19, Physics\_v7\_tight, ATR-15956). The number of
+variables, their representation type and selection method for each menu and step
+are displayed in a dedicated box. Contributions to the CPU total time per event
+are divided accordingly to the processing steps. All CPU time is shown in units
+of ms per event. They are further separated in three categories: first line
+refers to CPU demands of all electron triggers; some of the \fastelectron
+algorithms can only be assessed by evaluating their full menu time, displayed in
+the second line; and hypothesis testing for a typical electron trigger is in the
+third line, given that their measurements are obtained separately for each
+working point and energy threshold. Contributions shown with arrows in pure red
+refers exclusively to computations of ID information. It is displayed the
+reduction factor of executions in the next step, except for the last one, where
+the reduction factor is computed in terms of executions with respect to the
+number of accepted events, for the lowest \et{} \tight{} trigger allowing to
+access these informations. In the right, the total CPU per event for both
+electron and photon triggers in each menu (highlighted in red) and the \hlt
+output rate for electron triggers only (grey).  See~\cite{ATR-15957} for more
+information on these measurements.}
+\end{figure}
+
+\FloatBarrier
+\subsection{Maximizing the Impact in CPU Resources}\label{ssec:menu_cpu}
+
+Precise measurement of the CPU impact during operation is not a trivial
+task due to the frequent changes in the menu configuration. Although it was not
+possible to find data-taking conditions with and without the \rnn operation
+similar enough to allow conclusive measurements, we assessed the standard cost
+monitoring data\footnote{2015 runs are not included due to differences in the
+cost monitoring data format.} for insights concerning the Run~3 developments.
+These data are sampled for a few luminosity blocks\footnote{Usually a data-taking
+period of about \SI{60}{\second}.}, usually with a single block with less
+detailed measurements or three successive blocks with more detailed
+measurements, where about \SI{10}{\%} of the first level events are monitored.
+
+Figure~\ref{fig:run2_monitored_cpu_per_group} shows that the \egamma{} triggers
+were usually the second most-demanding group during data taking, except for
+after 2017 TS1, where they were the most-demanding. B-jet group demanded more CPU
+time than \egamma{} up to 2017 TS1, while in 2018 the top-most demanding group
+was b-physics.  Figure~\ref{fig:run2_monitored_cpu_per_mu} shows that this
+behavior roughly did not change according to menu configurations or runs within
+each period. When taking into account the time per signature event, as shown in
+Figure~\ref{fig:run2_monitored_cpu_per_mu_norm_group_evt}, b-jet triggers are by
+far the most demanding ones after 2017 TS1, followed by b-physics and \egamma{}.
+Muon triggers demanded similar CPU per signature event during the runs taken in
+2017 after TS1.
+
+\begin{figure}[h!tb]
+\centering
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_slices_pie_data16.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_group_data16}
+\end{subfigure}
+\hfill
+%\hspace{0.01\textwidth}
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_slices_pie_data17-pre-ts1.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_group_data17_pre}
+\end{subfigure} \\
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_slices_pie_data17-post-ts1.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_group_data17_post}
+\end{subfigure} 
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_slices_pie_data18.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_group_data18}
+\end{subfigure} 
+\caption{\label{fig:run2_monitored_cpu_per_group}CPU time demanded by each
+  group. 2016 data are shown in (a), before 2017 TS1 in (b), after 2017 TS1 in
+  (c) and 2018 in (d). The groups are in decreasing order based on the
+  total CPU time demanded during the cost monitoring samplings. Emphasis is
+  given in the graph to the \egamma{} group. Each group total time is displayed
+  in the third line after for each group followed by the fraction of when
+  considering the full HLT CPU time. The average CPU time per all HLT processed
+  events is shown in the second line.
+}
+\end{figure}
+
+\begin{figure}[h!tb]
+\centering
+\begin{subfigure}[c]{.48\textwidth}
+\includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_total_all_data.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_mu_norm_l1_evt}
+\end{subfigure}
+\hfill
+%\hspace{0.01\textwidth}
+\begin{subfigure}[c]{.48\textwidth}
+\includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_time_per_event_all_data.pdf}
+\caption{}%
+\label{fig:run2_monitored_cpu_per_mu_norm_group_evt}
+\end{subfigure} \\
+\caption{\label{fig:run2_monitored_cpu_per_mu}CPU time normalized by the
+total number of L1 output (a) and each trigger signature events (b) as
+function of \avgmu{}. The measurement colors are used to determine the signature
+group and the marker style determine the period. 2016 data are shown with
+crosses, before 2017 TS1 with squares, after 2017 TS1 with circles, 2018 with
+plus marks and special data taking luminosity blocks during before 2017 TS1
+configured without \rnn with stars. }
+\end{figure}
+
+Figure~\ref{fig:run2_monitored_egamma_cpu} shows the CPU demands according to
+some trigger sub-groups within \egamma{}. Combined triggers refer to those that
+require other physics object then the group they are placed in, i.e. an electron
+trigger require a jet or a muon; as opposed to pure triggers. Additional
+splitting is applied to electrons triggers depending on the energy of the
+electron legs: a group for when all are above \SI{15}{\GeV} (affected by \rnn
+operation after 2017 TS1); another for the case where all are below
+\SI{15}{\GeV} (not affected); and a last group containing energy-thresholds at
+both groups (partially affected by the \rnn).
+
+\begin{figure}[h!tb]
+\centering
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_egamma_pie_data16.pdf}
+\caption{}%
+\label{fig:run2_monitored_egamma_cpu_data16}
+\end{subfigure}
+\hfill
+%\hspace{0.01\textwidth}
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_egamma_pie_data17-pre-ts1.pdf}
+\caption{}%
+\label{fig:run2_monitored_egamma_cpu_data17_pre}
+\end{subfigure} \\
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_egamma_pie_data17-post-ts1.pdf}
+\caption{}%
+\label{fig:run2_monitored_egamma_cpu_data17_post}
+\end{subfigure}
+\begin{subfigure}[c]{.48\textwidth}
+  \includegraphics[width=\textwidth]{appendices/figures/menu_cpu_measurements/run2_slice_cpu_egamma_pie_data18.pdf}
+\caption{}%
+\label{fig:run2_monitored_egamma_cpu_data18}
+\end{subfigure}
+\caption{\label{fig:run2_monitored_egamma_cpu}CPU time demanded by
+\egamma{} triggers grouped by the leg configurations. The groups are in
+decreasing order based on the total CPU time demanded during the cost monitoring
+samplings. The groups where \rnn changed the configuration during Run~2 are
+dislocated with respect to the center. Emphasis is given in the graph to the
+groups where \rnn{} changed the configuration during Run~2. Each group total
+time is displayed in the third line after for each group followed by the
+fraction of when considering the full HLT CPU time. The average CPU time per all
+HLT processed events is shown in the second line.
+}
+\end{figure}
+
+The most demanding \egamma{} sub-groups are combined photon triggers and
+combined electron triggers with legs below \SI{15}{\GeV}. Together, they demand
+around $2/3$ of the \egamma{} group CPU. When considering pure photon triggers
+and combined electron triggers to take all groups unaffected by the \rnn
+operation during Run~2, fraction goes to nearly $3/4$ of the \egamma{} CPU.\@
+Hence, there is a great potential for the \rnn{} to further release resources in
+next data-takings by enabling its operation for these other groups, namely
+triggers with electron legs below \SI{15}{\GeV} and photon combined triggers.
+
+To have an idea of the fraction of P1 CPU that could benefit of a
+more efficient early selection as offered by the \rnn{}, we show the most CPU
+demanding triggers containing at least an electron or a photon in
+Table~\ref{tab:top_cpu_electrons} and Table~\ref{tab:top_cpu_photons},
+respectively. It can be observed that these triggers alone required about
+\SI{15}{\%} to \SI{30}{\%} of the total CPU during Run~2. Except for a few
+triggers that do not apply any requirement in the electron or photon legs
+(i.e.\@ the g0 and etcut triggers), the \rnn{} may be able to bring considerable
+additional impact if set to operate on the electron and photon legs.
+
+%As shown in Section~\ref{top:menu_cpu}, a great potential for saving CPU is
+%available if the \rnn{} is developed for selecting electrons with
+%$\et<\SI{15}{\GeV}$. Additionally, as many of those triggers are prescaled to
+%reduce their output rate in addition to the CPU limitations, it is possible that
+%the \rnn{} algorithm can allow to reduce the pre-scale factor if it is capable
+%of impacting the \hlt{} fake rate as it was the case of the factor of
+%\SI{2}{$\times$} reduction for the duplicated trigger during 2017
+%(Section~\ref{ssec:2017_ringer_operation}).
+
+\FloatBarrier
+
+\input{appendices/tables/top_cpu_electrons}
+\input{appendices/tables/top_cpu_photons}
+

@@ -1,0 +1,40 @@
+%\section{2017 Selection Heuristics}%
+%\label{sec:2017_selection}
+%
+%%Early stopping is employed to avoid model over-training using the following
+%%heuristic. The training is performed separately per working point where, at
+%%each training iteration (epoch), the computation of a ROC with 1,000 linearly
+%%spaced points between the network targets in the validation set is used to
+%%extract the MLP parameters in three specific epochs (referred as multi-stop
+%%algorithm):
+%%
+%%\begin{itemize}
+%%\item \spmax Network: retrieves first epoch resulting in highest \spmax.
+%%\item \pd Network: retrieves parameters in the first epoch resulting in
+%%  lowest background efficiency when operating near the
+%%  targeted working point ($|\Delta(\pd)|=\epsilon<0.2\%$);
+%%\item \pf Network: parameters are obtained from the first epoch resulting in
+%%  highest signal efficiency when operating near the targeted background
+%%  ($|\Delta(\pf)|=\epsilon<0.2\%$) ;
+%%\end{itemize}
+%%
+%%The training is finished when it fails to improve the aforementioned criteria
+%%for 50 consecutive epochs, but, also, to reduce MSE for 25 consecutive epochs,
+%%in order to avoid premature stops without considering the measure employed in
+%%parameter optimization. Efficiency improvements where observed during Run~1 when
+%%employing the \spmax instead of the MSE for the epoch in which the parameters
+%%are extracted, as the first is more suitable estimative of the model performance
+%%for the classification task. Similarly, the \pd and \pf networks were evaluated
+%%during 2017 to seek for models with superior operation around the working point,
+%%as opposed to the \spmax which would optimize the models for a balanced
+%%efficiency between the classes. From the 100 optimizations, one network per
+%%criteria is chosen to avoid local optima. At this point, the cross-validation
+%%efficiencies are computed and graphical evaluation through box plots is assessed
+%%to manually choose the model number of hidden nodes (hyper-parameter). To choose
+%%the operating model, efficiency over the full dataset is computed and the best
+%%performing models are selected. Finally, we retrieve the cross-validation and
+%%full dataset efficiencies for the three (\pd, \pf, \spmax) networks per phase
+%%space regions and choose the appropriated benchmark taking into account a
+%%subjective analysis of the working point emphasis and the resulting
+%%efficiencies.
+%

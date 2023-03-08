@@ -1,0 +1,32 @@
+\section{Some Words on the ATLAS \rnn History}\label{sec:history}
+
+The inspiration for representing of calorimetry information through concentric
+ring sums is based on the SPACAL prototype
+calorimeter~\cite{1992_spacal_rings}\footnote{Technology that has been
+established as a standard calorimetry technique, which has been employed by a
+number of experiments (for instance, H1 and Chorus).}.
+The prototype had 155 towers defined by a central unit surrounded through 7
+concentric rings. This structure was exploited to provide complementary
+measurements through analogue sums of the tower signals composing each ring
+using half of their anode signals. Having this information allowed to reduce
+efforts in equalization of arrival times of the towers, where the 5 outermost
+rings towers could only be studied using their summed signals. The outer ring
+sums were employed in sparse data readout, where signals below \SI{5}{MeV} were
+cutoff. The rings were evaluated for studies of regression of the position of
+the particle interaction and electron-pion identification.
+
+Two authors of the SPACAL prototype joined the ATLAS collaboration in early
+1990's and proposed the ring sums together with neural-networks for electron-jet
+identification in the second-level trigger system based only on
+calorimetry~\cite{1995_seixas_ringer}. This proposal counted with contributions
+of many
+authors~\cite{1998_anjos_dantas,2003_anjos,2010_torres,2010_simas,2012_ciodaro}
+who also worked in its development, implementation and maintenance before and
+during Run 1.
+
+It was found another independent work from the same time scope of the SPACAL
+prototype that proposed the use of rings with neural-networks for online
+electron identification, but for the D$\emptyset$ experiment. The author
+referred to the ring sum as radial bins about the shower peak, but a later
+neural-network tutorial~\cite{denby1990neural} cited this work while mentioning
+to the structure as rings.
