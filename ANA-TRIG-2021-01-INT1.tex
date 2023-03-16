@@ -14,7 +14,7 @@
 % Use this variant if the files are in a central location, e.g. $HOME/texmf.
 % \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, atlasdraft=true, UKenglish]{atlasdoc}
+\documentclass[NOTE, atlasdraft=true, UKenglish]{latex/atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -60,7 +60,7 @@
 \usepackage{tabulary}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage{multirow}
-
+\usepackage{comment}
 
 %-------------------------------------------------------------------------------
 % Extra packages:
@@ -162,7 +162,7 @@
 \include{sections/ringer/ringer} % need to fix table and alg
 \include{sections/operation/operation} % ok
 \include{sections/analyses/analyses} % ok
-\include{sections/other_studies/other_studies} % ok
+%\include{sections/other_studies/other_studies} % ok
 \include{sections/conclusion/conclusion} % ok
 
 %-------------------------------------------------------------------------------

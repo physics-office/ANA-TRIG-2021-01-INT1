@@ -1,5 +1,5 @@
 % \section{\rnn Development Context}\label{sec:context}
-\section{\textcolor{red}{The ATLAS Detector}}\label{sec:context}
+\chapter{\textcolor{red}{The ATLAS Detector}}\label{sec:context}
 
 
 
@@ -8,9 +8,8 @@ produced in high-energy proton--proton collisions and, hereby not addressed,
 heavy-ion LHC collisions. Its calorimeter system comprises both 
 electromagnetic (ECAL) and hadronic (HCAL)
 sections (Section~\ref{ssec:calo}), which overlap an inner detector. The two-level triggering system reduces the total
-data-taking rate to approximately 1~kHz, where each physics object has its own
-filtering features, but, here, we focus on electron-based channels, which are
-found in many interesting physics phenomena, as the decays of the Higgs
+data-taking rate \textcolor{red}{from 40 MHz} to approximately \textcolor{red}{1 kHz. Here}, we focus on electron-based channels, which are
+found in many interesting physics phenomena, \textcolor{red}{such as the} the decays of the Higgs
 boson~\cite{HIGG-2012-27,HIGG-2016-33}, for instance.
 % A trigger system sequential 
 %logic dedicated to
@@ -26,41 +25,40 @@ The standard variables for electron identification are discussed in
 Section~\ref{ssec:std_variables}. The electron triggers are described in
 Section~\ref{ssec:egamma_trigger}, followed by their nomenclature in
 Section~\ref{ssec:menu}.  Considerations about the \TnP method
-(Section~\ref{ssec:tnp}) and datasets (Section~\ref{ssec:dataset}) employed for
-signal and background event selection samples close this section.
+(Section~\ref{ssec:tnp}) and datasets (Section~\ref{ssec:dataset}) employed \textcolor{red}{to extract signal and background samples
+from real ATLAS data} close this section.
 
 
 
 
-\subsection{Calorimeter System}\label{ssec:calo}
+\section{Calorimeter System}\label{ssec:calo}
 
 
-\input{sections/context/tables/atlas_calorimeter_system}
+%\input{sections/context/tables/atlas_calorimeter_system}
 
 
 
-The calorimeter system covers (Table~\ref{tab:granularity}) the pseudorapidity
+The calorimeter system covers the pseudorapidity
 range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
 electromagnetic calorimetry is provided by barrel and endcap high-granularity
 lead/Liquid-Argon (LAr) calorimeters, with an additional thin LAr presampler
 (\ps) covering \(|\eta| < 1.8\), in order to correct for energy losses in
 material upstream of the calorimeters~\cite{LARG-2009-01,larg_tdr}. Hadronic
-calorimetry is provided by the steel/scintillating-tile calorimeter
-(\tilecal~\cite{TCAL-2017-01,tile_tdr}), comprised of three barrel structures
+calorimetry is provided by \textcolor{red}{a} the steel/scintillating-tile calorimeter
+(\tilecal~\cite{TCAL-2017-01,tile_tdr}), \textcolor{red}{constituted} of three barrel structures
 within \(|\eta| < 1.7\), and two copper/LAr hadronic endcap calorimeters
 (\hec)~\cite{cal_tdr}.  The solid angle coverage is completed with forward
 copper/LAr and tungsten/LAr calorimeter modules optimised for electromagnetic
 (EM) and hadronic (HAD) measurements, respectively. The specified calorimeters
-provide full azimuthal ($\phi$) coverage with a total of about 190,000 readout
-cells.  Nonetheless, certain transition regions, which occur accordingly to
-\eta{}, deteriorate the calorimeter response with respect to the rest of the
-acceptance.  In particular, the transition from the barrel to the end-cap within
+provide full azimuthal ($\phi$) coverage with a total of about 190,000 \textcolor{red}{readout cells. Transition regions between calorimeters are used to locate detector services and induce a sharing of showers between calorimeters that degrades energy measurements in those regions. In particular,} the transition from the barrel to the end-cap within
 $1.37<|\eta|<1.52$ is complemented by scintillator stab ($1.0<|\eta|<1.6$) to
-estimate the signal losses~\cite{cal_tdr}.
+estimate signal losses~\cite{cal_tdr}.
 
 The electromagnetic and hadronic systems comprise three sampling layers each along longitudinal (depth) segmentation ~\cite{PERF-2007-01}\footnote{The two
 central layers in HCAL end-cap are summed to result in a single measurement.}.
-Each sampling layer has its own lateral ($\eta\times\phi$) granularity (see Table~\ref{tab:granularity}, for detailed information). Besides granularity, the amount of material in front of the detector in each sampling layer may also vary with \abseta, as shown in Figures~\ref{fig:cal_em_x0} and~\ref{fig:cal_had_lambda}.
+Each sampling layer has its own lateral ($\eta\times\phi$) granularity (see Table~\ref{tab:granularity}, for detailed information). Besides granularity, the amount of material in front of the detector in each sampling layer also vary with \abseta, leading to variable expected lateral and longitudinal profiles. \textcolor{red}{Additionally}, the expected
+profile is also dependent on the physics object total energy. \textcolor{red}{In the EM calorimeter}, most of \textcolor{red}{the EM shower} energy is collected in the second layer, while the third layer provides measurements
+of energy deposited in the shower tails. %as shown in Figures~\ref{fig:cal_em_x0} and~\ref{fig:cal_had_lambda}.
 
 %, which
 %may vary with $\eta$. This is particularly true for the first EM layer, which
@@ -89,7 +87,7 @@ to have uniform response for full detector acceptance, there are residual fluctu
 dependent on the shower development position~\cite{Wigmans2017}.
 
 
-
+\begin{comment}
 \begin{figure}[ht]
   \centering
   \includegraphics[width=.5\textwidth]{sections/context/figures/cal_em_x0.pdf}
@@ -114,44 +112,44 @@ absorbers.%Simulation of accumulated radiation lengths ($\text{X}_0$), as a func
   occurs~\cite{Wigmans2017}. Extracted from~\cite{cal_tdr}.}%
   \label{fig:cal_had_lambda}
 \end{figure}
+\end{comment}
 
 
+\subsection{Inner Detector}\label{ssec:track}
 
-% \subsection{Inner Detector}\label{ssec:track}
-
-% The inner detector, employed for charged-particle tracking, is immersed in a
-% \SI{2}{\tesla} axial magnetic field produced by a thin superconducting solenoid
-% and covers a pseudorapidity range $|\eta| \lesssim 2.5$~\cite{PERF-2007-01}.
-% Three technologies are employed, with thinner granularity nearer to the
-% interaction point~\cite{PERF-2015-08,inner_tdr1,inner_tdr2}: Pixel Detector (92
-% million channels), Silicon Microstrip Detector (SCT, 6.3 million channels) and
-% Transition Radiation Detector (TRT, 350 thousand channels). The TRT offers
-% electron identification capability within its pseudorapidity coverage ($|\eta|
-% \lesssim 2$) via the detection of transition-radiation photons generated by the
-% radiators. Track reconstruction requires (pile-up dependent) CPU intensive
-% computations due to the complexity of image-processing algorithms with
-% combinatorial nature~\cite{PERF-2015-08}.  During 2016, it was the second
-% most-demanding reconstruction algorithm in the \hlt{}.
-
+The inner detector, \textcolor{red}{used to reconstruct charged-particle tracks}, is immersed in a
+\textcolor{red}{\SI{2}{\tesla} magnetic} field \textcolor{red}{aligned on the beam axis and produced} by a thin superconducting solenoid
+and covers a pseudorapidity range $|\eta| \lesssim 2.5$~\cite{PERF-2007-01}.
+Three technologies are employed, with thinner granularity nearer to the
+interaction point~\cite{PERF-2015-08,inner_tdr1,inner_tdr2}: \textcolor{red}{a} Pixel Detector (92
+million channels), \textcolor{red}{a} Silicon Microstrip Detector (SCT, 6.3 million channels) and
+\textcolor{red}{a} Transition Radiation Detector (TRT, 350 thousand channels). The TRT offers
+electron identification capability within its pseudorapidity coverage ($|\eta|
+\lesssim 2$) via the detection of transition-radiation photons \textcolor{red}{generated at the interface between the radiator material and detection straws.} Track reconstruction requires (pile-up \textcolor{red}{and the event topology} dependence) CPU intensive
+computations due to the complexity of image-processing algorithms \textcolor{red}{fighting against combinatorial backgrounds when associating hits to tracks ~\cite{PERF-2015-08}. In} 2016, it was the second
+most-demanding reconstruction algorithm in the \hlt{}.
 
 
 
 
 
-\subsection{Standard Electron Identification Variables}\label{ssec:std_variables}
+
+\section{Standard Electron Identification Variables}\label{ssec:std_variables}
 
 The specificities of the signal and background interaction processes with
 detector instrumentation can be used to construct meaningful and discrimination
 efficient physics variables. Except for the hardware-based calorimeter trigger
 and the \rnn (Section~\ref{sec:neuralringer}), electron
 identification~\cite{atlas_electron_id_offline} relies on the variables
-described in Table~\ref{tab:IDcuts}. A schematic illustration of the ATLAS
-components employed on these variables can be seen in
-Figure~\ref{fig:schematic_id_inputs}. The cut-based algorithm in electron
+described in Table~\ref{tab:IDcuts}. 
+%A schematic illustration of the ATLAS components employed on these variables can be seen in Figure~\ref{fig:schematic_id_inputs}. 
+The cut-based algorithm in electron
 triggers applies thresholds on the three most discriminating discussed in Table~\ref{tab:IDcuts}. They describe the shape of the electromagnetic shower: \reta{}, \eratio{}, \rhadone{}.
 
 
 \input{sections/context/tables/electron_quantities}
+
+\begin{comment}
 
 \begin{figure}[t]
   \begin{center}
@@ -171,7 +169,7 @@ triggers applies thresholds on the three most discriminating discussed in Table~
   \label{fig:schematic_id_inputs}
   \end{center}
 \end{figure}
-  
+\end{comment}  
 
 
 
@@ -185,7 +183,7 @@ variables for describing the shower shape in the EM2). The objective is to reduc
 discriminating power and make analysis more
 complex~\cite{aaboud2019electron}.
 
-In the end of the Run~1~\cite{PERF-2016-01}, the strategy for offline electron identification was improved by the adoption of a multivariate approach, which computes a likelihood discriminant. Here, an approximation is made by considering  the statistical independence between variables ~\cite{kendalls_vol2b}. This likelihood approach was also brought to the final HLT selection in Run 2 (Section~\ref{ssec:egamma_trigger}) to improve overall efficiency. that approximates inference through the
+In the end of the \textcolor{red}{LHC} Run~1~\cite{PERF-2016-01}, the strategy for offline electron identification was improved by the adoption of a multivariate approach, which computes a likelihood discriminant. Here, an approximation is made by \textcolor{red}{assuming} the statistical independence between variables ~\cite{kendalls_vol2b}. This likelihood approach was also brought to the final HLT selection in Run 2 (Section~\ref{ssec:egamma_trigger}) to improve overall efficiency. that approximates inference through the
 %hypothesis of statistical independence between variables~\cite{kendalls_vol2b}.
 %The likelihood computation~\cite{aaboud2019electron} allows to account for
 %the presence of both background-like and signal-like variables, but also to
@@ -201,7 +199,7 @@ In the end of the Run~1~\cite{PERF-2016-01}, the strategy for offline electron i
 
 
 
-In a broader sense, other ATLAS physics objects (i.e. taus and jets), for
+In a broader sense, other ATLAS physics objects (i.e. taus and jets) \textcolor{red}{have successfully}, for
 which discrimination relies on less prominent instrumentation and carried out on
 similar signal--background interactions, have successfully applied other
 multivariate methods (i.e. boosted decision-trees and neural-networks) for
@@ -209,28 +207,100 @@ modelling a more suitable (and complex) decision boundary
 %~\cite{Radovic2018,ATLASCollaboration2017f,ATLASCollaboration2018c,
 %ATLASCollaboration2017g,ATLASCollaboration2016,tau_run2_rnn_bdt}.
 
-\subsection{Electron Triggers}\label{ssec:egamma_trigger}
+\section{Feature Extraction: Ring Sums}\label{ssec:concept}
+
+%One disadvantage of this strategy is that it requires discriminant information
+%to be captured through variables that are individually conceived to explore
+%specific physics or instrumentation knowledge. By alleviating this requirement,
+%other variables can be conceived while still affording from field-specific
+%knowledge.
+%We take advantage of field-specifc knowledge to follow another path.
+%\textcolor{red}{The create the rins sums it was} taken into account the approximately conical structure of the shower to
+%construct energy quantities describing the total energy deposited in a
+%concentric ring of cells (\figurename~\ref{fig:calo_rings}), or simply ring, 
+At each calorimeter sampling layer, the energy deposition of an incoming particle is extracted by building concentric rings of cells (\figurename~\ref{fig:calo_rings}), or simply rings. All rings in the \ecal sampling layers are
+\textcolor{red}{centered around their most} energetic (hottest) cell, a reasonable
+approximation of the energy barycenter of the \textcolor{red}{shower for} online
+\textcolor{red}{operation. Focusing on EM objects, rings are} built using as axis center the position of
+the hottest cell in the second electromagnetic \textcolor{red}{layer, collecting the largest fraction} of the total absorbed electron energy.
+
+The ring building process covers the whole $0.4\times0.4$ (\etaphi axis) RoI
+seeded by \licalo, resulting in \textcolor{red}{100 rings. The number of rings}
+naturally varies per calorimeter sampling layer, as shown in
+\tablename~\ref{tab:ring_alg_parameters}, to account for different layer
+granularity. Thereby, a dimensionality reduction is provided by compacting
+typical input space dimensionality of approximately 1000--1200 cells per ROI into
+the above-mentioned 100 rings through the usage of \textcolor{red}{EM shower} physics \textcolor{red}{knowledge: the rings} can keep a complete description of the (symmetric) lateral and
+longitudinal information. However, the algorithm only approximates this concept
+in order to meet the online operation requirements and avoid further
+manipulation of the instrumented information. The full description and
+discussion on the current algorithm are addressed in
+Section~\ref{top:algorithm}.
+
+
+\input{sections/ringer/tables/granularity}
+
+
+\begin{figure}[h!t]
+	\centering
+	\begin{center}
+		\begin{subfigure}[c]{0.8\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{sections/ringer/figures/ATLAS_EM_Layers_v5.pdf}
+			\caption{Eletromagnetic calorimeter cells within the ringer reconstruction window.}
+		\end{subfigure} \\
+		\begin{subfigure}[c]{0.8\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{sections/ringer/figures/ATLAS_HAD_Layers_v5.pdf}
+			\caption{Hadronic calorimeter cells within the ringer reconstruction window.}
+		\end{subfigure}
+	\end{center}
+	\caption{\label{fig:calo_rings}
+		Sketch to illustrate the ring-shaped energy description. See
+		Section~\ref{top:algorithm} for more details. 
+		The hottest cell is in red, while the consecutive neighbouring rings are represented by a cycle 
+		of non-colored and black cells.
+	}
+\end{figure}
+
+Nonetheless, some observations concerning the description \textcolor{red}{of a shower} through rings are
+worth making. First, the standard shower shape variables (or simply shower shapes) cannot be obtained through operations starting from the rings.  Thus, the rings represent an alternative for shower development description and not a possible replacement for the shower shapes.  Therefore, a strategy considering both variables altogether (rings and shower shapes) might explore \textcolor{red}{a} complementary discriminating information in future.
+%First, is not possible, by operating the rings, obtain the standard shower shapes (of simply shower shapes)}. In addition, \textcolor{red}{the rings, due to their construction, obtain similar information as the obtained from some shower shapes (i.e \rhad, \reta and \rphi).} Thus, the rings are not a replacement
+%for the shower shapes and a strategy considering both variables altogether could
+%explore complementary discriminating information. 
+Second, one should also notice
+that the rings do not use the same sensors more than once for each variable.
+This is not strictly true for the shower shapes, although it is fairly unusual.
+In contrast, pattern recognition through modern machine learning
+algorithms~\cite{Engelbrecht2007,Goodfellow2016}, as convolution
+neural-networks~\cite{Gu2018}, build variables processing several times
+the same sensors. \textcolor{red}{Finally, as providing} dimension reduction and keeping the
+physics interpretation of the shower development, the shower shapes \textcolor{red}{are also suited} bringing insights through univariate analysis carried out on each
+single dimension composing the input space.
+
+
+
+\section{Electron Triggers}\label{ssec:egamma_trigger}
 
 
 Electron triggers~\cite{aad2020performance} begin with
 the search for an EM energy deposit in the calorimeter with a \licalo{} sliding
-window algorithm using coarse granularity calorimeter information, in order to
-fulfill the targeted latency requirements. This selects a RoI of $0.4\times 0.4$
+window algorithm \textcolor{red}{~\cite{Franchino:2730851}} using coarse granularity calorimeter information, in order to
+fulfill the targeted latency requirements \textcolor{red}{($2.5\mu s$)}. This selects a RoI of $0.4\times 0.4$
 in the $\eta\times\phi$ axis and applies a minimal transverse energy and object
-multiplicity requirements, which depend on the chain
+multiplicity requirements, which depend on the \textcolor{red}{trigger}
 specifications~\cite{TRIG-2016-01}.
  
 The \hlt{} selection starts with the fast calorimeter reconstruction
 step (\fastcalo), which has two implementations
 (Figure~\ref{fig:ringer_chains}): a new one based on the Ringer algorithm, which
-has been operating as the baseline since 2017; and the original cut-based
-algorithm to provide its decision.%~\cite{ATLAS-PERF-2017-01-002}
-
-
-
-
-
-
+has been operating as the baseline since 2017; and the original \textcolor{red}{cut-based
+algorithm}.%~\cite{ATLAS-PERF-2017-01-002}
+This processing step is followed by the fast track reconstruction
+(\fastelectron), which applies restrictions on calorimeter-tracking position
+matching variables. Due to its high-demanding computational \textcolor{red}{algorithms, earlier}
+ fake candidates removal is specially
+interesting to release CPU resources before this selection stage.
 
 
 \begin{figure}[h!tb]
@@ -264,23 +334,19 @@ algorithm to provide its decision.%~\cite{ATLAS-PERF-2017-01-002}
   
 This processing step is followed by the fast track reconstruction
 (\fastelectron), which applies restrictions on calorimeter-tracking position
-matching variables. Due to its high-demanding computational algorithms %(Section~\ref{ssec:track})
+matching variables. Due to its high-demanding computational algorithms (Section~\ref{ssec:track})
 , earlier fake candidates removal is specially
 interesting to release CPU resources before this selection stage.
 
 % http://acode-browser1.usatlas.bnl.gov/lxr/source/aa/Trigger/TrigHypothesis/TrigEgammaHypo/python/TrigL2CaloHypoCutDefs.py
 
-Precise computation of electron candidate energy is later employed
-(\hltcalo). Final HLT selection makes use of a likelihood
-approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}. This is based on the extraction of marginal probability density
-function (pdf) estimates for the mentioned discriminating physics
-variables ($\vec{x}$), which are built using adaptive Gaussian Kernel Density Estimation (KDE)~\cite{Silverman2018,TMVA}. The
+\textcolor{red}{A precise electron candidate energy is later computed} (\hltcalo). Final HLT selection makes use of a likelihood
+\textcolor{red}{approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}, based} on the \textcolor{red}{estimation of marginal} probability density function \textcolor{red}{(pdf) for the discriminating variables ($\vec{x}$) given in Table~\ref{tab:IDcuts}}, which are built using adaptive Gaussian Kernel Density Estimation (KDE)~\cite{Silverman2018,TMVA}. The
 resulting kernels, obtained (since 2017) from runs of the previous year, and
 earlier from simulation data, are approximated by histograms with thin
-granularity (generally employing 500 bins) and then interpolated to \textcolor{red}{give signal
-and background probability} values computed for the $i$th quantity
+granularity (generally employing 500 bins) and then interpolated to give the
+signal (background) probability values computed for the $i$th \textcolor{red}{variable}
 ($P_{s(b),i}(x_i)$). The discriminant value is computed by
-
 
 \begin{equation}
   d_{\mathcal{L}} = \frac{\mathcal{L}_{s}}{\mathcal{L}_{s} + \mathcal{L}_{b}},
@@ -301,7 +367,7 @@ efficiency loss due to pile-up. In addition, some other requirements may be
 applied under specific variables to improve the final
 decision~\cite{aaboud2019electron}.
 
-To account for detector response fluctuations (Section~\ref{ssec:calo}) with
+To account for detector response \textcolor{red}{evolution} (Section~\ref{ssec:calo}) with
 respect to \Et\footnote{Projection of the energy ($E$) in the transverse plane,
 computed by $E\cdot\sin(\theta)$ or $E\cdot\cosh(\eta)$.} and
 $\eta$, both the KDE and discriminant requirements are computed in delimited
@@ -318,19 +384,19 @@ and required efficiency: the \tight{} operating point prioritizes the purity of
 collected electron candidates and demands lower output rate, while the \loose{}
 and the \vloose{} ones emphasize potential electron observations, hence
 resulting, specially for the latter, in higher output rate than an equivalent
-tighter chain, but with substantial lower purity. \medium{} allows a middle-term
-operation between both working points. The operation point also leads to
+tighter chain, but with substantial lower purity.  \medium{} allows a middle-term
+operation between both working points. \textcolor{red}{Each} operation point also leads to
 variation in the physics composition (light- and heavy-flavour, photon
 conversions) of background triggered samples.
 
 
 
 
-\subsection{Electron Trigger Nomenclature}%
+\section{Electron Trigger Nomenclature}%
 \label{ssec:menu}
 
 A set of complementary electron triggers is employed to comply with the ATLAS
-physics programme~\cite{aad2020performance}. Here, we refer to the nomenclature for
+physics programme~\cite{aad2020performance}. Here, we refer to the \textcolor{red}{related} nomenclature for
 defining electron trigger configuration.  At HLT electron triggers are called
 "$e$" followed by a value of \et-threshold used in GeV. A following set of
 object identification options can be applied:
@@ -372,9 +438,11 @@ energy (I$\le \max(E_T/8-1.8, 2.0)\,$GeV).
 
 
 
-\subsection{\TnP Method}\label{ssec:tnp}
+\section{\TnP Method}\label{ssec:tnp}
 
-One interesting problem arises when considering efficiency measurements in collision data. Without the application of a selection model, the true nature of the data is unknown and, otherwise, the measurements are biased. Fortunately, physics knowledge can shed some light to this issue. Well-known properties of physics resonances can be exploited to provide a reasonable statistical amount of electron samples for a wide kinematic range through the \tnp{} method~\cite{PERF-2016-01}. The strategy is to employ a set of requirements to ensure good quality physics objects (tag) that match the properties of a physics resonance decay when they are computed together with an additional specific physics object (probe). The resonance decays are chosen to provide probes at similar conditions expected in particular physics analysis, thus permitting to scrutinize detector behavior and eventual efficiency discrepancies between simulated and collision data. Thus, the efficiency measures computed for the Ringer were over such probes in collision data.
+\textcolor{red}{The \tnp{} method relies on the existence of resonances that decay to a pair of particle of interest (\Zee{}, \Jee{}, $\gamma \rightarrow ee$ and etc) ~\cite{PERF-2016-01}. In the case of electrons coming from $Z$ boson decay, the selection of two EM objects with a mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon you tag one of those objects as a well identified electron. The remaining object can them be assumed to be an electron with a very high underlying purity. This object can them be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used to select the event at the trigger level (tag), allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.}
+
+%One interesting problem arises when considering efficiency measurements in collision data. Without the application of a selection model, the true nature of the data is unknown and, otherwise, the measurements are biased. Fortunately, physics knowledge can shed some light to this issue. Well-known properties of physics resonances can be exploited to provide a reasonable statistical amount of electron samples for a wide kinematic range through the \tnp{} method~\cite{PERF-2016-01}. The strategy is to employ a set of requirements to ensure good quality physics objects (tag) that match the properties of a physics resonance decay when they are computed together with an additional specific physics object (probe). The resonance decays are chosen to provide probes at similar conditions expected in particular physics analysis, thus permitting to scrutinize detector behavior and eventual efficiency discrepancies between simulated and collision data. Thus, the efficiency measures computed for the Ringer were over such probes in collision data.
 
 
 %One interesting problem arises when considering efficiency measurements in
@@ -391,72 +459,72 @@ One interesting problem arises when considering efficiency measurements in colli
 %permitting to scrutinize detector behavior and eventual efficiency discrepancies
 %between simulated and collision data.
 
-\TnP{} efficiency measurements performed for the offline model selection,
-reference for physics analysis, need additional complexity to discard background 
-contamination as the method is subjected to
-inefficiency~\cite{aaboud2019electron}. The trigger system is developed to
-comply with the offline reference, culminating in higher overall system
-efficiency. Accordingly, many trigger efficiency measurements employ the \tnp
-method together with an equivalent offline requirement to increase
-their agreement and to avoid unnecessary handling of background contamination.
-This is the case of the efficiency measurements hereby reported, where the
-offline probes are matched to an equivalent trigger object and attend a specific
-offline requirment. For an unbiased evaluation of spurious signal removal and
-of the systematics involved in the electron triggers, see~\cite{aad2020performance}. 
+%\TnP{} efficiency measurements performed for the offline model selection,
+%reference for physics analysis, need additional complexity to discard background 
+%contamination as the method is subjected to
+%inefficiency~\cite{aaboud2019electron}. The trigger system is developed to
+%comply with the offline reference, culminating in higher overall system
+%efficiency. Accordingly, many trigger efficiency measurements employ the \tnp
+%method together with an equivalent offline requirement to increase
+%their agreement and to avoid unnecessary handling of background contamination.
+%This is the case of the efficiency measurements hereby reported, where the
+%offline probes are matched to an equivalent trigger object and attend a specific
+%offline requirment. For an unbiased evaluation of spurious signal removal and
+%of the systematics involved in the electron triggers, see~\cite{aad2020performance}. 
 %The \TnP{} for $Z\rightarrow$ee ressonance is described in Algorithm~\ref{alg:tap_zee},
 %The offline-reconstructed electron tag must pass the following criteria:
 
+%\begin{itemize}
 
+%  \item It must have an associated cluster object;
+%  \item It must have an associated track object;
+%  \item The electron must be accepted by the offline tightness\footnote{For 2017 and 2018 we use the \textit{lhmedium} criterion. The Z mass range of the selected electron pairs was $80-100$ \GeV.} requirement;
+%  \item $E_{T} > 25$ GeV;
+%  \item The electron must be in the fiducial detector acceptance region;
+%  \item The event must be approved by at least one of the tag triggers\footnote{Trigger tag must passed by:
+%  e26\_lhtight\_nod0\_ivarloose OR e60\_lhmedium\_nod0 OR e140\_lhvloose\_nod0 OR e300\_etcut};
+%  \item The tag electron must have an associated trigger object;  
 
+%\end{itemize}
 
-\begin{itemize}
+%and the offline electron probe must meet the following criteria:
 
-  \item It must have an associated cluster object;
-  \item It must have an associated track object;
-  \item The electron must be accepted by the offline tightness\footnote{For 2017 and 2018 we use the \textit{lhmedium} criterion. The Z mass range of the selected electron pairs was $80-100$ \GeV.} requirement;
-  \item $E_{T} > 25$ GeV;
-  \item The electron must be in the fiducial detector acceptance region;
-  \item The event must be approved by at least one of the tag triggers\footnote{Trigger tag must passed by:
-  e26\_lhtight\_nod0\_ivarloose OR e60\_lhmedium\_nod0 OR e140\_lhvloose\_nod0 OR e300\_etcut};
-  \item The tag electron must have an associated trigger object;  
-
-\end{itemize}
-
-and the offline electron probe must meet the following criteria:
-
-\begin{itemize}
-  \item It must have an associated cluster object;
-  \item It must have an associated track object;
-  \item It cannot have more than one jet higher than 20 GeV close\footnote{If have one jet object with $DeltaR < 0.4$ w.r.t the 
-  electron probe object, increase the counter.} to the probe electron;
-\end{itemize}
+%\begin{itemize}
+%  \item It must have an associated cluster object;
+%  \item It must have an associated track object;
+%  \item It cannot have more than one jet higher than 20 GeV close\footnote{If have one jet object with $DeltaR < 0.4$ w.r.t the 
+%  electron probe object, increase the counter.} to the probe electron;
+%\end{itemize}
 
 %%%\input{sections/context/algorithms/tap_alg}
 
 
-Similarly, \tnp method allows to acquire collision data in order to improve
-inference, as a way to avoid limitations of the simulation in representing the
-actual experiment observations. Again, the bias arising from the offline
-requirement in the probes is expected to be beneficial to the process as a way
-of increasing the agreement of systems. On the other hand, model
-development may need to extrapolate its operation to more stringent
-pile-up conditions.
+%Similarly, \tnp method allows to acquire collision data in order to improve
+%inference, as a way to avoid limitations of the simulation in representing the
+%actual experiment observations. Again, the bias arising from the offline
+%requirement in the probes is expected to be beneficial to the process as a way
+%of increasing the agreement of systems. On the other hand, model
+%development may need to extrapolate its operation to more stringent
+%pile-up conditions.
 
-\subsection{Datasets and Event Selection}%
+\section{Datasets and Event Selection}%
 \label{ssec:dataset}
 
-The datasets and event selection strategy are available in
+The \textcolor{red}{datasets used to train the Ringer algorithm and the event} selection \textcolor{red}{strategy used to build these signal and background samples are} available in
 Table~\ref{tab:event_selection}. For a detailed description of the simulated
 datasets see ~\cite[Section 3]{ATLAS-PERF-2017-01-002}. The tuning and analysis
-performed on data recorded by ATLAS have their quality ensured through a careful
-scrutiny process. In particular, periods meeting all data-quality requirements
+performed on data recorded by ATLAS have their quality ensured. \textcolor{red}{The ATLAS data quality is provide through a strict Data Quality Policy that validates each part of a run dataset that can be used for analysis, rejecting any piece affected by a potential underlying inactive of dysfunctioning part of the detector.} 
+In particular, periods meeting all data-quality requirements
 are made available through internal files known as good run list
 (GRL)~\cite{grl_site}. The physics objects were reconstructed in the first
 (bulk) processing. To facilitate (big) data manipulation, events of potential
 interest are derived using specific requirements. The derivation requirements
-providing potential \Zee{} \tnp{} candidates (EGAM1) , \Jee{} \tnp{} candidates
-(EGAM2) and background electrons (EGAM7) were employed. The event selection was
-performed by the online framework for the EGAM1 and EGAM7 derivations.%, and
+providing potential \Zee{} \tnp{} candidates, %(EGAM1), 
+\Jee{} \tnp{} candidates
+%(EGAM2)
+ and background electrons %(EGAM7)
+  were employed. The event selection was
+performed by the online framework for the \textcolor{red}{\Zee{} \tnp{}} and \textcolor{red}{background electrons} derivations.%, and
 %through the offline framework for the EGAM2 derivation.
 
 % TODO Discuss how the events are selected

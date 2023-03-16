@@ -1,21 +1,22 @@
-\section{Introduction}
+\chapter{Introduction}
 
 
 %-------------------------------------------------------------------------------
 
 In order to explore the full potential of the ATLAS~\cite{PERF-2007-01}
-calorimeter system, considerable effort has been placed in deriving and
+calorimeter system \textcolor{red}{o detect electrons
+and photons and measure their properties}, considerable effort has been placed in deriving and
 improving descriptive and discriminating variables\footnote{Terminology somewhat
   varies within ATLAS literature, also possible to encounter other terms such
 as ``quantities'' or ``features'' (the latter more related to the trigger
 perspective) with the same meaning.}. Physics and calorimetry expertise,
-combined with in-depth knowledge of the ATLAS design, allows to summarize the
-lateral and longitudinal information of the shower development in a set of few
+combined with in-depth knowledge of the ATLAS design, allows to summarize the \textcolor{red}{tridimensional} information of the shower development in a set of few
 variables (i.e. offline electron identification uses seven calorimetry-only
 variables~\cite{aaboud2019electron}). These variables are mostly defined in
-terms of elementary operations (i.e multiplication and sums) using group of cells, conceived to explore
+terms of elementary operations (i.e multiplication and sums) using \textcolor{red}{a group of cells provided by the calorimeter
+design, and} conceived to explore
 \textcolor{red}{distinct aspects of the shower development. Thus, this feature extraction process allow to
-compact the high-dimensional input space (typically of 1,000 cells in a region-of-interest (RoI)) into seven comprehensive descriptive variables, which compose a highly discriminant input space to distinguish e/$\gamma$ from jets, thanks to the way they were defined}.
+compact the high-dimensional input space (typically of 1,000 cells in a region-of-interest (RoI\textcolor{red}{\footnote{\textcolor{red}{A region in which a calorimeter cluster with high transverse energy was detected ~\cite{CERN-LHCC-2017-020}}}})) into seven comprehensive descriptive variables, which compose a highly discriminant input space to distinguish e/$\gamma$ from jets, thanks to the way they were defined}.
 %Furthermore, together with their discriminative power, these variables have a
 %clear value for permitting the interpretation of the results on a limited set of
 %univariate analyses.
@@ -28,7 +29,7 @@ compact the high-dimensional input space (typically of 1,000 cells in a region-o
 %general term, while still compacting the input space through the use of physics
 %and calorimetry knowledge.
 
-We discuss the representation of calorimetry information formatted into concentric ring energy sums, which are built around the particle axis through summing the energy deposited in a ring around the track that was seeded by the first trigger level and defined from given parameters in $\phi$/$\eta$. In such a way, the approximate conic development of the shower is exploited to compact the information while maintaining the physics interpretation of its lateral and longitudinal information. The representation of the shower through ring sums is a concept prior ~\cite{1992_spacal_rings} to the ATLAS formal proposal. It was conceived to reduce efforts in handling analogue signals and, as a result, it is suitable to be employed as input space in early trigger stages, where discriminant variables are derived through simple operations.
+\textcolor{red}{In this paper, we} discuss the representation of \textcolor{red}{calorimeter} information formatted into concentric ring energy sums, which are built around the \textcolor{red}{incoming} particle axis through summing the energy deposited in a ring around the track that was seeded by the first trigger level and defined from given parameters in $\phi$/$\eta$. In such a way, the approximate conic development of the shower is exploited to compact the information while maintaining the physics interpretation of its lateral and longitudinal information. The representation of the shower through ring sums is a concept prior ~\cite{1992_spacal_rings} to the ATLAS formal proposal. It was conceived to reduce efforts in handling analogue signals and, as a result, it is suitable to be employed as input space in early trigger stages, where discriminant variables are derived through simple operations.
 
 
 %\textcolor{red}{We discuss} the representation of calorimetry information formatted into
@@ -44,7 +45,7 @@ We discuss the representation of calorimetry information formatted into concentr
 
 
 
-\textcolor{red}{Having described the shower development through such concentric ring sums,  artificial neural networks (ANN) are employed for hypothesis testing.  ANNs are well-known universal models ~\cite{haykin_2008} that provide a multivariate approach for handling the joint information in the input space through fast computations.  ANNs have been successful in exploiting nonlinear correlations in data. Specifically, due to shower development nature and the calorimeter structure, the nearby ring sums are not statistically independent}. Consequently, approximate inference approaches neglecting their dependencies can result in significant efficiency loss. This is the particular case of the electron benchmark methods constructed using a cut-based approach or a likelihood discriminant \textcolor{red}{assuming statistical independence of the different variables, despite the correlations that exist among cells}.  Hence, a neural network approach based on the ring sums (NeuralRinger algorithm) provides a computationally fast and powerful method for exploring calorimetry signatures. Actually, stringent online requirements have been considered essential in the Ringer design since its original formulation~\cite{1995_seixas_ringer}, and it has been maintained along the years even without a corresponding offline version.
+\textcolor{red}{Having described the shower development through such concentric ring sums,  artificial neural networks (ANN) are employed for hypothesis testing.  ANNs are well-known universal models ~\cite{haykin_2008} that provide a multivariate approach for handling the joint information in the input space through fast computations.  ANNs have been successful in exploiting nonlinear correlations in data \textcolor{red}{~\cite{Duda}}. Specifically, due to shower development nature and the calorimeter structure, the nearby ring sums are not statistically independent}. Consequently, approximate inference approaches neglecting their dependencies can result in significant efficiency loss. This is the particular case of the electron benchmark methods constructed using a cut-based approach or a likelihood discriminant \textcolor{red}{assuming statistical independence of the different variables, despite the correlations that exist among cells}.  Hence, a neural network approach based on the ring sums (NeuralRinger algorithm) provides a computationally fast and powerful method for exploring calorimetry signatures \textcolor{red}{and the corresponding correlations between input variables}. Actually, stringent online requirements have been considered essential in the Ringer design since its original formulation~\cite{1995_seixas_ringer}, and it has been maintained along the years even without a corresponding offline version.
 
 
 %Having extracted calorimeter features through such concentric rings, the
@@ -75,14 +76,14 @@ efficiency of early selection algorithms is an efficient solution to release
 resources. Accordingly, these resources can be employed on other physics
 objects or allow the usage of more complex algorithms at later stages in order
 to increase the overall system performance. Moreover, it may turn feasible the
-evaluation of unprecedented physics objects, which could not be properly
+evaluation of unprecedented physics objects, \textcolor{red}{such as jet substructures or improved calibration,} which could not be properly
 assessed due to processing and readout limitations.
 
 
-Among the ATLAS physics objects, the Ringer was developed for electrons targeting high impact in the processing demands of the trigger system, which is split into two processing levels.  For electron identification, the inner tracking detector (ID)~\cite{PERF-2007-01} is a complementary source of discriminant, but It requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information. This is the case of the first processing level (\licalo), based on hardware, which provides \SI{}2.5{$\mu$\text{s}} latency~\cite{TRIG-2016-01}. In the sequence, the software-based level-two algorithms are processed in the so-called high-level trigger (\hlt{}) employing calorimetry and, then, after a pre-selection, ID information.  The \hlt{} is also split into two stages: a fast but efficient computation followed by a precise and offline-like step. Since the early ATLAS design years~\cite{1995_seixas_ringer}, the Ringer was proposed and maintained for the first HLT selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables}).
-\textcolor{red}{The NeuralRinger was developed for electrons as a way to achieve early discrimination evaluates based only calorimetry information. It was implemented in the fast reconstruction step of the High Level Trigger (HLT), which is going to be described later. the so-called high-level trigger (HLT). Since the early ATLAS design years, the NeuralRinger was proposed and  maintained for the first HLT selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables})}.
+Among the ATLAS physics objects, the Ringer was developed for electrons targeting \textcolor{red}{to meet the processing demands} of the trigger system, which is split into two processing levels.  For electron identification, the inner tracking detector (ID)~\cite{PERF-2007-01} is a complementary source of discriminant, but It requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information. This is the case of the first processing level (\licalo), based on hardware, which provides \SI{}2.5{$\mu$\text{s}} latency~\cite{TRIG-2016-01}. In the sequence, the software-based level-two algorithms are processed in the so-called high-level trigger (\hlt{}) employing calorimetry and, then, after a pre-selection, ID information.  The \hlt{} is also split into two stages: a fast but efficient computation followed by a \textcolor{red}{precise processing block, which employs offline-like algorithms.} Since the early ATLAS design years~\cite{1995_seixas_ringer}, the Ringer was proposed and maintained for the first \hlt{} selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables}).
+%\textcolor{red}{The NeuralRinger was developed for electrons as a way to achieve early discrimination evaluates based only calorimetry information. It was implemented in the fast reconstruction step of the High Level Trigger (HLT), which is going to be described later. the so-called high-level trigger (HLT). Since the early ATLAS design years, the NeuralRinger was proposed and  maintained for the first HLT selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables})}.
 
-However, the preparation for data taking in 2017 revealed that the considerable increase in the number of inelastic collisions per bunch-cross~\cite{DAPR-2013-01} would require dealing with excessive strain of CPU resources in the trigger system~\cite{ATL-DAQ-PUB-2018-002}, which would impact reduced efficiency for a number of analyses. Particularly, it was more likely for target  signals to overlap in the detector (pile-up effect), hence deteriorating the identification efficiency. Thus, for allowing a more efficient selection under such conditions, the NeuralRinger became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions.
+However, the preparation for data taking in 2017 revealed that the considerable increase in the number of inelastic collisions per bunch-cross \textcolor{red}{(here, the online estimation is referred to as $\langle \mu \rangle$)}~\cite{DAPR-2013-01} would require dealing with excessive strain of CPU resources in the trigger system~\cite{ATL-DAQ-PUB-2018-002}, which would impact reduced efficiency for a number of analyses. Particularly, it was more likely for target  signals to overlap in the \textcolor{red}{detector with pileup events}, hence deteriorating the identification efficiency. Thus, for allowing a more efficient selection under such conditions, the NeuralRinger became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions.
 
 
 %However, the preparation for data taking in 2017 required to deal with
@@ -101,7 +102,7 @@ However, the preparation for data taking in 2017 revealed that the considerable 
 
 
 This paper describes the proposal and performance analyses of the NeuralRinger
-algorithm in the fast processing phase of the \hlt{}. A review
+algorithm \textcolor{red}{used} in the fast processing phase of the \hlt{}. A review
 of other relevant background information is available in
 Section~\ref{sec:context}, in particular: the calorimeter system, the electron
 trigger and related information. Full details of its identification procedure are

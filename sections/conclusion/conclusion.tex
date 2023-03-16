@@ -1,4 +1,4 @@
-\section{Conclusion and Perspectives}\label{sec:conclusion}
+\chapter{Conclusion and Perspectives}\label{sec:conclusion}
 %-------------------------------------------------------------------------------
 
 
@@ -7,7 +7,7 @@
 
 
 % Comparison with standard strategies
-The \rnn{} brings an innovative design for electron selection based on
+The Neural\rnn{} brings an innovative design for electron selection based on
 calorimetry information. By alleviating the implicit requirement of conceiving
 variables to exploit individual properties of the particle interaction process, \textcolor{red}{it introduces} 
 more general variables exploiting the \textcolor{red}{process natural symmetries.} With the
@@ -18,13 +18,13 @@ nonlinear correlations between rings. The algorithm shows
 high agreement with the offline and \textcolor{red}{last trigger selection (conventional) methods,} both based
 on a maximum likelihood approach. It is one of the motivations whose culminated
 in the employment of an ensemble of specialist models per regions of
-pseudorapidity and transverse energy. Likewise, the \rnn{} algorithm preserves
+pseudorapidity and transverse energy. Likewise, the Neural\rnn{} algorithm preserves
 better the signal efficiency with respect to pile-up with respect to the
 previously cut-based strategy it replaced.
 
 
 
-In the second half of 2017, the \rnn{} algorithm replaced \textcolor{red}{such a cut-based} strategy
+In the second half of 2017, the Neural\rnn{} algorithm replaced \textcolor{red}{such a cut-based} strategy
 in the \fastcalo{} decision step and became the baseline algorithm
 for triggering events containing electrons above \SI{15}{\GeV}, as part \textcolor{red}{of the ATLAS online system CPU} reduction campaign. The \fastcalo{} selection is crucial for CPU demands, as a more
 efficient algorithm allows to avoid heavier computations in the
@@ -33,18 +33,18 @@ a baseline selection algorithm for event selection in the ATLAS trigger system.
 During 2017 operation, based on neural networks trained with simulated data,
 reduction factors of 13 in the \fastcalo{} and of 2 in
 the \hlt{} fake rates were achieved with respect to the offline likelihood, while
-keeping high electron efficiency when the \rnn{} was set to operate in a
+keeping high electron efficiency when the Neural\rnn{} was set to operate in a
 configuration similar to lowest energy-threshold unprescaled single electron
 trigger. It resulted in a reduction of \SI{60}{\%} in the CPU demands \textcolor{red}{for this particular} trigger, when it was set to operate alone. On the trigger system level,
 estimated results on reprocessed data show a reduction of \SI{8}{\%} in the CPU
-demands of \egamma{} triggers. For 2018, the \rnn{} was trained with collision
+demands of \egamma{} triggers. For 2018, the Neural\rnn{} was trained with collision
 data resulting in an estimated additional reduction factor of 1.35 for the
 mentioned trigger.
 
 % Low-level information perspectives
 \textcolor{red}{It should be emphasized that}, 
 %We emphasize that, 
-despite being based on a machine learning method, the \rnn{}
+despite being based on a machine learning method, the Neural\rnn{}
 contrasts \textcolor{red}{with standard} data-oriented developments for the importance of the
 application context and domain knowledge in its design. The goal of the ATLAS
 experiment is to comply with its physics programme, i.e.\@ to provide insights on
@@ -58,7 +58,7 @@ properties of the \textcolor{red}{process allows a lower efficiency to draw conc
 much understanding as possible with enough efficiency, a point that might lie
 within the \textcolor{red}{two individual approaches. We} believe that a good strategy to achieve it is by
 finding an optimal level of \textcolor{red}{constraints} based on domain knowledge to the model
-possibilities. The main one in the \rnn{} is the ring sums themselves, which
+possibilities. The main one in the Neural\rnn{} is the ring sums themselves, which
 disallow the networks to exploit more complex patterns. Despite having hints
 that more discriminating information might exist, a representation learning
 approach would result in patterns difficult to interpret.
@@ -66,8 +66,8 @@ approach would result in patterns difficult to interpret.
 % Machine learning, extrapolation
 Another claim for designing models accounting for the application context
 is the extrapolation to other operating \textcolor{red}{conditions, which is an important challenge in} 
-the development \textcolor{red}{ of the \rnn. In the particular case of }
-%of the \rnn{}. There are two usual cases in HEP experiments.
+the development \textcolor{red}{ of the Neural\rnn. In the particular case of }
+%of the Neural\rnn{}. There are two usual cases in HEP experiments.
 %Many physics processes decay into physics objects resulting in atypical data,
 %e.g.\@ high kinematic regimes. In the particular case of 
 trigger developments, the ever-increasing luminosity makes \textcolor{red}{the experiments operate} in harsher and
@@ -77,14 +77,14 @@ operate under these conditions. Relying on simulation also requires domain
 knowledge for defining the generation process which may be \textcolor{red}{imperfect, potentially compromising the model} extrapolation.
 
 % Quadrant and agreement analysis
-The \rnn{} was also studied through the offline likelihood perspective,
+The Neural\rnn{} was also studied through the offline likelihood perspective,
 reference for physics analysis, to bring additional insights on its behavior. By
 taking advantage of the low dimensionality, low correlation and high
 interpretability power of the variables employed in the likelihood, we derived
 the profiles of the disjoint decision cases of the 2017 duplicate trigger pair.
 The choice for the duplicated pair considered the typical scenario employed for
 analysis with the setup that would maximize the disagreement between both
-configurations: with and without the \rnn{}. The proposed quadrant analysis
+configurations: with and without the Neural\rnn{}. The proposed quadrant analysis
 allowed to observe high agreement between both triggers with slight shifts
 towards the signal region in the disagreement profiles of some calorimetry-based
 variables. By checking the agreement between the trigger pair for the derivation
@@ -94,7 +94,7 @@ by \SI{0.2}{$\sigma$} for all variables. When considering only the
 disagreement profiles, homogeneity hypothesis at a \SI{5}{\%} level was not
 rejected for the calorimetry variables, except for \reta{} and \rhad{} despite
 using the most populated regions. For these variables, a shift towards signal
-region was also observed. Hence, the \rnn{} had negligible impact in the
+region was also observed. Hence, the Neural\rnn{} had negligible impact in the
 sensitive variables employed for physics analysis and in the offline selection
 operation.
 
@@ -103,7 +103,7 @@ selection. More generally, it demonstrates that designing a solution \textcolor{
 strategies. We hope that it can serve as motivation for other developments in
 HEP, particularly when considering the trigger side.
 
-\subsection{Perspective}
+\section{Perspective}
 
 
 
@@ -112,16 +112,16 @@ HEP, particularly when considering the trigger side.
 
 
 % Maximizing contributions to the trigger system: low et and photons
-Preliminary evaluations have shown the potential of the \rnn{} algorithm for
+Preliminary evaluations have shown the potential of the Neural\rnn{} algorithm for
 triggering on electrons with $\et<\SI{15}{\GeV}$. This is particularly motivating given that triggers in this kinematic region are very
 CPU demanding. Additionally, they have high output rate and are usually
-prescaled, thus \rnn{} might also allow to collect additional data for those
+prescaled, thus Neural\rnn{} might also allow to collect additional data for those
 triggers.
 
 
 %Photons are other physics objects that may be triggered using the
 %\rnn{} approach. Triggers combining photons to other physics objects are quite
-%CPU demanding, thus motivating studies to evaluate whether additional \rnn{}
+%CPU demanding, thus motivating studies to evaluate whether additional Neural\rnn{}
 %developments will contribute to increase performance.
 
 Photons are other physics objects that may be triggered using the Ringer approach. Triggers combining photons to other physics objects are quite CPU demanding, thus motivating studies to evaluate whether additional Ringer developments will contribute to increased performance.
@@ -129,18 +129,18 @@ When considering pure
 photon triggers, the ring sums with linear classifiers can
 be investigated in order to keep the analysis strategies employed in channels as
 \textcolor{blue}{$\text{H}\rightarrow Z\gamma$}. Another possibility for those triggers is to
-employ the \rnn{} for increasing the trigger (signal) efficiency. A possible
-setup is to duplicate the photon triggers so that the \rnn{} recovers
+employ the Neural\rnn{} for increasing the trigger (signal) efficiency. A possible
+setup is to duplicate the photon triggers so that the Neural\rnn{} recovers
 interesting events.  In this hybrid menu configuration, the standard trigger
 would be available for those analyses so that they may benefit from high
-interpretability and customization, whereas the \rnn{} trigger might be employed
+interpretability and customization, whereas the Neural\rnn{} trigger might be employed
 for those analyses demanding more statistics. It is expected that this
 configuration will demand minor additional resources but may allow higher
 statistical significance of the results of physics analysis.
 
-%However, combined photon triggers must be considered carefully. Specifically, if we the \rnn{} is set to
+%However, combined photon triggers must be considered carefully. Specifically, if we the Neural\rnn{} is set to
 %operate only for very demanding combined photon triggers, the decision
-%correlation on fakes for triggers with and without the \rnn{} will play an
+%correlation on fakes for triggers with and without the Neural\rnn{} will play an
 %important role in the CPU impact because of decision caching in case
 %these triggers have high concurrence rate. Both low-\et{} and photon studies are
 %comprised in two ATLAS authorship qualification tasks, which are ongoing.
@@ -154,11 +154,11 @@ statistical significance of the results of physics analysis.
 %photon triggers, the ring sums with linear classifiers can
 %be investigated in order to keep the analysis strategies employed in channels as
 %$\text{H}\rightarrow\gamma\gamma$. Another possibility for those triggers is to
-%employ the \rnn{} for increasing the trigger (signal) efficiency. A possible
-%setup is to duplicate the photon triggers so that the \rnn{} recovers
+%employ the Neural\rnn{} for increasing the trigger (signal) efficiency. A possible
+%setup is to duplicate the photon triggers so that the Neural\rnn{} recovers
 %interesting events.  In this hybrid menu configuration, the standard trigger
 %would be available for those \textcolor{red}{analyses} so that they may benefit from high
-%interpretability and customization, whereas the \rnn{} trigger might be employed
+%interpretability and customization, whereas the Neural\rnn{} trigger might be employed
 %for those analyses demanding more statistics. It is expected that this
 %configuration will demand minor additional resources but may allow higher
 %statistical significance of the results of physics analysis.
@@ -166,31 +166,31 @@ statistical significance of the results of physics analysis.
 
 % Maximizing CPU/signal efficiency: L0 phase II, L1 phase I
 %Along the same line (improving the trigger system performance), a natural path
-%is to deploy a strategy similar to the \rnn{} in the hardware based selection.
+%is to deploy a strategy similar to the Neural\rnn{} in the hardware based selection.
 %Particularly, we consider deployment in the L0 of Phase II upgrade programme for
 %which access to full granularity will be available. Additionally, we are
-%investigating the possibilities for the \rnn{} employment with the super-cells.
-%It is worth mentioning that the operation of \rnn{} at the earlier stages can be
+%investigating the possibilities for the Neural\rnn{} employment with the super-cells.
+%It is worth mentioning that the operation of Neural\rnn{} at the earlier stages can be
 %useful not only for reducing \hlt{} farm demands, but eventually also for
 %improving the overall efficiency as the \licalo{} may act as an inefficiency
 %source for some triggers~\cite{the_preprint}.
 
 % No-had
-Another interesting possibility is to employ the \rnn{} accessing only
+Another interesting possibility is to employ the Neural\rnn{} accessing only
 electromagnetic information for triggers resulting in high readout rate from
 hadronic calorimeter cells. The particular setup may even consider employing a
 two step decision on the \fastcalo{}, a preliminary one based solely on
-electromagnetic information followed by the full \rnn{} decision.
+electromagnetic information followed by the full Neural\rnn{} decision.
 
 
 
 
 % Boosted configurations
 Physics beyond the Standard Model is getting more \textcolor{red}{attention at the LHC  and is expected} to be part of the main \textcolor{red}{focus}in the data-taking phases to
-come. We aim at improving the \rnn{} algorithm to comprise boosted
+come. We aim at improving the Neural\rnn{} algorithm to comprise boosted
 configurations, particularly limiting the effect of other contributions at
 the edge of the feature extraction window, which can result from these physics
-processes. Additionally, the \rnn{} is being evaluated as an alternative
+processes. Additionally, the Neural\rnn{} is being evaluated as an alternative
 strategy for a long-lived particle analysis
 ($\text{a}\rightarrow\text{H}(\gamma\gamma)Z(l^+l^-)$).
 
@@ -198,7 +198,7 @@ strategy for a long-lived particle analysis
 % shapes), deep learning
 \textcolor{red}{Nevertheless, we expect}
 %We expect 
-that the \rnn{} efficiency \textcolor{red}{can still be improved. Indeed, the feature} extraction
+that the Neural\rnn{} efficiency \textcolor{red}{can still be improved. Indeed, the feature} extraction
 algorithm has many limitations as being initially proposed for online
 operation, but a more complex algorithm accounting for the cell sizes can
 provide more precise information, which, eventually, can be helpful for the
@@ -219,7 +219,7 @@ improvements in the ring description to be exceptionally important for
 calibration.
 
 % Offline developments
-The \rnn{} software has been extended to the offline framework. Currently,
+The Neural\rnn{} software has been extended to the offline framework. Currently,
 the ring description is available for all electrons with \textcolor{red}{$\et>\SI{14}{\GeV}$.
 This is an on-going} activity.
 

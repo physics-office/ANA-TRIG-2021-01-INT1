@@ -1,13 +1,13 @@
-\section{\textcolor{red}{NeuralRinger Method for Online Electron Filtering}}%
+\chapter{\textcolor{red}{The NeuralRinger Algorithm}}%
 \label{sec:neuralringer}
 
-This section describes the NeuralRinger concepts and the resulting algorithm for Run~2
+This section describes the Neural\rnn{} concepts and the resulting algorithm \textcolor{red}{used} for Run~2
 operation.  Section~\ref{ssec:rnn_for_online_and_eletrons} refers to the
-decisions taken for the NeuralRinger development in order to optimize its contributions in releasing processing resources.The NeuralRinger describes the development of EM showers via the sum of energy deposits in ``rings'' defined around the axis of a particle (see Section~\ref{ssec:concept}). Aiming at better exploring the discriminative
+decisions \textcolor{red}{made} for the Neural\rnn{} development in order to optimize its contributions in \textcolor{red}{saving} processing resources. Aiming at better exploring the discriminative
 power of ring sums for electron triggers (Section~\ref{ssec:ringer_id}),
-an ensemble of neural-networks is employed.
+an ensemble of neural-networks is \textcolor{red}{employed.  Its training procedure and how trigger decisions are made} addressed in Section~\ref{sec:tuning}.
 
-\subsection{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
+\section{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
 
 % TODO Recall the points discussed with Seixas
 
@@ -41,22 +41,16 @@ an ensemble of neural-networks is employed.
 %algorithm behavior and upgrading it only to fulfill the physics requirements.
 The NeuralRinger algorithm was initially proposed for electron-jet discrimination. 
 During Run 2, both online and offline versions
-were considered for development, but the urging scenario in the trigger, which
-required what the NeuralRinger could provide in terms of reducing CPU demands of the
-electron triggers, required dedication of most of the available human resources
-to the trigger operation. Within the electron triggers, \hlt{} selection is
-specially relevant to single object triggers, which, in turn, are the main rate
-consumer~\cite{aad2020performance}. Particularly, the primary single electron triggers
-are currently evaluated and developed using \Zee{} \tnp{} samples
-(Section~\ref{ssec:tnp}), with most electrons within $\et>\SI{15}{\GeV}$ region.
-Hence, it was decided to focus the NeuralRinger development to this kinematic region in
-order to result in higher benefits for data taking. The result of this effort
+were considered for \textcolor{red}{ development, but the scarcity of available human resources restricted the scope of developments, which focused on reducing CPU demands of the online electron triggers.} Within the electron triggers, \hlt{} selection is
+specially relevant to single object \textcolor{red}{triggers, which, in turn, use the most of the trigger bandwidth}~\cite{aad2020performance}. Particularly, the primary single electron triggers
+are currently evaluated and developed using \Zee{} \tnp{} samples 
+\textcolor{red}{(Section~\ref{ssec:tnp}), in which most electrons have $\et>\SI{15}{\GeV}$, which is the region of interest in physics studies and on which the Ringer developments focus. The result} this effort
 follows.
 
-The remaining resources dedicated to the offline version provided a fully
-developed framework, which allows the study of the ring sums for electrons above
-\SI{14}{\GeV}~\cite{Freund2015}. The evaluation of offline NeuralRinger, considering the
-fusion of the ID information, is on going.
+%The remaining resources dedicated to the offline version provided a fully
+%developed framework, which allows the study of the ring sums for electrons above
+%\SI{14}{\GeV}~\cite{Freund2015}. The evaluation of offline NeuralRinger, considering the
+%fusion of the ID information, is on going.
 
 % Covers all unprescaled primary triggers, resulting in higher CPU impact
 % Use of a single ressonance to cover all the space
@@ -64,91 +58,14 @@ fusion of the ID information, is on going.
 % evaluate 
 % Hypothesis still to be confirmed under the low ET studies.
 
-\subsection{Feature Extraction: Ring Sums}\label{ssec:concept}
-
-%One disadvantage of this strategy is that it requires discriminant information
-%to be captured through variables that are individually conceived to explore
-%specific physics or instrumentation knowledge. By alleviating this requirement,
-%other variables can be conceived while still affording from field-specific
-%knowledge.
-%We take advantage of field-specifc knowledge to follow another path.
-%\textcolor{red}{The create the rins sums it was} taken into account the approximately conical structure of the shower to
-%construct energy quantities describing the total energy deposited in a
-%concentric ring of cells (\figurename~\ref{fig:calo_rings}), or simply ring, 
-At each calorimeter sampling layer, the energy deposition of an incoming particle is extracted by building concentric rings of cells (\figurename~\ref{fig:calo_rings}), or simply rings. All rings in the \ecal sampling layers are
-\textcolor{red}{centered around their most energetic (hottest) cell, a reasonable
-approximation of the energy barycenter of the shower for online
-operation.  Focusing on EM objects, rings are built using as axis center the position of
-the hottest cell in the second electromagnetic layer, collecting the largest
-fraction of the total absorbed electron energy}.
-
-The ring building process covers the whole $0.4\times0.4$ (\etaphi axis) RoI
-\textcolor{red}{seeded by \licalo, resulting in 100 rings in total across all calorimeter layers.
-\tablename~\ref{tab:ring_alg_parameters}, shows the number of rings computed at each layer}. Thereby, a dimensionality reduction is provided by compacting
-typical input space dimensionality of approximately 1000--1200 cells per ROI into
-\textcolor{red}{the above-mentioned 100 rings through the usage of EM shower physics knowledge}. The rings can keep a complete description of the lateral and
-longitudinal scattering information. However, the algorithm only approximates this concept
-in order to meet the online operation requirements and avoid further
-manipulation of the instrumented information. The full description and
-discussion on the current algorithm are addressed in
-Section~\ref{top:algorithm}.
-
-
-
-\begin{figure}[h!t]
-\centering
-\begin{center}
-\begin{subfigure}[c]{0.8\textwidth}
-\centering
-\includegraphics[width=\textwidth]{sections/ringer/figures/ATLAS_EM_Layers_v5.pdf}
-\caption{Eletromagnetic calorimeter cells within the ringer reconstruction window.}
-\end{subfigure} \\
-\begin{subfigure}[c]{0.8\textwidth}
-\centering
-\includegraphics[width=\textwidth]{sections/ringer/figures/ATLAS_HAD_Layers_v5.pdf}
-\caption{Hadronic calorimeter cells within the ringer reconstruction window.}
-\end{subfigure}
-\end{center}
-\caption{\label{fig:calo_rings}
-Sketch to illustrate the ring-shaped energy description. See
-Section~\ref{top:algorithm} for more details. 
-The hottest cell in red, while the consecutive neighbouring rings are represented by a cycle 
-of transparent and black.
-}
-\end{figure}
-
-\textcolor{red}{Conceptually, the ring structure aims at exploiting the concentric nature of energy depositions in the calorimeter and the corresponding symmetry in the development of the shower}.  
-Adding the calorimeter cells belonging to a given ring and, thus producing the ring sums, makes it possible to improve the signal-to-noise ratio from individual cells, especially in the tail of the energy distributions along the calorimeter layers.  
-Moreover, a nonlinear discriminant may profit from these statistical fluctuations in shower development captured by means of the rings' profile to select electrons more efficiently.
-
-Nonetheless, some observations concerning the description of a shower through rings are
-worth making. First, the standard shower shape variables (or simply shower shapes) cannot be obtained through operations starting from the rings.  Thus, the rings represent an alternative for shower development description and not a possible replacement for the shower shapes.  Therefore, a strategy considering both variables altogether (rings and shower shapes) might explore a complementary discriminating information in the future.
-%First, is not possible, by operating the rings, obtain the standard shower shapes (of simply shower shapes)}. In addition, \textcolor{red}{the rings, due to their construction, obtain similar information as the obtained from some shower shapes (i.e \rhad, \reta and \rphi).} Thus, the rings are not a replacement
-%for the shower shapes and a strategy considering both variables altogether could
-%explore complementary discriminating information. 
-Second, one should also notice
-that the rings do not use the same sensors more than once for each variable.
-This is not strictly true for the shower shapes, although it is fairly unusual.
-In contrast, pattern recognition through modern machine learning
-algorithms~\cite{Engelbrecht2007,Goodfellow2016}, as convolution
-neural-networks~\cite{Gu2018}, build variables processing several times
-the same sensors. \textcolor{red}{Additionally, as providing dimension reduction and keeping the
-physics interpretation of the shower development, the shower shapes are also suited
-for bringing insights through univariate analysis carried out on each
-single dimension composing the input space}.
-
 %Advantages and Limitations
-\subsubsection{\fastcalo Algorithm}\label{top:algorithm}
+\subsection{\fastcalo Algorithm}\label{top:algorithm}
 
 The ATLAS calorimeters comprise rectangular cells in the
-\etaphi axis\footnote{Except for the forward calorimeters.} (see
-Table~\ref{tab:granularity}). Thus, an actual conic structure cannot be defined
-without further processing of the cell energy information. As the algorithm was
-considered to operate online, approximations were made. In this way, the
-structure of the rings follow the instrumentation, that is, the structure of
-the rings is rectangular. The ring coverage is bounded to the RoI area, in
-such manner the actual variables can be seen as an abstraction of the concept.
-In addition, \textcolor{red}{calorimeter cell granularity changes} are neglected in order to employ a
+\etaphi axis\footnote{Except for the forward calorimeters.}. Thus, an actual conic structure cannot be defined
+without \textcolor{red}{intensive} processing of the cell energy information. As the algorithm was
+considered to operate online, approximations were made. \textcolor{red}{Especially, the rectangular structure} of
+the rings follows the \textcolor{red}{instrumentation and the ring coverage is bounded to the RoI area. In} addition, the granularity changes are neglected in order to employ a
 grid-like algorithm, which can be summarized in the following steps (see
 Figure~\ref{fig:building_rings} for an illustration of the parameters):
 
@@ -191,7 +108,7 @@ Figure~\ref{fig:building_rings} for an illustration of the parameters):
 %\end{enumerate}
 
 
-\input{sections/ringer/tables/granularity}
+%\input{sections/ringer/tables/granularity}
 
 
 \begin{figure}[!ht]
@@ -210,21 +127,24 @@ Figure~\ref{fig:building_rings} for an illustration of the parameters):
   \centering
   \begin{subfigure}[c]{.7\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{sections/ringer/figures/reco_steps/rings_profile.png}
+  \includegraphics[width=\textwidth]{sections/ringer/figures/reco_steps/data17_zee_mean_rings_profiles_et2_eta0.png}
   %\caption{}
   \end{subfigure}
 
 
   \caption{\label{fig:building_rings}
-  Illustration of the \fastcalo algorithm for building ring sums in the EM1.
+  Top: illustration of the \fastcalo algorithm for building ring sums in the EM1, sketching of the computation of $n$ for the first four rings in a hypothetical layer.
+  	Bottom: average rings profile from collision data at $30 \leq E_T < 40$ GeV and $0.0 \leq \eta < 0.8$. The embedded profile shows the EM1 layer rings in a logarithmic scale.
+  	 See text for more details.
+ }
   %Left: the individual contributions of the central cells of a simulated
   %\footnote{The particles was generated with Pythia8 and the shower propagation, using an generic 
   %calorimeter as volume, was produced by Geant4. We adopt the ATLAS granularity for this example.} 
-  jet event in the \etaphi axis.  
-  Top: the computation of $n$ for the first four rings.% as in Equation~\ref{eq:ring_idx_square}. 
-  Sketch of the computation of $n$ for the first four tings in a
-  hypothetical layer. Bottom: the resulting energy profile as represented in the ring sum space. 
-  See text for more details.}
+  %jet event in the \etaphi axis.  
+  %Top: the computation of $n$ for the first four rings.% as in Equation~\ref{eq:ring_idx_square}. 
+  %Sketch of the computation of $n$ for the first four tings in a
+  %hypothetical layer. 
+%  Bottom: the resulting energy profile as represented in the ring sum space. 
   \end{center}
   \end{figure}
 
@@ -258,7 +178,7 @@ was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). %However, the for
 %Sums}\label{top:characterization}
 %/Users/wsfreund/Documents/Pesquisa/HEP/CERN/ID/Online/old/MC15c/distributions_4_eta_bins/ring_distribution_signal_etBin0_etaBin2.pdf
 
-\subsection{Ring Sums as Discriminant Variables}\label{ssec:ringer_id}
+\section{Ring Sums as Discriminant Variables}\label{ssec:ringer_id}
 
 % TODO Add references of sucesfull aplications of NNs in other fields.
 
@@ -267,18 +187,26 @@ was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). %However, the for
 %variables. Although the use of univariate cuts or a likelihood model could be
 %considered, they have limitations to explore concisely the statistical
 %dependency.
-To deal with the higher redundancy between the ring variables when compared to
-shower shapes, one procedure could be to choose a set of rings that, together,
-summarize the shower development. Here,  the strategy is to benefit from machine learning processing to unveil the latent discriminating space.  Thus the ring sums are fed into a Multi-layer Perceptron (MLP) neural-network~\cite{haykin_2008}, which was employed for Run~2 operation. MLPs require a normalization preprocessing
-step~\cite{haykin_2008} to adjust the input dynamic range to the neuron
-activation function employed (Section~\ref{top:pp}). \textcolor{red}{An ensemble of MLPs
-employed by tuning a specific model for each region of the \eteta axis} (Section~\ref{top:nn_ensemble}), whose
-motivations are driven by physics, instrumentation and software engineering. In the same way, NeuralRinger decision making is based
-on division of the phase space in regions, and the discriminant requirement is
+To deal with the \textcolor{red}{high} redundancy between the ring 
+\textcolor{red}{variables, one procedure could be}
+%variables when compared to shower shapes, one procedure could be 
+to choose a set of rings that, together,
+summarize the shower development. Other strategies could benefit from statistical
+or machine learning processing to unveil the latent discriminating space, as in
+the case of a Multi-layer Perceptron (MLP) neural-networks~\cite{haykin_2008},
+employed for Run~2 operation. 
+%MLPs require a normalization preprocessing step~\cite{haykin_2008} to adjust the input dynamic range to the neuron activation function employed (Section~\ref{top:pp}). 
+An ensemble of MLPs was employed for operation by tuning and selecting
+the models per regions of the \eteta \textcolor{red}{space} (Section~\ref{top:nn_ensemble}), whose
+motivations are driven by physics, instrumentation and software 
+\textcolor{red}{engineering. The \rnn}
+%engineering. In the same way, \rnn 
+decision making is \textcolor{red}{also} based on division of the phase space in regions, and the discriminant requirement is
 computed as a linear function of \avgmu to pursue signal efficiency invariance
-to pile-up contributions. The strategy, structure of the MLPs and
-hyper-parameters for training the ensemble and tuning of discriminant
-requirements are described in Section~\ref{sec:tuning}.
+to pile-up contributions. 
+\textcolor{red}{strategy to structure the MLPs,  and train the hyper-parameters of the ensemble and tune of discriminant requirements }
+%The strategy, structure of the MLPs and hyper-parameters for training the ensemble and tuning of discriminant requirements 
+are described in Section~\ref{sec:tuning}.
 
 %\begin{figure}[h!t]
 %\centering
@@ -291,12 +219,12 @@ requirements are described in Section~\ref{sec:tuning}.
 
 %\input{sections/ringer/algorithms/ensemble_algorithm}
 
-\subsubsection{Ring Sum Normalization}\label{top:pp}
+\subsection{Ring Sum Normalization}\label{top:pp}
 
-Current strategy concatenates all rings in a single vector (100
-variables). An absolute normalization using the total RoI energy, as in
-(\ref{eq:ring_norm}), is applied to adjust the variables. This procedure was
-initially proposed and examined by~\cite{1995_seixas_ringer}, \textcolor{red}{as a way of}
+The current strategy concatenates all rings in a single \textcolor{red}{vector of 100
+variables}. An absolute normalization using the total RoI energy, as in
+(\ref{eq:ring_norm}), is applied to \textcolor{red}{normalise} the variables. This procedure was
+initially proposed and examined by~\cite{1995_seixas_ringer}, as a manner of
 preserving the shower energy profile in fractions of the total energy. The
 absolute term is used to avoid reflecting the values along the axis due to
 negative noise accumulation, a behavior which would impact the physics
@@ -310,31 +238,32 @@ boundary:
 \label{eq:ring_norm}
 \end{equation}
 
-A study on legacy simulation data showed that this strategy had compatible
-efficiency to other normalization schemes. It is specially valuable for its
+A study \textcolor{red}{on simulation data} showed that this strategy had compatible
+efficiency to other \textcolor{red}{possible} normalization schemes. It is specially valuable for its
 simplicity (nonparametric approach) and for allowing easy interpretation of the
-shower profile. These reasons motivated its usage for Run~2, however this
-strategy is subject to diminish signal contributions at stringent pile-up
-contamination, specially at low-energy operation due to lower signal-to-noise
-ratio.  Specifically, energy contributions from outer hadronic rings can
-dominate and deteriorate signal profile. We expect to review this strategy for
-Run~3, in particular when considering low-energy triggers ($<\SI{15}{\GeV}$).
+shower profile. These reasons motivated its usage for Run 2.
+%, however this strategy is subject to diminish signal contributions at stringent pile-up
+%contamination, specially at low-energy operation due to lower signal-to-noise ratio.  
+%Specifically, energy contributions from outer hadronic rings can
+%dominate and deteriorate signal profile. We expect to review this strategy for
+%Run~3, in particular when considering low-energy triggers ($<\SI{15}{\GeV}$).
 
-\subsubsection{Motivation for an Ensemble of Neural Networks}\label{top:nn_ensemble}
+\subsection{Motivation for an Ensemble of Neural Networks}\label{top:nn_ensemble}
 
 The normalized concatenated ring vector feeds an ensemble of MLPs. A single
 model is drawn from the ensemble for operation based on the nearest (Euclidean
-distance) region on the \eteta axis for which it was designed. In the following, we address
-the reasons for adopting such an ensemble.
+distance) region on the \eteta \textcolor{red}{space} for which it was designed.
+%In the following, we address the reasons for adopting such an ensemble.
 
-In regard to calorimetry, the usage of an ensemble with specific models per
+\textcolor{red}{In regard to calorimetry}, the usage of an ensemble with specific models per
 phase space region allows to mitigate fluctuations in the variable profiles
-(Figure~\ref{fig:ring_distortion}) due to the detector response
-(Section~\ref{ssec:calo}). %and limitations of the online algorithm
+%(Figure~\ref{fig:ring_distortion}) 
+due to the detector \textcolor{red}{response and energy differences of the showers (see Section~\ref{ssec:calo}).}
+%response (Section~\ref{ssec:calo}). %and limitations of the online algorithm
 %(Section~\ref{top:algorithm}) 
 %in the observed signatures of the physics objects.
 A large contribution comes from granularity changes, which are discrete
-in the phase space (see Table~\ref{tab:granularity}). Other important factors 
+in the phase space. Other important factors 
 influencing such profiles are the
 amount of the material as a function of \abseta{} and the dependence of
 underlying processes in the shower development with respect to the incoming
@@ -351,6 +280,7 @@ possible to approach the problem using space discretization.
 %uncertainties of the \fastcalo{} reconstruction.
 %as the different shower uniformity~\cite{Wigmans2017}\hspace{0.01\textwidth}
 
+\begin{comment}
 \begin{figure}[h!t]
 \centering
 \begin{subfigure}[c]{.6\textwidth}
@@ -370,6 +300,7 @@ in the EM1 for the \et (a) and  \abseta (b) in Z$\rightarrow$ee simulated data
 for the boundaries employed for extracting the NeuralRinger discriminants in 2017.}%
 \label{fig:ring_distortion}
 \end{figure}
+\end{comment} 
 
 In physics, such ensemble approach is consistent with the unfolding
 strategy~\cite{Cowan1998}, usually employed for correcting for
@@ -382,7 +313,7 @@ are also defined for these regions. It is the case of the electron likelihood
 algorithm~\cite{atlas_electron_id_offline}, which motivated the usage of
 \eteta{} regions in the NeuralRinger algorithm.
 
-In software, the ensemble allows to handle all data in memory at once,
+\textcolor{red}{At the software level, the} ensemble allows to handle all data in memory at once,
 which speeds up the training cycle. Limiting the memory requirement for tuning
 the models is particularly interesting in order to benefit from low-memory
 nodes, the majority of those available in WLCG~\cite{2015_lcg_tdr} during our
@@ -407,27 +338,31 @@ approach, in terms of processing speed.
 
 
 
-\subsection{Training and Decision Making}%
+\section{Training and Decision Making}%
 \label{sec:tuning}
 
 In this section, we detail the training and decision making (tuning) procedures
 of the \rnn ensemble. Accordingly, we start (Section~\ref{ssec:fom}) with a
 description of figures of merit that were employed.
 
-In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble\footnote{
-  The ensemble is composed by one MLP model for each phase space in plan \eteta as discussed 
-  in Subsection~\ref{top:nn_ensemble}. The bouduries for each one is defined by the 
-  Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins}.} 
+In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble
+%\footnote{
+%  The ensemble is composed by one MLP model for each phase space in plan \eteta as discussed 
+%  in Subsection~\ref{top:nn_ensemble}. The bouduries for each one is defined by the 
+%  Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins}.} 
 models with simulated data and defined the discriminant cut using
 2016 collision data, targeting small signal efficiency discrepancy to triggering 
-without the \rnn. The training procedure derived one ensemble for each working
-point. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
+without the Neural\rnn. The training procedure derived one ensemble for each working
+point. The ensemble was composed by one MLP model for each \textcolor{red}{phase space in ($E_T$, $\eta$) plane, as} discussed 
+in Subsection~\ref{top:nn_ensemble}. The ensemble boundaries are defined by Table~\ref{tab:ensemble_regions}. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
 employed a single ensemble structure for all working points and used
 collision data for training, as it was the case for the derivation of offline
 and final \hlt likelihood models~\cite{aaboud2019electron}.
 % (since 2017~\cite{DAQ-2018-182})
 
-\subsubsection{Figures of Merit}\label{ssec:fom}
+\input{sections/ringer/tables/ensemble}
+
+\subsection{Figures of Merit}\label{ssec:fom}
 
 
 
@@ -473,7 +408,7 @@ We explicitly define some convenient figures of merit in \tablename~\ref{tab:fig
 
 
 
-\subsubsection{2017 Procedure}\label{ssec:2017}
+\subsection{2017 Procedure}\label{ssec:2017}
 
 The training procedure and decision making processes are the same for all phase
 space regions and a summary of the process is provided in
@@ -504,7 +439,7 @@ parsimony~\cite{medeiros2001statistical}\footnote{See also discussion of the
   Minimum-description-length (MDL) principle and Occam's razor
 in~\cite{haykin_2008}.} so that the structure with lower number of hidden units
 is employed as higher generalization power can be expected. The activation
-functions for both hidden and output neurons are the hyperbolic tangent.
+functions for both hidden and output neurons are the hyperbolic \textcolor{red}{tangent, which has been often used in MLP designs~\cite{haykin_2008}}.
 
 
 
@@ -513,10 +448,12 @@ functions for both hidden and output neurons are the hyperbolic tangent.
 
 For each cross-validation sort and working point, 100 networks, initiated
 as from~\cite{initnw}, are optimized by back-propagating MSE through the RPROP
-algorithm~\cite{rprop} with all parameters set to default, except for
-$\eta^+=1.1$ (default is 1.2). This particular
-parameter regards the multiplication factor of the weight update rate when
-gradient direction remains the same as of the previous iteration. It was
+algorithm~\cite{rprop} with all parameters set to default,
+\textcolor{red}{except for the parameter that regards the multiplication factor of the weight update rate when gradient direction remains the same as of the previous iteration (default value is 1.2, but a value of 1.1 was applied). It was }
+%except for
+%$\eta^+=1.1$ (default is 1.2). This particular
+%parameter regards the multiplication factor of the weight update rate when
+%gradient direction remains the same as of the previous iteration. It was
 observed during Run~1 that this modification improved convergence speed. RPROP
 is an adaptive gradient descendent technique that is resilient to the size of
 the derivatives. This repeated model initialization aims at
@@ -526,8 +463,7 @@ For each training procedure, only three models out of the 100 are retained: two
 for retrieving the best efficiency when fixing the \pd{} or \pf{} to the
 baseline \fastcalo{} efficiency and another resulting in the \spmax{} value.
 Early stopping~\cite{haykin_2008} is employed to avoid model over-training. The
-selection of the optimal iteration and operating model is based on an heuristic
-approach (multi-stop).
+selection of the optimal iteration and operating model is based on an heuristic \textcolor{red}{approach (multi-stop)~\cite{Goodfellow2016}}.
 
 
 Computational resources from the WLCG and \emph{Lobo Carneiro}
@@ -560,12 +496,15 @@ This strategy sufficed to achieve linear
 behavior of the targeted signal efficiency with respect to the online pile-up
 estimator. Except for the end-cap region during 2017, the boundaries for
 defining discriminant requirement parameters were the same as those employed in
-the \rnn ensemble (Section~\ref{top:nn_ensemble}). The interpolation in
-\et{} employed in the likelihood as a smoothening
-strategy~\cite{aaboud2019electron} was not used
-(Section~\ref{ssec:egamma_trigger}).  Tables~\ref{tab:comp_etabins}
-and~\ref{tab:comp_etbins} show the boundaries in the \eteta{} axis used for
-Run~2 operation.
+the \rnn ensemble (Section~\ref{top:nn_ensemble}). The 
+\textcolor{red}{interpolation for the \et{} values, which was employed in the likelihood as a smoothening strategy~\cite{aaboud2019electron}, was}
+%interpolation in
+%\et{} employed in the likelihood as a smoothening
+%strategy~\cite{aaboud2019electron} was 
+not used (Section~\ref{ssec:egamma_trigger}).
+%Tables~\ref{tab:comp_etabins}
+%and~\ref{tab:comp_etbins} show the boundaries in the \eteta{} axis used for
+%Run~2 operation.
 
 
 
@@ -591,7 +530,7 @@ Run~2 operation.
     2016 collision data.
     The computed threshold per \avgmu{} unit for achieving the target 
     efficiency is shown in blue full circle. The black line is a linear fit of the thresholds.
-    The output space is computed using the traind model without modifications 
+    The output space is computed using the trained model without modifications 
     in (a), while in (b) the output activation is replaced by the identity.
     The electron probes are selected using the training criteria.
   }%
@@ -601,8 +540,8 @@ Run~2 operation.
 
 
 
-\input{sections/tuning_strategy/tables/comp_etabins}
-\input{sections/tuning_strategy/tables/comp_etbins}
+%\input{sections/tuning_strategy/tables/comp_etabins}
+%\input{sections/tuning_strategy/tables/comp_etbins}
 
 
 
@@ -630,17 +569,22 @@ from the electron triggers.
 To account for Monte Carlo data mis-modeling, the parameters of the linear threshold
 correction were derived using 2016 collision data. Furthermore, it was observed
 that the rings in the region $2.37<\abseta<2.47$ had particular profiles due to
-the lack of strip cells in this region (\tablename~\ref{tab:granularity}). It
-drastically affected the ring profiles in this region which resulted in a shift
-of the signal discriminant towards the direction of the background target and
-demanded a specific discriminant requirement in order to keep signal
-efficiencies near triggers without \rnn{}.
+the lack of strip cells in this region and demanded a specific discriminant requirement in order to keep signal efficiencies near triggers without the NeuralRinger. 
+%It drastically affected the ring profiles in this region which resulted in a shift
+%of the signal discriminant towards the direction of the background target and
+%demanded a specific discriminant requirement in order to keep signal
+%efficiencies near triggers without \rnn{}.
 
 \FloatBarrier
-\subsubsection{2018 Procedure}\label{ssec:2018}
+\subsection{2018 Procedure}\label{ssec:2018}
 
-Most of procedure was kept unchanged for 2018, with modifications shown in
-Table~\ref{tab:2018_ringer}. In 2018, the developments could benefit from collision data representing similar conditions to data taking. The major alteration in 2018 tunes was the derivation of the NeuralRinger ensemble with collision data based on \Zee{} \tnp{} event selection, in order to avoid the Monte Carlo data mis-modeling.
+Most of \textcolor{red}{the} procedure was kept unchanged for 2018, with modifications shown in
+Table~\ref{tab:2018_ringer}.
+In opposition to 2017, the developments for 2018
+could benefit from collision data 
+\textcolor{red}{representing similar data taking conditions.}
+%In 2018, the developments could benefit from collision data representing similar conditions to data taking. 
+The major alteration in 2018 tunes was the derivation of the NeuralRinger ensemble with collision data based on \Zee{} \tnp{} event selection, in order to avoid the Monte Carlo data mis-modeling.
 
 We also simplified the training strategy by abandoning the selection of three
 models for each training and keeping only the \spmax{} model as the previous approach was more complex without a clear
@@ -651,8 +595,10 @@ added MLPs specialized in the region where we detected a change in the ring
 profiles before 2017 operation ($2.37<\abseta<2.47$), resulting in the operation of
 \SI{25}{MLPs}. The correction limit was set to
 $\avgmu{}=100$~collisions or, in other words, removed for 2018 operation, given
-that the data-taking conditions did not extrapolate this value. By assuming a
-linear efficiency extrapolation,%\footnote{It is worth noticing that the linear
+that the data-taking 
+\textcolor{red}{conditions never reached such a large pileup level. By}
+%conditions did not extrapolate this value. By 
+assuming a linear efficiency extrapolation,%\footnote{It is worth noticing that the linear
 %fit is reasonably good for the Run~2 conditions.}
 was observed that most phase space regions did not reach background efficiencies
 larger than \SI{15}{\%} before arriving at $\avgmu=100$~collisions, while same
