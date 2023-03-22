@@ -7,8 +7,7 @@ The ATLAS experiment~\cite{PERF-2007-01} is designed to observe particles
 produced in high-energy proton--proton collisions and, hereby not addressed,
 heavy-ion LHC collisions. Its calorimeter system comprises both 
 electromagnetic (ECAL) and hadronic (HCAL)
-sections (Section~\ref{ssec:calo}), which \textcolor{red}{enveloped} an inner \textcolor{red}{tracking system}. The two-level triggering system reduces the total
-data-taking rate \textcolor{red}{from 40 MHz} to approximately \textcolor{red}{1 kHz. Here}, we focus on electron-based channels, which are
+sections (Section~\ref{ssec:calo}), which \textcolor{red}{enveloped} an inner \textcolor{red}{tracking system (Section~\ref{sec:track})}. The two-level triggering system reduces data-taking rate \textcolor{red}{from 40 MHz} to approximately \textcolor{red}{1 kHz. Here}, we focus on electron-based channels, which are
 found in many interesting physics phenomena, \textcolor{red}{such as the} the decays of the Higgs
 boson~\cite{HIGG-2012-27,HIGG-2016-33}, for instance.
 
@@ -24,9 +23,7 @@ The trigger system is discussed in Section~\ref{sec:atlas_trigger}.
 The standard variables for electron identification are discussed in
 Section~\ref{ssec:std_variables}. The electron triggers are described, in details, in
 Section~\ref{ssec:egamma_trigger}, followed by their nomenclature in
-Section~\ref{ssec:menu}.  Considerations about the \TnP method
-(Section~\ref{ssec:tnp}) and datasets (Section~\ref{ssec:dataset}) employed \textcolor{red}{to extract signal and background samples
-from real ATLAS data} close this section.
+Section~\ref{ssec:menu}.  
 
 
 
@@ -113,7 +110,7 @@ absorbers.%Simulation of accumulated radiation lengths ($\text{X}_0$), as a func
 \end{comment}
 
 
-\section{Inner Detector}\label{ssec:track}
+\section{Inner Detector}\label{sec:track}
 
 The inner detector, \textcolor{red}{used to reconstruct charged-particle tracks}, is immersed in a
 \textcolor{red}{\SI{2}{\tesla} magnetic} field \textcolor{red}{aligned on the beam axis and produced} by a thin superconducting solenoid
@@ -366,7 +363,7 @@ decision~\cite{aaboud2019electron}
 To account for detector response \textcolor{red}{evolution} (Section~\ref{ssec:calo}) with
 respect to \Et\footnote{Projection of the energy ($E$) in the transverse plane,
 computed by $E\cdot\sin(\theta)$ or $E\cdot\cosh(\eta)$.} and
-$\eta$, both the KDE and discriminant requirements are computed in delimited \textcolor{ref}{($\eta\times~E_{T})$}
+$\eta$, both the KDE and discriminant requirements are computed in delimited \textcolor{red}{($\eta\times~E_{T})$}
 regions in this plane (boundaries defined in the Section~\ref{top:nn_ensemble}).
 A finer-grained grid in \Et is employed for the derivation of the discriminant
 requirements to obtain a relatively smooth efficiency transition. Additionally,
