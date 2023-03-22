@@ -3,7 +3,7 @@
 
 
 
-This \textcolor{red}{section reports the} \rnn{} operation in both 2017
+This \textcolor{red}{section reports the \rnn{}} operation in both 2017
 (Section~\ref{ssec:2017_ringer_operation}) and 2018
 (Section~\ref{ssec:2018_ringer_operation}) data acquisition periods. The operation efficiencies
 \textcolor{red}{are computed with respect to offline electrons, as} indicated in
@@ -12,28 +12,28 @@ Section~\ref{ssec:dataset}\footnote{For efficiency measurements in this section,
 	working point.}. Firstly, we detail the algorithm cycle during Run~2
 (Section~\ref{ssec:run2_rnn_cycle}).
 
-\section{Run~2 NeuralRinger Cycle}\label{ssec:run2_rnn_cycle}
+\section{Run~2 \rnn{} Cycle}\label{ssec:run2_rnn_cycle}
 
-\textcolor{red}{During the Run 2, the actual} Neural\rnn \textcolor{red}{implementation} 
+\textcolor{red}{During the Run 2, the actual} \rnn{} \textcolor{red}{implementation} 
 %The \rnn cycle 
 can be partitioned into four chronological stages:
 
 \begin{enumerate}[i]
-  \item A development stage up to early 2017, where the NeuralRinger
+  \item A development stage up to early 2017, where the \rnn{}
       potential was estimated from trigger emulation and data reprocessing;
   \item The commissioning stage (\SI{5.4}{\per\femto\barn}) occurred in
       early 2017 runs, where all primary
-      triggers were duplicated with either the NeuralRinger or cut-based algorithms
+      triggers were duplicated with either the \rnn{} or cut-based algorithms
       operating in the \fastcalo{};
   \item The operation of the method as the baseline trigger, which occurred after 2017 Technical Stop 1 (TS1). For
     monitoring purposes, and to allow precise statistical evaluation of eventual
     disagreements between the \fastcalo{} \textcolor{red}{methods from an} offline
     perspective (Section~\ref{sec:off_ana}), a duplicated trigger pair, i.e.
-    with and without NeuralRinger, was kept operating unprescaled during this period
+    with and without \rnn{}, was kept operating unprescaled during this period
     (\SI{39.0}{\per\femto\barn}). Here, we compare the efficiencies of the
     duplicated triggers in 2017 (Section~\ref{ssec:2017_ringer_operation});
   \item Finally, the duplicated trigger was removed for 2018 operation.
-    Therefore, we evaluate 2018 NeuralRinger operation relying on a comparison with
+    Therefore, we evaluate 2018 \rnn{} operation relying on a comparison with
     2017 efficiency in Section~\ref{ssec:2018_ringer_operation}.
 \end{enumerate}
 
@@ -48,19 +48,19 @@ monitoring purposes after the TS1. During the monitoring process, a similar
 operation of both triggers was observed in terms of signal efficiency using the
 integrated luminosity along the period, as shown in
 Figure~\ref{fig:e28_triggers}. The triggers
-turn-on curve exhibit similar profile. In $\eta$, NeuralRinger shows a reasonably symmetric
+turn-on curve exhibit similar profile. In $\eta$, \rnn{} shows a reasonably symmetric
 profile with respect to positive and negative $\eta$, while a
 \SI{3}{\%} efficiency loss is observed at $-2.01<\eta<-1.81$\footnote{The cause for this efficiency loss is unknown.}. In addition, a difference of about
 half to one percentage point may be observed in $\eta$ regions \textcolor{red}{(crack region)} with deterioration in the calorimeter
 response ($1.37 < \abseta < 1.52$ and $2.37 < \abseta < 2.45$). Besides
 aforementioned points, overall efficiency fluctuations are smaller than a few
 per-mill. Although a slight more prominent efficiency loss with respect to
-\avgmu{} is observed in Figure~\ref{fig:e28_comp_mu} for the NeuralRinger trigger, the
+\avgmu{} is observed in Figure~\ref{fig:e28_comp_mu} for the \rnn{} trigger, the
 electron efficiency was kept nearly the same. Such loss occurs after the
 linear threshold correction limit that was employed during 2017 ($\avgmu=40$).
 
 Other important triggers were assessed by comparing the trigger efficiencies on
-2017 data collected before and after switching to the NeuralRinger algorithms.  As it can be
+2017 data collected before and after switching to the \rnn{} algorithms.  As it can be
 observed in Figure~\ref{fig:2017_ts1}, the electron efficiency was also kept
 nearly unchanged for relevant single electron triggers. Note that results in
 this plot are computed with two different data taking periods (with or
@@ -96,7 +96,7 @@ Similar behavior was observed during data collection for all monitored triggers.
   \caption{\label{fig:e28_triggers}HLT electron efficiency as a function of \et{}
     (a), \eta{} (b) and \avgmu{} (c) for the duplicated single electron trigger
     requiring $\et{} > \SI{28}{\GeV}$ and \tight{} selection with and without the
-    NeuralRinger algorithm. Efficiencies are measured employing 2017 data collected
+    \rnn{} algorithm. Efficiencies are measured employing 2017 data collected
     after TS1.}
   \end{center}
 \end{figure}
@@ -124,7 +124,7 @@ Similar behavior was observed during data collection for all monitored triggers.
   \caption{Efficiency of three single electron triggers as a function of
   \et (a), \eta (b) and \avgmu (c). Open (closed) markers contain
   the efficiency measurements on runs before (after) TS1, thus referring to
-  triggers being executed without (with) the NeuralRinger algorithm.
+  triggers being executed without (with) the \rnn{} algorithm.
   }%
   \label{fig:2017_ts1}
   \end{center}
@@ -132,7 +132,7 @@ Similar behavior was observed during data collection for all monitored triggers.
 
 
 By contrasting the behavior of the duplicated trigger using fake electron data,
-it becomes clear the power of the NeuralRinger algorithm. An overall reduction factor of
+it becomes clear the power of the \rnn{} algorithm. An overall reduction factor of
 the fake rate by 13.75 is achieved. It can be seen in
 Figure~\ref{fig:e28_triggers_fake} that the improvement is similar for all
 regions in the evaluated variables, particularly interesting when
@@ -167,7 +167,7 @@ considering the low \et{} and the end-cap regions.
   \caption{\label{fig:e28_triggers_fake} \fastcalo %\footnotemark{} 
   fake electron efficiency as a function of \et (a), \eta (b) and \avgmu (c) for the
   duplicated single electron trigger requiring $\et > \SI{28}{\GeV}$ and \tight
-  selection with and without the NeuralRinger algorithm. Efficiencies are measured
+  selection with and without the \rnn{} algorithm. Efficiencies are measured
   employing 2017 data collected after TS1.}%
   
   \end{center}
@@ -181,7 +181,7 @@ considering the low \et{} and the end-cap regions.
 
 
 Besides the capability of improving early fake rejection, the usage of the
-NeuralRinger also contributed to reduce the final fake rate
+\rnn{} also contributed to reduce the final fake rate
 (Figure~\ref{fig:e28_triggers_fake_hlt}) by a factor of 2, mostly coming from
 the end-cap and crack regions. %This fake rate reduction when measured with
 %respect to the offline electron selection does not seem to have impacted in the
@@ -211,7 +211,7 @@ the end-cap and crack regions. %This fake rate reduction when measured with
 \end{subfigure}
 \caption{HLT fake electron efficiency as a function of \et (a), \eta (b) and
 \avgmu (c) for the duplicated single electron trigger requiring $\et >
-\SI{28}{\GeV}$ and \tight selection with and without the NeuralRinger algorithm.
+\SI{28}{\GeV}$ and \tight selection with and without the \rnn{} algorithm.
 Efficiencies are measured employing 2017 data collected after TS1.}%
 \label{fig:e28_triggers_fake_hlt}
 \end{center}
@@ -221,7 +221,7 @@ Efficiencies are measured employing 2017 data collected after TS1.}%
 
 \section{2018 Operation}\label{ssec:2018_ringer_operation}
 
-In 2018, the NeuralRinger operated with a new tune based on collision data
+In 2018, the \rnn{} operated with a new tune based on collision data
 (Section~\ref{ssec:2018}). It was also the case for the final HLT
 selection\footnote{One exception was the \medium{} selection, where the HLT
 likelihood selection operated in 2018 with the same 2017 tune.}. For the
@@ -310,24 +310,24 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % \FloatBarrier
 % \subsection{Impact on CPU Demands}\label{ssec:cpu_reduction}
 
-% As observed in the efficiency measurements during Run~2 data taking, the NeuralRinger
+% As observed in the efficiency measurements during Run~2 data taking, the \rnn{}
 % allowed more effective \fastcalo{} operation in triggers with electron legs
 % above \SI{15}{\GeV}. In this section, we evaluate how the more efficient trigger
 % configuration improves the online system in terms of resource requirements.
 % First, we dedicate to investigate the CPU requirements at the \fastcalo{}
 % level (Section~\ref{top:fastcalo_cpu}). We then address the full impact CPU
-% requirements of the NeuralRinger in a very important primary electron trigger
+% requirements of the \rnn{} in a very important primary electron trigger
 % (Section~\ref{top:cpu_e26}).
 
 % \subsubsection{\fastcalo{} CPU Demands}\label{top:fastcalo_cpu}
 
-% To reduce implementation efforts, electron triggers executing the NeuralRinger
+% To reduce implementation efforts, electron triggers executing the \rnn{}
 % information compute their information after the cut-based reconstruction, whose
-% decision is not computed. As a result, the NeuralRinger electron triggers always
+% decision is not computed. As a result, the \rnn{} electron triggers always
 % demand additional \fastcalo processing time (see Figures~\ref{fig:fastcalo_fex_time}
 % and~\ref{fig:fastcalo_hypo_time}).  We have evaluated the overhead required to
-% compute the NeuralRinger decision by running a single electron trigger with and without
-% the NeuralRinger algorithm in two individual non-concurrent executions using the same
+% compute the \rnn{} decision by running a single electron trigger with and without
+% the \rnn{} algorithm in two individual non-concurrent executions using the same
 % dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) 
 % with 256 Gb@1333 of memory and a SL6 OS.}.
 
@@ -346,7 +346,7 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % \centering
 % \caption{\label{fig:fastcalo_fex_time}
 % Total CPU time per bunch-crossing event for the feature extraction algorithms in
-% the \fastcalo step of electron triggers with (white) and without (yellow) NeuralRinger
+% the \fastcalo step of electron triggers with (white) and without (yellow) \rnn{}
 % using EB events (see text) in run 327265 ($\avgmu=45$ peak). Detail on right
 % shows the CPU time of the ring variable extraction. The CPU time does not
 % include the (online) data preparation time.  Measurements were evaluated from
@@ -361,9 +361,9 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % \centering
 % \caption{\label{fig:fastcalo_hypo_time}
 %   Total CPU time per bunch-crossing event for the hypothesis testing algorithms
-% in the \fastcalo step of electron triggers with (white) and without (yellow) NeuralRinger
+% in the \fastcalo step of electron triggers with (white) and without (yellow) \rnn{}
 % using EB events. More details in description of Figure~\ref{fig:fastcalo_fex_time}. 
-% The center histogram represents the CPU time to store the NeuralRinger output into the AOD 
+% The center histogram represents the CPU time to store the \rnn{} output into the AOD 
 % format (persistence).}
 % \end{figure}
 
@@ -380,7 +380,7 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % discriminant is computed, compared to the selection requirement and stored into
 % the AOD\footnote{For Run-3 this step has been removed as a way to reduce the CPU time at \fastcalo step.} 
 % persistent format. 
-% Specifically, NeuralRinger hypothesis testing is considerably more demanding
+% Specifically, \rnn{} hypothesis testing is considerably more demanding
 % (up to \SI{0.14}{\ms/\text{event}}), mostly due to the time 
 % to store the neural network output \SI{0.07 \pm 0.02}{\ms/\text{event}}, 
 % than the cut-based selection
@@ -388,11 +388,11 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % extraction values. 
 
 
-% Taking into account the referred values, the NeuralRinger can require a
+% Taking into account the referred values, the \rnn{} can require a
 % relative increase of up to \SI{50}{\%} in the \fastcalo{} CPU time per event
-% with respect to the trigger without NeuralRinger\footnote{We expect the result to be
+% with respect to the trigger without \rnn{}\footnote{We expect the result to be
 % dependent on the trigger configuration due to presence of pile-up. Reported
-% results are for e17\_lhvloose\_nod0.}. Nonetheless, the NeuralRinger contributes to
+% results are for e17\_lhvloose\_nod0.}. Nonetheless, the \rnn{} contributes to
 % a more discriminant selection, allowing to obtain less CPU demanding triggers
 % by reducing the processing of fake electron in the computationally demanding
 % subsequent steps as will be shown in the following sections.
@@ -402,12 +402,12 @@ Open (closed) markers contain the efficiency measurements on 2017 (2018) runs.}
 % Single Electron Trigger}\label{top:cpu_e26}
 
 % We demonstrate the potential of saving CPU requirements by
-% avoiding the computation of fake candidates with the NeuralRinger algorithms using the
+% avoiding the computation of fake candidates with the \rnn{} algorithms using the
 % lowest-energy-threshold unprescaled single electron trigger
-% (e26\_lhtight\_nod0\_ivarloose). We executed it with and without the NeuralRinger
+% (e26\_lhtight\_nod0\_ivarloose). We executed it with and without the \rnn{}
 % algorithm in the same database using a dedicated node for processing.
 % In this measurement, we considered about 3,400 events from EB stream of run
-% 327265 processed by release AthenaP1,21.1.55. The NeuralRinger algorithm provided a
+% 327265 processed by release AthenaP1,21.1.55. The \rnn{} algorithm provided a
 % \SI{60}{\%} reduction (\SI{30.72}{\milli\second} to \SI{10.36}{\milli\second})
 % in the CPU demands.
 

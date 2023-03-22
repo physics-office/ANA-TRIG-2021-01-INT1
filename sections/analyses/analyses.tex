@@ -1,25 +1,25 @@
 %\section{Further Detailed Performance Analysis}%
 
-\chapter{Neural\rnn Performance}%
+\chapter{\rnn{} Performance}%
 \label{sec:off_ana}
 
-This section dedicates to more detailed assessments of the Neural\rnn{} behavior 
+This section dedicates to more detailed assessments of the \rnn{} behavior 
 \textcolor{red}{in the period 2017-2018 with respect to the previous electron trigger cut-based strategy.}
 %with respect to the previous electron trigger strategy. 
 Using \Zee{} \tnp{}
 selection, we investigate the agreement between the two triggers and investigate
-for possible biases caused by the introduction of the Neural\rnn{} using the variables
+for possible biases caused by the introduction of the \rnn{} using the variables
 employed by the likelihood algorithm. \textcolor{red}{Since} offline and final HLT electron
 selection are based on such variables, limiting the evaluation to them suffice
-to understand any possible impact of the Neural\rnn{} algorithm in most analyses.
-Additionally, these variables are interesting for they compact the input space
+to understand any possible impact of the \rnn{} algorithm in most analyses.
+Additionally, these variables are interesting \textcolor{ref}{as} they compact the input space
 in a set of few variables with low correlation (i.e., when compared to the ring
-sums) and high interpretability power. One should keep in mind that the Neural\rnn{}
+sums) and high interpretability power. One should keep in mind that the \rnn{}
 algorithm had access only to the ring description during Run~2 operation.
 
 As indicated in
 Table~\ref{tab:quadrant_vs_agreement}, we perform two analyses evaluating the
-trigger \textcolor{red}{performance} with and without Neural\rnn{}, when applied to the tag (Agreement Analysis) and
+trigger \textcolor{red}{performance} with and without \rnn{}, when applied to the tag (Agreement Analysis) and
 to the probe (Quadrant Analysis).
 \textcolor{red}{ It is worth reminding that Tag \& Probe events have one electron (probe) that was not used to decide the selection of that event at the trigger level.
 }
@@ -50,43 +50,43 @@ the same trigger requirement \\
 \end{table}
 
 The Quadrant Analysis allows to directly assess possible bias caused by the
-introduction of the Neural\rnn{} by comparing the profiles for all possible disjoint
+introduction of the \rnn{} by comparing the profiles for all possible disjoint
 decisions \textcolor{red}{from the two trigger classifiers.} Hence, it is possible for the classifiers
 to agree by both accepting or rejecting the event. Likewise, they are able to
 disagree in two possible cases where either one decides to accept the event
 while the other rejects it.
 
 Although it is reasonable to expect that the shower development of the tag and
-the probe are independent from each other, and that the Neural\rnn{} when applied to
+the probe are independent from each other, and that the \rnn{} when applied to
 the tag selection cannot, in principle, alter the profile of the probes besides
 changing the number of \tnp{} pairs, such evaluation of systematic effect as
 performed by the Agreement Analysis is interesting for allowing to evaluate any
-possible \textcolor{red}{systematic effect} caused by the introduction of the Neural\rnn{} in the extraction of the
+possible \textcolor{red}{systematic effect} caused by the introduction of the \rnn{} in the extraction of the
 likelihood PDFs employed for offline and final HLT selection.
 
 \FloatBarrier
 \section{Impact on CPU Demands} %\label{ssec:cpu_reduction}
 
-As observed in the efficiency measurements during Run~2 data taking, the Neural\rnn{}
+As observed in the efficiency measurements during Run~2 data taking, the \rnn{}
 allowed more effective \fastcalo{} operation in triggers with electron legs
 above \SI{15}{\GeV}. In this section, we evaluate how the more efficient trigger
 configuration improves the online system in terms of resource requirements.
 First, \textcolor{red}{we investigate the} CPU requirements at the \fastcalo{}
 level (Section~\ref{top:fastcalo_cpu}). We then address the full impact CPU
-requirements of the Neural\rnn{} in a very important primary electron trigger
+requirements of the \rnn{} in a very important primary electron trigger
 (Section~\ref{top:cpu_e26}).
 
 \subsection{\fastcalo{} CPU Demands}\label{top:fastcalo_cpu}
 
 
-\textcolor{red}{We have evaluated the overhead required to compute the Neural\rnn decision by running a single electron trigger with and without the Neural\rnn algorithm in two individual non-concurrent executions using the same dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) with 256 Gb@1333 of memory and a SL6 OS.}. It should be mentioned that, in order to reduce implementation efforts, electron triggers executing the Neural\rnn information compute their information after the cut-based reconstruction, whose decision is not computed. As a result of this, the Neural\rnn electron }
-%To reduce implementation efforts, electron triggers executing the Neural\rnn{}
+\textcolor{red}{We have evaluated the overhead required to compute the \rnn{} decision by running a single electron trigger with and without the \rnn algorithm in two individual non-concurrent executions using the same dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) with 256 Gb@1333 of memory and a SL6 OS.}. It should be mentioned that, in order to reduce implementation efforts, electron triggers executing the \rnn{} information compute their information after the cut-based reconstruction, whose decision is not computed. As a result of this, the \rnn{} electron }
+%To reduce implementation efforts, electron triggers executing the \rnn{}
 %information compute their information after the cut-based reconstruction, whose
-%decision is not computed. As a result, the Neural\rnn{} electron 
+%decision is not computed. As a result, the \rnn{} electron 
 triggers always demand additional \fastcalo processing time (see Figures~\ref{fig:fastcalo_fex_time}
 and~\ref{fig:fastcalo_hypo_time}).  We have evaluated the overhead required to
-compute the Neural\rnn decision by running a single electron trigger with and without
-the Neural\rnn{} algorithm in two individual non-concurrent executions using the same
+compute the \rnn{} decision by running a single electron trigger with and without
+the \rnn{} algorithm in two individual non-concurrent executions using the same
 dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) 
 	with 256 Gb@1333 of memory and a SL6 OS.}.
 
@@ -105,7 +105,7 @@ feature extraction algorithm for multiple RoIs in the same bunch-crossing event.
 	\centering
 	\caption{\label{fig:fastcalo_fex_time}
 		Total CPU time \textcolor{red}{per event} for the feature extraction algorithms in
-		the \fastcalo step of electron triggers with (white) and without (yellow) Neural\rnn
+		the \fastcalo step of electron triggers with (white) and without (yellow) \rnn{}
 		using EB events ($\avgmu=45$ peak). Detail \textcolor{red}{on the right}
 		shows the CPU time of the ring variable extraction. The CPU time does not
 		include the (online) data preparation time.  Measurements were evaluated from 
@@ -121,9 +121,9 @@ feature extraction algorithm for multiple RoIs in the same bunch-crossing event.
 	\centering
 	\caption{\label{fig:fastcalo_hypo_time}
 		Total CPU time \textcolor{red}{per event} for the hypothesis testing algorithms
-		in the \fastcalo step of electron triggers with (white) and without (yellow) Neural\rnn
+		in the \fastcalo step of electron triggers with (white) and without (yellow) \rnn{}
 		using EB events. More details in description of Figure~\ref{fig:fastcalo_fex_time}. 
-		The center histogram represents the CPU time to store the Neural\rnn output into the AOD 
+		The center histogram represents the CPU time to store the \rnn{} output into the AOD 
 		format (persistence).}
 \end{figure}
 
@@ -140,7 +140,7 @@ comes from hypothesis testing, in which the ring variables are normalized, the
 discriminant is computed, compared to the selection requirement and stored into
 the AOD\footnote{For Run-3 this step has been removed as a way to reduce the CPU time at \fastcalo step.} 
 persistent format. 
-Specifically, Neural\rnn{} hypothesis testing is considerably more demanding
+Specifically, \rnn{} hypothesis testing is considerably more demanding
 (up to \SI{0.14}{\ms/\text{event}}), mostly due to the time 
 to store the neural network output \SI{0.07 \pm 0.02}{\ms/\text{event}}, 
 than the cut-based selection
@@ -148,11 +148,11 @@ than the cut-based selection
 extraction values. 
 
 
-Taking into account the referred values, the Neural\rnn{} can require a
+Taking into account the referred values, the \rnn{} can require a
 relative increase of up to \SI{50}{\%} in the \fastcalo{} CPU time per event
-with respect to the trigger without Neural\rnn\footnote{We expect the result to be
+with respect to the trigger without \rnn{}\footnote{We expect the result to be
 	dependent on the trigger configuration due to presence of pile-up. Reported
-	results are for e17\_lhvloose\_nod0.}. Nonetheless, the Neural\rnn contributes to
+	results are for e17\_lhvloose\_nod0.}. Nonetheless, the \rnn{} contributes to
 a more discriminant selection, \textcolor{red}{allowing to reduce CPU} demanding triggers
 by reducing the processing of fake electron in the computationally demanding
 subsequent steps as will be shown in the following subsection.
@@ -162,13 +162,13 @@ subsequent steps as will be shown in the following subsection.
 	Single Electron Trigger}\label{top:cpu_e26}
 
 \textcolor{red}{The} potential of saving CPU requirements by
-avoiding the computation of fake candidates with the Neural\rnn \textcolor{red}{algorithms was demonstrated using} algorithms using the
+avoiding the computation of fake candidates with the \rnn algorithms was demonstrated using} algorithms using the
 lowest-energy-threshold unprescaled single electron trigger
 \textcolor{red}{(tight criterion). This trigger algorithm was executed with}
 %(tight criterion). We executed it with 
-and without the Neural\rnn algorithm in the same database using a dedicated node for processing.
+and without the \rnn{} algorithm in the same database using a dedicated node for processing.
 In this measurement, we considered about 3,400 events from EB stream of run
-327265 \textcolor{red}{processed with} release AthenaP1,21.1.55. The Neural\rnn algorithm \textcolor{red}{provided an overall} 
+327265 \textcolor{red}{processed with} release AthenaP1,21.1.55. The \rnn{} algorithm \textcolor{red}{provided an overall} 
 \SI{60}{\%} reduction (\SI{30.72}{\milli\second} to \SI{10.36}{\milli\second})
 in the CPU demands.
 
@@ -183,7 +183,7 @@ in the CPU demands.
 Results in Section~\ref{top:quadrant_results} show
 \textcolor{red}{trigger selection performance using} \tight{} requirement for the duplicated triggers during
 2017.
-%Thus, it allows to assess the direct impact of applying the Neural\rnn{} selection
+%Thus, it allows to assess the direct impact of applying the \rnn{} selection
 %with respect to the cut-based one, when keeping the tag selection fixed.
 
 \subsection{Results}\label{top:quadrant_results}
@@ -245,8 +245,8 @@ Results in Section~\ref{top:quadrant_results} show
 %   offline-reconstructed \reta using standard \abseta regions ((a)-(i)) employed
 %   in efficiency measurements within the $30<\et{}~[\text{GeV}]<$ slice. The
 %   top pad in each figure shows the raw number of observations for the four
-%   mutually exclusive cases: both with and without Neural\rnn{} triggered (black); triggered only
-%   with Neural\rnn{} (blue); triggered only without Neural\rnn{} (red); neither one triggered
+%   mutually exclusive cases: both with and without \rnn{} triggered (black); triggered only
+%   with \rnn{} (blue); triggered only without \rnn{} (red); neither one triggered
 %   (grey). With the same color code, bottom pad contains the percentage of each
 %   group with respect to the sum of them. The both and neither triggering cases
 %   are displayed using the left y-axis, whereas the single triggering cases are
@@ -259,7 +259,7 @@ Results in Section~\ref{top:quadrant_results} show
 most electron-jet discriminating variables employed in the likelihood
 algorithm~\cite{aaboud2019electron}. As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement (obtained by summing the cases accepted only by a single trigger between both triggers) is small and bounded for most cases at 1\% level for the coverage of all calorimetry variables. 
 This behavior is also observed for \et{} slices. 
-\textcolor{red}{One should note that the working points of both triggers are not  exactly the same, although the NeuralRinger aimed at keeping the same signal efficiency as being achieved by the cut-based strategy and was operating as desired.  Thus, much of the differences reflect this difficulty. In other words, }
+\textcolor{red}{One should note that the working points of both triggers are not  exactly the same, although the \rnn{} aimed at keeping the same signal efficiency as being achieved by the cut-based strategy and was operating as desired.  Thus, much of the differences reflect this difficulty. In other words, }
 %One should note that the integral of the single trigger cases is related to the limitation in the precision of setting the working point of both triggers to be exactly the same. In other words, 
 the difference in height of the blue and red profiles in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta} is mainly due to the small differences in efficiencies between the two triggers.
 \textcolor{red}{From the operation, it was realized that such matching was better in the $0.6<\abseta{}<0.8$ region. Hence, comparison between profiles is simpler to be performed there.}
@@ -268,7 +268,7 @@ the difference in height of the blue and red profiles in Figure~\ref{fig:quadran
 For all variables 
 \textcolor{red}{in this region, both triggers behave very similarly, even if some slight shifts can be observed in few profiles.}
 %in this region, it is possible to observe that both triggers also behave very similarly, with very low disagreement and slight shifts in some profiles. 
-This is the case of \reta{} and \rphi{}, where the Ringer trigger is consistently collecting slightly more events in signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The Ringer trigger behavior shows even lower effect in the \rhad{}, where tighter tails are observed, resulting in less electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slight bias towards collecting more events in the signal region with the Ringer trigger. Interestingly, some few events are accepted by the trigger with Ringer, when $0.5<\eratio{}<0.7$. We suspect it to be due electrons resulting in from premature showers with barycenter near the edge of two strips
+This is \textcolor{red}{the case of} \reta{} and \rphi{}, where the \rnn{} trigger is consistently collecting slightly more events in signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The \rnn{} trigger behavior shows even lower effect in the \rhad{}, where tighter tails are observed, resulting in less electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slight bias towards collecting more events in the signal region with the \rnn{} trigger. Interestingly, some few events are accepted by the trigger with \rnn{}, when $0.5<\eratio{}<0.7$. We suspect it to be due electrons resulting in from premature showers with barycenter near the edge of two strips
 
 
 % \begin{comment}
@@ -292,15 +292,15 @@ This is the case of \reta{} and \rphi{}, where the Ringer trigger is consistentl
 % this region, as shown in Figure~\ref{fig:quadrant_calo_variables_30GeV}. Again,
 % it is possible to observe that both triggers behave very similarly, with very
 % low disagreement and slight shifts in some profiles. This is the case of
-% \reta{}, \rphi{} and \wstot{} where the Neural\rnn{} trigger is consistently
+% \reta{}, \rphi{} and \wstot{} where the \rnn{} trigger is consistently
 % collecting slightly more events in signal region, i.e.\@ respectively with slight
 % tighter showers in \eta{} and \phi{} in the \emii{}, and lower shower width in
-% \emi{}. The Neural\rnn{} trigger behavior shows even lower effect in the \rhad{},
+% \emi{}. The \rnn{} trigger behavior shows even lower effect in the \rhad{},
 % \fI{} and \fIII{}, where tighter tails are observed, resulting in less electrons
 % with \SI{10}{\%} to \SI{30}{\%} energy in \emi{}, \SI{1}{\%} to \SI{2}{\%} in
 % \emiii{} and more than \SI{4}{\GeV} hadronic leakage. \eratio{} also shows a
-% slight bias towards collecting more events in the signal region with the Neural\rnn{}
-% trigger. Interestingly, some few events are accepted by the trigger with Neural\rnn{}
+% slight bias towards collecting more events in the signal region with the \rnn{}
+% trigger. Interestingly, some few events are accepted by the trigger with \rnn{}
 % when $0.5<\eratio{}<0.7$. We suspect it to be due electrons resulting in from
 % premature showers with barycenter near the edge of two strips.
 % \end{comment}
@@ -369,8 +369,8 @@ This is the case of \reta{} and \rphi{}, where the Ringer trigger is consistentl
 	calorimetry variables employed in the
 	likelihood and for the $0.6<\abseta{}<0.8$ and
 	$30<\et{}~[\text{GeV}]<35$ slices. 
-	The top pad in each figure shows the raw number of observations for the four mutually exclusive cases: both with and without Ringer
-	triggered (black); triggered only with Ringer (blue); triggered only without Ringer (red); neither one triggered (gray). With the same color code, \textcolor{red}{the bottom pad} contains the percentage of each group with \textcolor{red}{respect to the number of events selected by any trigger. The disagreement is defined by $(N_{blue}+N_{red})/(N_{blue}+N_{red}+N_{black}+N_{gray})$.}
+	The top pad in each figure shows the raw number of observations for the four mutually exclusive cases: both with and without \rnn{}
+	triggered (black); triggered only with \rnn{} (blue); triggered only without \rnn{} (red); neither one triggered (gray). With the same color code, \textcolor{red}{the bottom pad} contains the percentage of each group with \textcolor{red}{respect to the number of events selected by any trigger. The disagreement is defined by $(N_{blue}+N_{red})/(N_{blue}+N_{red}+N_{black}+N_{gray})$.}
 }
 %Quadrant analysis plots for the offline-reconstructed
 %calorimetry variables employed in the
@@ -397,12 +397,12 @@ the trigger does not show a dependent behaviour with ID variables, as \textcolor
 % $2.01<\abseta{}<2.37$ and $2.37<\abseta{}<2.47$ present a shift towards lower
 % and larger shower widths, respectively. A similar behavior occurs for \fIII{},
 % as shown in Figure~\ref{fig:quadrant_f3_change_in_behavior} the trigger with
-% Neural\rnn{} selection collects electrons with lower leakage in \emiii{} for region
+% \rnn{} selection collects electrons with lower leakage in \emiii{} for region
 % $2.01<\abseta{}<2.37$, whereas the opposite occurs in region
-% $2.37<\abseta{}<2.37$. We believe this behavior to be associated with the usage of a single neural network during 2017 to cover the full end-cap region, but this could not be confirmed since 2018 data taking did not employ the duplicated trigger setup any longer.  As already mentioned, the $2.37<\abseta{}<2.37$ region is particularly different to the others due to the lack of the strips in EM1. Hence, the Ringer performance suffered deterioration at this region and, in order to keep the same signal efficiency, the operation point needed to be set looser, allowing the trigger to collect less signal-like electrons. This behavior is due to the usage of a single neural
+% $2.37<\abseta{}<2.37$. We believe this behavior to be associated with the usage of a single neural network during 2017 to cover the full end-cap region, but this could not be confirmed since 2018 data taking did not employ the duplicated trigger setup any longer.  As already mentioned, the $2.37<\abseta{}<2.37$ region is particularly different to the others due to the lack of the strips in EM1. Hence, the \rnn{} performance suffered deterioration at this region and, in order to keep the same signal efficiency, the operation point needed to be set looser, allowing the trigger to collect less signal-like electrons. This behavior is due to the usage of a single neural
 % network during 2017 to cover the full end-cap region. As already mentioned, the
 % $2.37<\abseta{}<2.47$ region is particularly different to the others due to the
-% lack of the strips in \emi{}. Hence, Neural\rnn{} performance suffered deterioration
+% lack of the strips in \emi{}. Hence, \rnn{} performance suffered deterioration
 % at this region and, in order to keep the same signal efficiency, the operation
 % point needs to be set looser, allowing the trigger to collect less signal-like
 % electrons.
@@ -425,9 +425,9 @@ the trigger does not show a dependent behaviour with ID variables, as \textcolor
 % algorithms, the \rhad{} will usually have a larger hadronic leakage value than
 % \rhadone{}, which explains the right tail with higher leakages than the cut in
 % the \fastcalo ($\rhad>\SI{2.3}{\%}$) that is seen for the (black) profile where
-% both Neural\rnn{} and the cut-based triggers select the electrons in
+% both \rnn{} and the cut-based triggers select the electrons in
 % Figure~\ref{fig:quadrant_rhad_et4_eta4}.}, which is near the starting point of
-% the second peak for the electrons accepted only by the Neural\rnn{} selection, which
+% the second peak for the electrons accepted only by the \rnn{} selection, which
 % points out that the neural network was able to keep a fraction of these electron
 % showers deploying energy in the \itc{} cells.
 % % FastCalo: https://acode-browser1.usatlas.bnl.gov/lxr/source/athena/Trigger/TrigAlgorithms/TrigT2CaloEgamma/src/EgammaHadEnFex.cxx?v=21.1
@@ -527,12 +527,12 @@ likelihood for the $0.6<\abseta{}<0.8$ and $35<\et{}~[\text{GeV}]<40$ slice. \te
 Trigger]{Agreement with respect to Previous Trigger}\label{ssec:agreement}
 
 In this 
-\textcolor{red}{analysis, the impact of using different triggers (from Ringer and cut-based algorithms) on the likelihood algorithm is evaluated. This }
-%analysis, we observe how the usage of the different triggers (from Ringer and cut-based algorithms) may impact the likelihood algorithm. This 
-study requires a pair of duplicated triggers (with and without the Ringer) operating online together. 
+\textcolor{red}{analysis, the impact of using different triggers (from \rnn{} and cut-based algorithms) on the likelihood algorithm is evaluated. This }
+%analysis, we observe how the usage of the different triggers (from \rnn{} and cut-based algorithms) may impact the likelihood algorithm. This 
+study requires a pair of duplicated triggers (with and without the \rnn{}) operating online together. 
 \textcolor{red}{The motivation for the choice of the duplicated trigger pairs has been discussed in Section~\ref{top:duplicated}. This analysis is performed using} 
 %motivation for the choice of the duplicated trigger pairs in Section~\ref{top:duplicated}. Particularly, we perform this analysis using 
-\Zee{} \tnp{} data, which were selected with the trigger requirement set to either one of the duplicated triggers for the tag, whereas the probe selection is invariably set to the offline \vloose{} criterion. This is the exact setup \textcolor{red}{employed by ATLAS to derive} the offline likelihood \textcolor{red}{for electrons above \SI{15}{\GeV}. To benefit} from the full 2017 statistics, data collected previous to the TS1 were also employed. In case the profiles are statistically identical, then it is expected that the Neural\rnn{} trigger \textcolor{red}{does} not cause any relevant alteration in the derivation of the offline likelihood pdfs.  The statistical method for profile evaluation is described in Section~\ref{top:homogeneity_method} and the results are available in Section~\ref{top:agreement_homogeneity_results}.
+\Zee{} \tnp{} data, which were selected with the trigger requirement set to either one of the duplicated triggers for the tag, whereas the probe selection is invariably set to the offline \vloose{} criterion. This is the exact setup \textcolor{red}{employed by ATLAS to derive} the offline likelihood \textcolor{red}{for electrons above \SI{15}{\GeV}. To benefit} from the full 2017 statistics, data collected previous to the TS1 were also employed. In case the profiles are statistically identical, then it is expected that the \rnn{} trigger \textcolor{red}{does} not cause any relevant alteration in the derivation of the offline likelihood pdfs.  The statistical method for profile evaluation is described in Section~\ref{top:homogeneity_method} and the results are available in Section~\ref{top:agreement_homogeneity_results}.
 
 %In this analysis, we dedicate to observe how the usage of different triggers may
 %impact the likelihood algorithm. %Although a new trigger configuration
@@ -540,7 +540,7 @@ study requires a pair of duplicated triggers (with and without the Ringer) opera
 %compelling property would be a nearly immutable trigger operation when seen by
 %the offline selection algorithm regardless of the online configuration, given it
 %reduces the effort in processing the full Run~2 data.
-%This study requires a pair of duplicated triggers (with and without the Neural\rnn{}) operating online together. We discuss the
+%This study requires a pair of duplicated triggers (with and without the \rnn{}) operating online together. We discuss the
 %motivation for the choice of the duplicated trigger pair in
 %Section~\ref{top:duplicated}. Particularly, we perform this analysis using
 %\Zee{} \tnp{} data selected with the trigger requirement set to either one of
@@ -577,13 +577,13 @@ Section~\ref{ssec:2017_ringer_operation} and to allow the agreement analysis des
   \item in addition, as the \tight requirement aims at selecting a high purity electron sample, it limits the trigger decision 
   \textcolor{red}{boundary of the trained model, which was extracted with the same conditions and data for all operation requirements} 
   %boundary, extracted with the same conditions and data for all requirements, 
-  to comprise a smaller signal region\footnote{Region where samples are labelled by the algorithm as electrons.} for both triggers\footnote{It is worth mentioning that the Neural\rnn{} and cut-based algorithms were optimized on different datasets, but the requirement definitions were kept fixed for the same conditions for each algorithm except for the targeted efficiencies.}, therefore resulting in larger divergences between the algorithms;
+  to comprise a smaller signal region\footnote{Region where samples are labelled by the algorithm as electrons.} for both triggers\footnote{It is worth mentioning that the \rnn{} and cut-based algorithms were optimized on different datasets, but the requirement definitions were kept fixed for the same conditions for each algorithm except for the targeted efficiencies.}, therefore resulting in larger divergences between the algorithms;
   
 %in addition, the \tight requirement limits the decision boundary,
 %    extracted with the same conditions and data for all requirements, to
 %    comprise a smaller signal region\footnote{Region where samples are labelled by the algorithm
 %    as electrons.} for both triggers\footnote{It is worth mentioning that the
-%     Neural\rnn{} and cut-based algorithms were optimized on different datasets, but
+%     \rnn{} and cut-based algorithms were optimized on different datasets, but
 %      the requirement definitions were kept fixed for the same conditions for
 %    each algorithm except for the targeted efficiencies.}, therefore resulting
 %    in larger divergences between the algorithms;
@@ -593,7 +593,7 @@ Section~\ref{ssec:2017_ringer_operation} and to allow the agreement analysis des
   \item it is preferable to keep a duplicated trigger with energy-threshold as
     near as possible to the lowest unprescaled one, since less changes in the
     systematic parameters employed in the \Zee{} \tnp{} method take place;
-  \item given that the Neural\rnn{} was employing new variables and a neural network
+  \item given that the \rnn{} was employing new variables and a neural network
     strategy for the first time, it was considered to prioritize obtaining as
     much data as possible to allow the characterization of possible subtle
     changes caused by the new trigger;
@@ -607,7 +607,7 @@ As a result, it was decided to \textcolor{red}{duplicate only a single} electron
 %energy-threshold as near as possible from the primary trigger and to keep it
 %unprescaled. Namely, the e28\_lhtight\_nod0\_noringer\_ivarloose trigger with
 %the cut-based algorithm is the duplicated setup for the
-%e28\_lhtight\_nod0\_ivarloose trigger, which operated with Neural\rnn{} algorithm in
+%e28\_lhtight\_nod0\_ivarloose trigger, which operated with \rnn{} algorithm in
 %the \fastcalo{} step.
 
 \subsection{Method}\label{top:homogeneity_method}
@@ -652,7 +652,7 @@ oscillate through the positive and negative axis with
 \end{equation}
 
 \noindent where $r_{i,j}$ ($b_{i,j}$) is the number of observations collected by
-the trigger with (without) Neural\rnn{} in $j$th histogram bin and in the $i$th
+the trigger with (without) \rnn{} in $j$th histogram bin and in the $i$th
 $\et{}\times\abseta{}$ region.
 
 %The small differences in efficiency between the triggers result in fluctuations in the number of
@@ -671,7 +671,7 @@ $\et{}\times\abseta{}$ region.
 
 
 
-Regardless of the trigger configuration, the p-values of the homogeneity tests between the two groups \textcolor{red}{result in similar values.} In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration. Similar behavior is observed for the ID and calo-ID variables. In Figure~\ref{fig:groups_homogeneity_calo}, we show the residuals when considering the histogram obtained with data collected by the trigger without Ringer for the first arbitrary group as a reference. The residuals are dominated by statistical fluctuations, which are within the expectations from homogeneity hypothesis for most variables and regions.
+Regardless of the trigger configuration, the p-values of the homogeneity tests between the two groups \textcolor{red}{result in similar values.} In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration. Similar behavior is observed for the ID and calo-ID variables. In Figure~\ref{fig:groups_homogeneity_calo}, we show the residuals when considering the histogram obtained with data collected by the trigger without \rnn{} for the first arbitrary group as a reference. The residuals are dominated by statistical fluctuations, which are within the expectations from homogeneity hypothesis for most variables and regions.
 
 %Regardless of the trigger configuration, the p-values of the homogeneity tests
 %between the two groups result in nearly the same values. In other words, the fluctuations in the
@@ -717,8 +717,8 @@ Regardless of the trigger configuration, the p-values of the homogeneity tests b
 \end{subfigure} \\
 \caption{%
 	Top: \reta, \eratio, \rphi, \rhad histogram profiles for the calorimetry variables employed in the offline likelihood in the $\et>\SI{40}{\GeV}$ and $0.00<\abseta{}<0.80$ regions using data collected by
-	triggering without Neural\rnn{} in the first arbitrary data group
-	(blue area) and data collected by triggering with Neural\rnn{} in the second
+	triggering without \rnn{} in the first arbitrary data group
+	(blue area) and data collected by triggering with \rnn{} in the second
 	arbitrary data group (black line).  Bottom: residual contributions using as
 	statistics $\chi^s$ (equation~\ref{eq:signed_chi}, in black) and the expected
 	model for no distortion given by the $\chi^s$ residuals w.r.t.\@ the
@@ -755,8 +755,8 @@ Regardless of the trigger configuration, the p-values of the homogeneity tests b
 % \end{subfigure} \\
 % \caption{%
 % Top: \weta, \fI, \fIII histogram profiles for the calorimetry variables employed in the offline likelihood in the $\et>\SI{40}{\GeV}$ and $0.00<\abseta{}<0.80$ regions using data collected by
-% triggering without Neural\rnn{} in the first arbitrary data group
-% (blue area) and data collected by triggering with Neural\rnn{} in the second
+% triggering without \rnn{} in the first arbitrary data group
+% (blue area) and data collected by triggering with \rnn{} in the second
 % arbitrary data group (black line).  Bottom: residual contributions using as
 % statistics $\chi^s$ (equation~\ref{eq:signed_chi}, in black) and the expected
 % model for no distortion given by the $\chi^s$ residuals w.r.t.\@ the

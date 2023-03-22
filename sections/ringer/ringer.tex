@@ -1,21 +1,53 @@
-\chapter{\textcolor{red}{The NeuralRinger Algorithm}}%
+\chapter{\textcolor{red}{The \rnn{} Algorithm}}%
 \label{sec:neuralringer}
 
-This section describes the Neural\rnn{} concepts and the resulting algorithm \textcolor{red}{used} for Run~2
-operation.  Section~\ref{ssec:rnn_for_online_and_eletrons} refers to the
-decisions \textcolor{red}{made} for the Neural\rnn{} development in order to optimize its contributions in \textcolor{red}{saving} processing resources. Aiming at better exploring the discriminative
+This section describes the \rnn{} concepts and the resulting algorithm \textcolor{red}{used} for Run~2
+operation. Section~\ref{ssec:dataset} introduces the data sets and the event selection method used in this publication. Section~\ref{ssec:rnn_for_online_and_eletrons} refers to the
+decisions \textcolor{red}{made} for the \rnn{} development in order to optimize its contributions in \textcolor{red}{saving} processing resources. Aiming at better exploring the discriminative
 power of ring sums for electron triggers (Section~\ref{ssec:ringer_id}),
 an ensemble of neural-networks is \textcolor{red}{employed.  Its training procedure and how trigger decisions are made} addressed in Section~\ref{sec:tuning}.
+
+
+
+
+\section{Datasets and Event Selection}%
+\label{ssec:dataset}
+
+The \textcolor{red}{datasets used to train the Ringer algorithm and the event} selection \textcolor{red}{strategy used to build these signal and background samples are} available in
+Table~\ref{tab:event_selection}. For a detailed description of the simulated
+datasets see ~\cite[Section 3]{ATLAS-PERF-2017-01-002}. The tuning and analysis
+performed on data recorded by ATLAS have their quality ensured. \textcolor{red}{The ATLAS data quality is provide through a strict Data Quality Policy that validates each part of a run dataset that can be used for analysis, rejecting any piece affected by a potential underlying inactive of dysfunctioning part of the detector.} 
+In particular, periods meeting all data-quality requirements
+are made available through internal files known as good run list
+(GRL)~\cite{grl_site}. The physics objects were reconstructed in the first
+(bulk) processing. To facilitate (big) data manipulation, events of potential
+interest are derived using specific requirements. The derivation requirements
+providing potential \Zee{} \tnp{} candidates, %(EGAM1), 
+\Jee{} \tnp{} candidates
+%(EGAM2)
+ and background electrons %(EGAM7)
+  were employed. The event selection was
+performed by the online framework for the \textcolor{red}{\Zee{} \tnp{}} and \textcolor{red}{background electrons} derivations.%, and
+%through the offline framework for the EGAM2 derivation.
+
+% TODO Discuss how the events are selected
+\input{sections/context/tables/event_selection}
+
+
+\subsection{\TnP Method}\label{ssec:tnp}
+
+\textcolor{red}{The \tnp{} method relies on the existence of resonances that decay to a pair of particle of interest (\Zee{}, \Jee{}, $\gamma \rightarrow ee$ and etc) ~\cite{PERF-2016-01}. In the case of electrons coming from $Z$ boson decay, the selection of two EM objects with a mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon you tag one of those objects as a well identified electron. The remaining object can them be assumed to be an electron with a very high underlying purity. This object can them be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used to select the event at the trigger level (tag), allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.}
+
 
 \section{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
 
 % TODO Recall the points discussed with Seixas
 
-%Albeit the NeuralRinger can be suitable for both online and offline selection of any
+%Albeit the \rnn{} can be suitable for both online and offline selection of any
 %physics object resulting in shower development in the calorimeter, several
 %reasons motivated its initial conception for online electron selection as
 %mentioned in Section~\ref{sec:intro}. These are be complemented due to the
-%historical context of the NeuralRinger development which was starting from the
+%historical context of the \rnn{} development which was starting from the
 %electron trigger perspective (Appendix~\ref{sec:history}).
 %% The ring sums and neural discriminant are fast to
 %%compute, being suitable for low-level online operation. Early trigger-levels
@@ -27,7 +59,7 @@ an ensemble of neural-networks is \textcolor{red}{employed.  Its training proced
 %has other benefits over photons. ATLAS detector provides higher trigger
 %selection efficiency for photons~\cite{DAQ-2018-184} than
 %electrons~\cite{DAQ-2018-182}, even though the latter employ multivariate method
-%in the \hlt{}, thus motivating the development of the NeuralRinger first for
+%in the \hlt{}, thus motivating the development of the \rnn{} first for
 %electrons. In addition, photons have an additional difficulty given lack of
 %clean resonances providing substantial statistics~\cite{DAQ-2018-184}.
 %%These were the motivations during Run~1. The proposal, despite showing
@@ -39,17 +71,17 @@ an ensemble of neural-networks is \textcolor{red}{employed.  Its training proced
 
 %For the Run~2, it was decided to focus on the physics interpretation of the
 %algorithm behavior and upgrading it only to fulfill the physics requirements.
-The NeuralRinger algorithm was initially proposed for electron-jet discrimination. 
+The \rnn{} algorithm was initially proposed for electron-jet discrimination. 
 During Run 2, both online and offline versions
 were considered for \textcolor{red}{ development, but the scarcity of available human resources restricted the scope of developments, which focused on reducing CPU demands of the online electron triggers.} Within the electron triggers, \hlt{} selection is
 specially relevant to single object \textcolor{red}{triggers, which, in turn, use the most of the trigger bandwidth}~\cite{aad2020performance}. Particularly, the primary single electron triggers
 are currently evaluated and developed using \Zee{} \tnp{} samples 
-\textcolor{red}{(Section~\ref{ssec:tnp}), in which most electrons have $\et>\SI{15}{\GeV}$, which is the region of interest in physics studies and on which the Ringer developments focus. The result} this effort
+\textcolor{red}{(Section~\ref{ssec:tnp}), in which most electrons have $\et>\SI{15}{\GeV}$, which is the region of interest in physics studies and on which the \rnn{} developments focus. The result} this effort
 follows.
 
 %The remaining resources dedicated to the offline version provided a fully
 %developed framework, which allows the study of the ring sums for electrons above
-%\SI{14}{\GeV}~\cite{Freund2015}. The evaluation of offline NeuralRinger, considering the
+%\SI{14}{\GeV}~\cite{Freund2015}. The evaluation of offline \rnn{}, considering the
 %fusion of the ID information, is on going.
 
 % Covers all unprescaled primary triggers, resulting in higher CPU impact
@@ -64,7 +96,7 @@ follows.
 The ATLAS calorimeters comprise rectangular cells in the
 \etaphi axis\footnote{Except for the forward calorimeters.}. Thus, an actual conic structure cannot be defined
 without \textcolor{red}{intensive} processing of the cell energy information. As the algorithm was
-considered to operate online, approximations were made. \textcolor{red}{Especially, the rectangular structure} of
+considered to operate online, approximations were  \textcolor{red}{made. Especially, the rectangular structure} of
 the rings follows the \textcolor{red}{instrumentation and the ring coverage is bounded to the RoI area. In} addition, the granularity changes are neglected in order to employ a
 grid-like algorithm, which can be summarized in the following steps (see
 Figure~\ref{fig:building_rings} for an illustration of the parameters):
@@ -85,7 +117,7 @@ Figure~\ref{fig:building_rings} for an illustration of the parameters):
 %		\end{itemize}
 %		\item for each cell $c_{i,l}$ in the corresponding
 %		calorimeter sampling layer (Table~\ref{tab:ring_alg_parameters}) and within the
-%		\licalo provided RoI ($\Theta_{Ringer,l} = \Theta_{RoI} = 0.4 \times 0.4$),
+%		\licalo provided RoI ($\Theta_{\rnn{},l} = \Theta_{RoI} = 0.4 \times 0.4$),
 %		do:
 %		\begin{itemize}
 %			\item compute the $n$th ring comprising the cell given its axis position
@@ -212,7 +244,7 @@ are described in Section~\ref{sec:tuning}.
 %\centering
 %\includegraphics[width=0.9\textwidth]{sections/ringer/figures/Ensemble.pdf}
 %\caption{\label{fig:ensemble}
-%Processing flow diagram of the NeuralRinger ensemble operation and decision making
+%Processing flow diagram of the \rnn{} ensemble operation and decision making
 %during Run~2.
 %}
 %\end{figure}
@@ -297,7 +329,7 @@ possible to approach the problem using space discretization.
 
 \caption{Marginal distributions of the non-normalized first ring (hottest cell)
 in the EM1 for the \et (a) and  \abseta (b) in Z$\rightarrow$ee simulated data
-for the boundaries employed for extracting the NeuralRinger discriminants in 2017.}%
+for the boundaries employed for extracting the \rnn{} discriminants in 2017.}%
 %\label{fig:ring_distortion}
 \end{figure}
 \end{comment} 
@@ -311,16 +343,17 @@ sources of interference, are approximately constant. Once classification
 efficiencies are evaluated using regions, it is natural that model parameters
 are also defined for these regions. It is the case of the electron likelihood
 algorithm~\cite{atlas_electron_id_offline}, which motivated the usage of
-\eteta{} regions in the NeuralRinger algorithm.
+\eteta{} regions in the \rnn{} algorithm.
 
 \textcolor{red}{At the software level, the} ensemble allows to handle all data in memory at once,
 which speeds up the training cycle. Limiting the memory requirement for tuning
-the models is particularly interesting in order to benefit from low-memory
-nodes, the majority of those available in WLCG~\cite{2015_lcg_tdr} during our
+the models is particularly interesting in order to benefit from low-memory 
+\textcolor{red}{ processing nodes, which were predominantly available in} 
+WLCG~\cite{2015_lcg_tdr} during our
 developments.\@ In addition, the decomposition of the problem can also lead to a
 reduction of the training time~\cite{Polikar2006}, observed heuristically when
 comparing the tuning time of the ensemble to a single\footnote{
-  When using NVIDIA RTX 2080Ti in tensorflow 1.14 and a minibatch size of 1024, a 
+  When using NVIDIA RTX 2080Ti \textcolor{red}{with} tensorflow 1.14 and a minibatch size of 1024, a 
   MLP with single hidden layer, we observed a substantial increase in the runtime (from 4 
   to 41 seconds per epoch) with respect to the ensemble version.
 } and more complex model.
@@ -352,7 +385,7 @@ In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble
 %  Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins}.} 
 models with simulated data and defined the discriminant cut using
 2016 collision data, targeting small signal efficiency discrepancy to triggering 
-without the Neural\rnn. The training procedure derived one ensemble for each working
+without the \rnn{}. The training procedure derived one ensemble for each working
 point. The ensemble was composed by one MLP model for each \textcolor{red}{phase space in ($E_T$, $\eta$) plane, as} discussed 
 in Subsection~\ref{top:nn_ensemble}. The ensemble boundaries are defined by Table~\ref{tab:ensemble_regions}. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
 employed a single ensemble structure for all working points and used
@@ -366,7 +399,7 @@ and final \hlt likelihood models~\cite{aaboud2019electron}.
 
 
 
-The sets $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ of electrons (signal) and fake electrons (background), respectively, were selected by using the \tnp{} method and the offline selection for trigger developments (Section~\ref{ssec:dataset}). Let the existence of a model $\mathcal{C}$ representing a function $f_{\mathcal{C}} : \Theta \rightarrow \mathbb{R}$ optimized (trained) to perform the binary classification task (electron detection with background rejection). Here, $\mathbb{R}$ is the set of real numbers, as the neural network ensemble produces real numbers at the single output node for trigger decisions.  From supervised optimization, the model $\mathcal{C}$ outputs $\hat{H}:=f_{\mathcal{C}}(x)$ with target $H$ for a sample $x \in \Theta$. The operation of $\mathcal{C}$ results, respectively, in the selection of the subsets $\mathcal{O}_{\text{e}|\text{e}}$ and $\mathcal{O}_{\text{e}|\text{b}}$ from $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ as trigger candidate electrons in the \fastcalo{} processing step of the \hlt{} by defining the decision making procedure $\tau : \mathbb{R} \rightarrow \left\{\text{e},\text{b}\right\}$. As there is a single output node for each neural network in the proposed NeuralRinger ensemble, $\tau$ corresponds to a mapping that is a decision threshold for selecting an electron candidate (electrons are selected when the output node is above the given threshold).  
+The sets $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ of electrons (signal) and fake electrons (background), respectively, were selected by using the \tnp{} method and the offline selection for trigger developments (Section~\ref{ssec:dataset}). Let the existence of a model $\mathcal{C}$ representing a function $f_{\mathcal{C}} : \Theta \rightarrow \mathbb{R}$ optimized (trained) to perform the binary classification task (electron detection with background rejection). Here, $\mathbb{R}$ is the set of real numbers, as the neural network ensemble produces real numbers at the single output node for trigger decisions.  From supervised optimization, the model $\mathcal{C}$ outputs $\hat{H}:=f_{\mathcal{C}}(x)$ with target $H$ for a sample $x \in \Theta$. The operation of $\mathcal{C}$ results, respectively, in the selection of the subsets $\mathcal{O}_{\text{e}|\text{e}}$ and $\mathcal{O}_{\text{e}|\text{b}}$ from $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ as trigger candidate electrons in the \fastcalo{} processing step of the \hlt{} by defining the decision making procedure $\tau : \mathbb{R} \rightarrow \left\{\text{e},\text{b}\right\}$. As there is a single output node for each neural network in the proposed \rnn{} ensemble, $\tau$ corresponds to a mapping that is a decision threshold for selecting an electron candidate (electrons are selected when the output node is above the given threshold).  
 
 
 We explicitly define some convenient figures of merit in \tablename~\ref{tab:figures_of_merit}. It is possible to tune $\mathcal{C}$ to result in a proper working point, (i.e. a targeted value of \pd{} or \pf{}) by adjusting $\tau$ (through the output decision threshold). All possible working points of $\mathcal{C}$ are defined by the Receiver Operation Characteristic (ROC) curve~\cite{van_trees_part1}, but keeping fixed the electron detection probabilities (signal efficiencies) with respect to the previous baseline trigger (cut-based). The \spindex{}~\cite{dos2006neural} is the square root of the product of the geometric and arithmetic averages of the efficiencies for the signal and background categories. It soon collapses when efficiencies on either signal or background events decrease significantly. Thus, the SP index provides a unidimensional space that allows tuning $\mathcal{C}$ for obtaining high efficiency in a balanced manner for both classes, which is given by the $\spmax{}:=\max(\spindex{})$ working point.
@@ -416,7 +449,7 @@ space regions and a summary of the process is provided in
 MLPs and each MLP is an expert model for a single phase space
 region, containing its own topology and parameters (weights and biases).
 
-The model parameters are optimized using events selected on simulation datasets
+The model parameters \textcolor{red}{have been} optimized using events selected on simulation datasets
 (Section~\ref{ssec:dataset}). The structure is a dense (fully-connected) single
 hidden layer MLP, which may contain from 5 to 20 hidden units, defined through
 the comparison of their efficiencies using the stratified k-fold ($\text{k}=10$)
@@ -446,7 +479,7 @@ functions for both hidden and output neurons are the hyperbolic \textcolor{red}{
 \input{sections/tuning_strategy/tables/2017_ringer}
 
 
-For each cross-validation sort and working point, 100 networks, initiated
+\textcolor{red}{For each cross-validation} sort and working point, 100 networks, initiated
 as from~\cite{initnw}, are optimized by back-propagating MSE through the RPROP
 algorithm~\cite{rprop} with all parameters set to default,
 \textcolor{red}{except for the parameter that regards the multiplication factor of the weight update rate when gradient direction remains the same as of the previous iteration (default value is 1.2, but a value of 1.1 was applied). It was }
@@ -569,7 +602,7 @@ from the electron triggers.
 To account for Monte Carlo data mis-modeling, the parameters of the linear threshold
 correction were derived using 2016 collision data. Furthermore, it was observed
 that the rings in the region $2.37<\abseta<2.47$ had particular profiles due to
-the lack of strip cells in this region and demanded a specific discriminant requirement in order to keep signal efficiencies near triggers without the NeuralRinger. 
+the lack of strip cells in this region and demanded a specific discriminant requirement in order to keep signal efficiencies near triggers without the \rnn{}. 
 %It drastically affected the ring profiles in this region which resulted in a shift
 %of the signal discriminant towards the direction of the background target and
 %demanded a specific discriminant requirement in order to keep signal
@@ -584,7 +617,7 @@ In opposition to 2017, the developments for 2018
 could benefit from collision data 
 \textcolor{red}{representing similar data taking conditions.}
 %In 2018, the developments could benefit from collision data representing similar conditions to data taking. 
-The major alteration in 2018 tunes was the derivation of the NeuralRinger ensemble with collision data based on \Zee{} \tnp{} event selection, in order to avoid the Monte Carlo data mis-modeling.
+The major alteration in 2018 tunes was the derivation of the \rnn{} ensemble with collision data based on \Zee{} \tnp{} event selection, in order to avoid the Monte Carlo data mis-modeling.
 
 We also simplified the training strategy by abandoning the selection of three
 models for each training and keeping only the \spmax{} model as the previous approach was more complex without a clear

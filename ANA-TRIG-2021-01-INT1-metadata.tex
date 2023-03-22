@@ -4,10 +4,10 @@
 %-------------------------------------------------------------------------------
 
 % Title
-%\AtlasTitle{NeuralRinger: An Ensemble of Neural Networks Fed from Calorimeter
+%\AtlasTitle{\rnn{}: An Ensemble of Neural Networks Fed from Calorimeter
 %Ring Sums for Triggering on Electrons}
 
-\AtlasTitle{The ATLAS NeuralRinger Algorithm: An Ensemble of Neural Networks Fed from Calorimeter Ring Sums for Triggering on Electrons}
+\AtlasTitle{The ATLAS \rnn{} Algorithm: An Ensemble of Neural Networks Fed from Calorimeter Ring Sums for Triggering on Electrons}
 
 % Draft version:
 % Should be 1.0 for the first circulation, and 2.0 for the second circulation.
@@ -18,20 +18,18 @@
 
 % Abstract - % directly after { is important for correct indentation
 \AtlasAbstract{%
-The ATLAS experiment implements an ensemble of neural networks (NeuralRinger
-algorithm) dedicated to early removal of fake electrons in its first, fast,
-\textcolor{red}{High Level Trigger selection stage}. In the second half of 2017, the
-NeuralRinger was set to operate for the selection of electrons above 15 GeV, as part of an effort to reduce CPU usage to comply with more
+\textcolor{red}{The implementation of an ensemble of neural networks (\rnn{}) in the electron selection at the High Level Trigger (HLT) of the ATLAS experiment is presented. It is dedicated to early removal of fake electrons in its first, fast, selection stage. In the second} half of 2017, the
+\rnn{} was set to operate for the selection of electrons above 15 GeV, as part of an effort to reduce CPU usage to comply with more
 stringent data taking conditions. Inspired by the ensemble of likelihood models
-currently operating in the \textcolor{red}{electron offline selection algorithms}, the NeuralRinger ensemble
+currently operating in the \textcolor{red}{electron offline selection algorithms}, the \rnn{} ensemble
 \textcolor{red}{is built from} Multi-Layer Perceptron (MLP) models tuned on pseudo-rapidity and
 transverse energy bins, in order to minimize trigger performance impacts from both
-detector response and shower development \textcolor{red}{energy dependences}. The MLPs are fed from calorimetry information
+detector response and shower development \textcolor{red}{energy dependencies}. The MLPs are fed from calorimetry information
 formatted into energy sums of concentric rings built around the particle
 axis and normalized by its total transverse energy. This note describes the
 algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60 \% decrease in CPU demands for the lowest-threshold unprescaled
 single-electron trigger, while maintaining electron efficiency nearly unchanged.
-The analysis results show an overall CPU saving of 8 \%, when considering the
+The \textcolor{red}{analysis} results show an overall CPU saving of 8 \%, when considering the
 demands of all electron and photon triggers. \textcolor{red}{This increase of performance  results from a higher jet background rejection with respect to previous algorithms}.
 }
 

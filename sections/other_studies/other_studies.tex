@@ -4,7 +4,7 @@
 
 This section brings other studies that are on-going activities. Namely, they are
 extrapolation to higher kinematic regime
-(Section~\ref{ssec:kinematic_extrapolation}) and the NeuralRinger employment for
+(Section~\ref{ssec:kinematic_extrapolation}) and the \rnn{} employment for
 boosted topologies (Section~\ref{ssec:boosted_topology}).
 
 \section{Model Extrapolation to Higher Kinematic Regime}%
@@ -24,8 +24,8 @@ the \medium{} working point for $\et{}<\SI{140}{\GeV}$ and \vloose{} otherwise.
 Hence, it suffices that a \medium{} trigger does not show lower efficiency in
 the kinematic region to ensure that the selection model is able to extrapolate
 well. Figure~\ref{fig:high_et_eff} shows the efficiency of a \medium{} electron
-trigger using an early NeuralRinger tune performed during the development stage with
-respect to a trigger without NeuralRinger. Despite the low statistics available, the
+trigger using an early \rnn{} tune performed during the development stage with
+respect to a trigger without \rnn{}. Despite the low statistics available, the
 efficiency of both triggers match to the few per mile level in the high
 kinematic region.
 
@@ -36,7 +36,7 @@ kinematic region.
   \centering
   \includegraphics[width=.5\textwidth]{sections/other_studies/figures/high_et_e28_lhmedium_nod0}
   \caption{\Zee{} \tnp{} efficiency as a function of \et{} for triggering with
-  NeuralRinger in red and without it in black, both applying \medium{} selection
+  \rnn{} in red and without it in black, both applying \medium{} selection
 on ATR-16156 data reprocessing. On the right y-axis, the \tnp{} pair counts,
 shown in the gray histogram. The bottom pad shows the efficiency ratio with
 error bars computed assuming both triggers to be
@@ -48,25 +48,25 @@ uncorrelated.\label{fig:high_et_eff}}
 
 
 
-We are evaluating the NeuralRinger with simulations covering a larger kinematic region
+We are evaluating the \rnn{} with simulations covering a larger kinematic region
 ($Z^{'}\rightarrow ee$ and Drell-Yan) processes and using additional triggers.
 
 \section{Boosted Physics Configurations}\label{ssec:boosted_topology}
 
 
 
-During Run~2, the NeuralRinger algorithm employed a $0.2\times0.2$ window in the
+During Run~2, the \rnn{} algorithm employed a $0.2\times0.2$ window in the
 \etaphi axis around the hottest cell. The window size goes beyond the standard
 shower shapes coverage in order to capture additional discriminative
 information. The training procedure considered only isolated electrons as signal
 samples and the input patterns are normalized by the total energy. It is not
-unexpected that, when another electron lies within the NeuralRinger feature extraction
+unexpected that, when another electron lies within the \rnn{} feature extraction
 window, that the physics objects are discarded as shown in
 Figure~\ref{fig:boosted_eff_dr}. These events will generate high activity in the
 outer rings and depending on how strong it is with respect to the central
 electron activity (due to the normalization), it will be beyond the expected
 pile-up activity and hence display a profile similar to those available in jets.
-Note that $\Delta$R results in a circular area whereas the NeuralRinger feature
+Note that $\Delta$R results in a circular area whereas the \rnn{} feature
 extraction is rectangular. Although both regions have a large overlap, there is
 some discrepancy, which may be causing a smoother drop in efficiency around
 $\Delta\text{R}=0.2$ in Figure~\ref{fig:boosted_eff_dr}. Other factors influencing the efficiency of the boosted system are
@@ -111,14 +111,14 @@ for the range which can result in boosted configurations~\cite{aad2020performanc
 Figure~\ref{fig:boosted_eff_et} shows that the particular boosted topology,
 consisting of merged electrons originating from radions, starts to result in
 electrons within the feature extraction window when their transverse energies
-are around \SI{400}{\GeV}. The triggering with NeuralRinger recovers efficiency around
+are around \SI{400}{\GeV}. The triggering with \rnn{} recovers efficiency around
 \SI{1.4}{\TeV} where either the two electrons become too near to each other or
 the energy of the non-central electron becomes very small with respect to the
 central one. For boosted topologies with electrons above \SI{300}{\GeV}, a
 trigger is available regardless of the trigger selection strategy. Backup
-triggers without the NeuralRinger are also available covering lower kinematic regions.
+triggers without the \rnn{} are also available covering lower kinematic regions.
 
-We are currently developing a NeuralRinger-based method to cover boosted
+We are currently developing a \rnn{}-based method to cover boosted
 configurations while maintaining electron efficiency high.
 
 
