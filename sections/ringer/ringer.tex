@@ -7,7 +7,7 @@ operation. Considerations about data sets (Section~\ref{ssec:dataset}) and the \
 from real ATLAS data} start this section. Section~\ref{ssec:rnn_for_online_and_eletrons} refers to the
 decisions \textcolor{red}{made} for the \rnn{} development in order to optimize its contributions in \textcolor{red}{saving} processing resources. Aiming at better exploring the discriminative
 power of ring sums for electron triggers (Section~\ref{ssec:ringer_id}),
-an ensemble of neural-networks is \textcolor{red}{employed. Its training procedure and how trigger decisions are made} addressed in Section~\ref{sec:tuning}.
+an ensemble of neural-networks is \textcolor{red}{employed. Its training procedure and how trigger decisions are made are covered} in Section~\ref{sec:tuning}.
 
 
 
@@ -18,7 +18,7 @@ an ensemble of neural-networks is \textcolor{red}{employed. Its training procedu
 The \textcolor{red}{datasets used to train the Ringer algorithm and the event} selection \textcolor{red}{strategy used to build these signal and background samples are} available in
 Table~\ref{tab:event_selection}. For a detailed description of the simulated
 datasets see ~\cite[Section 3]{ATLAS-PERF-2017-01-002}. The tuning and analysis
-performed on data recorded by ATLAS have their quality ensured. \textcolor{red}{The ATLAS data quality is provide through a strict Data Quality Policy that validates each part of a run dataset that can be used for analysis, rejecting any piece affected by a potential underlying inactive of dysfunctioning part of the detector.} 
+performed on data recorded by ATLAS have their quality ensured. \textcolor{red}{The ATLAS data quality is provide through a strict Data Quality Policy that validates each part of a run dataset that can be used for analysis, rejecting any piece affected by a potential underlying inactive of dysfunctional part of the detector.} 
 In particular, periods meeting all data-quality requirements
 are made available through internal files known as good run list
 (GRL)~\cite{grl_site}. The physics objects were reconstructed in the first
@@ -38,179 +38,105 @@ performed by the online framework for the \textcolor{red}{\Zee{} \tnp{}} and \te
 
 \subsection{\TnP Method}\label{ssec:tnp}
 
-\textcolor{red}{The \tnp{} method relies on the existence of resonances that decay to a pair of particle of interest (\Zee{}, \Jee{}, $\gamma \rightarrow ee$ and etc) ~\cite{PERF-2016-01}. In the case of electrons coming from $Z$ boson decay, the selection of two EM objects with a mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon you tag one of those objects as a well identified electron. The remaining object can them be assumed to be an electron with a very high underlying purity. This object can them be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used to select the event at the trigger level (tag), allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.}
+\textcolor{red}{The \tnp{} method relies on the existence of resonances that decay to a pair of particle of interest (\Zee{}, \Jee{}, $\gamma \rightarrow ee$ and etc) ~\cite{PERF-2016-01}. In the case of electrons coming from $Z$ boson decays, the selection of two EM objects with a mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon you tag one of those objects as a well identified electron. The remaining object can them be assumed to be an electron with a very high underlying purity. This object can them be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used to select the event at the trigger level (tag), allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.}
 
 
 \section{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
 
-% TODO Recall the points discussed with Seixas
-
-%Albeit the \rnn{} can be suitable for both online and offline selection of any
-%physics object resulting in shower development in the calorimeter, several
-%reasons motivated its initial conception for online electron selection as
-%mentioned in Section~\ref{sec:intro}. These are be complemented due to the
-%historical context of the \rnn{} development which was starting from the
-%electron trigger perspective (Appendix~\ref{sec:history}).
-%% The ring sums and neural discriminant are fast to
-%%compute, being suitable for low-level online operation. Early trigger-levels
-%%are used to control the chain latency, having, (under good agreement of the
-%%chain decision levels) low impact in the output rate and signal efficiency.
-%%Electron trigger, when compared to photon triggers, benefit more from early
-%%fake-rate rejection in terms of due to the computation of ID information.
-%Besides allowing to release more CPU resources, the development for electrons
-%has other benefits over photons. ATLAS detector provides higher trigger
-%selection efficiency for photons~\cite{DAQ-2018-184} than
-%electrons~\cite{DAQ-2018-182}, even though the latter employ multivariate method
-%in the \hlt{}, thus motivating the development of the \rnn{} first for
-%electrons. In addition, photons have an additional difficulty given lack of
-%clean resonances providing substantial statistics~\cite{DAQ-2018-184}.
-%%These were the motivations during Run~1. The proposal, despite showing
-%%interesting results on both simulation and collision data, was not adopted for
-%%data taking.
-
-%Given the fact that a new representation was proposed, it was natural to
-%evaluate it with respect to the baseline algorithm.
-
-%For the Run~2, it was decided to focus on the physics interpretation of the
-%algorithm behavior and upgrading it only to fulfill the physics requirements.
 The \rnn{} algorithm was initially proposed for electron-jet discrimination. 
 During Run 2, both online and offline versions
 were considered for \textcolor{red}{ development, but the scarcity of available human resources restricted the scope of developments, which focused on reducing CPU demands of the online electron triggers.} Within the electron triggers, \hlt{} selection is
 specially relevant to single object \textcolor{red}{triggers, which, in turn, use the most of the trigger bandwidth}~\cite{aad2020performance}. Particularly, the primary single electron triggers
 are currently evaluated and developed using \Zee{} \tnp{} samples 
-\textcolor{red}{(Section~\ref{ssec:tnp}), in which most electrons have $\et>\SI{15}{\GeV}$, which is the region of interest in physics studies and on which the \rnn{} developments focus. The result} this effort
+\textcolor{red}{(Section~\ref{ssec:tnp}), in which most electrons have $\et>\SI{15}{\GeV}$, which is the region of interest in physics studies and on which the \rnn{} developments focus. The result of} this effort
 follows.
 
-%The remaining resources dedicated to the offline version provided a fully
-%developed framework, which allows the study of the ring sums for electrons above
-%\SI{14}{\GeV}~\cite{Freund2015}. The evaluation of offline \rnn{}, considering the
-%fusion of the ID information, is on going.
 
-% Covers all unprescaled primary triggers, resulting in higher CPU impact
-% Use of a single ressonance to cover all the space
-% Although a higher efficiency for low ET is expected, more effort require to
-% evaluate 
-% Hypothesis still to be confirmed under the low ET studies.
-
-%Advantages and Limitations
-\subsection{\fastcalo Algorithm}\label{top:algorithm}
+\subsection{\textcolor{red}{Building the Rings}}\label{top:algorithm}
 
 The ATLAS calorimeters comprise rectangular cells in the
 \etaphi axis\footnote{Except for the forward calorimeters.}. Thus, an actual conic structure cannot be defined
 without \textcolor{red}{intensive} processing of the cell energy information. As the algorithm was
 considered to operate online, approximations were  \textcolor{red}{made. Especially, the rectangular structure} of
-the rings follows the \textcolor{red}{instrumentation and the ring coverage is bounded to the RoI area. In} addition, the granularity changes are neglected in order to employ a
-grid-like algorithm, which can be summarized in the following steps (see
-Figure~\ref{fig:building_rings} for an illustration of the parameters):
-
-\input{sections/ringer/algorithms/ringer_algorithm}
-%\begin{enumerate}
-%	\item initialize all rings with null energy; 
-%	\item for each ring layer $l \in
-%	\left\{\ps,\emi,\emii,\emiii,\hadi,\hadii,\hadiii\right\}$, do:
-%	\begin{enumerate}
-%		\item retrieve the layer fixed granularity $h_{\etaa,l}\times h_{\phii,l}$
-%		(Table~\ref{tab:ring_alg_parameters});
-%		\item define axis center ($c_a$) position ($\etaa_{a,l}$,$\phii_{a,l}$) as:
-%		\begin{itemize}
-%			\item if $l$th layer is in EM section: the center position of the hottest
-%			cell within a $0.2\times0.2$ window in the \etaphi axis;
-%			\item else: use center of \emii;
-%		\end{itemize}
-%		\item for each cell $c_{i,l}$ in the corresponding
-%		calorimeter sampling layer (Table~\ref{tab:ring_alg_parameters}) and within the
-%		\licalo provided RoI ($\Theta_{\rnn{},l} = \Theta_{RoI} = 0.4 \times 0.4$),
-%		do:
-%		\begin{itemize}
-%			\item compute the $n$th ring comprising the cell given its axis position
-%			($\etaa_{i,l}$, $\phii_{i,l}$) through
-%			\begin{equation}
-%				\label{eq:ring_idx_square}
-%				n = \left\lfloor \max{\left(
-%					\frac{| \etaa_{i,l} - \etaa_{a,l} |}{h_{\etaa,l}},
-%					\frac{| \phii_{i,l} - \phii_{a,l} |}{h_{\phii,l}}
-%					\right)} \right\rceil;
-%			\end{equation}
-%			\item The energy of the ring is the sum in \et{} of each cell in that ring. This
-%			is obtained by adding the trans ($E_{T,(i,l)}$) of cell $c_{i,l}$ to
-%			the $n$th ring sum ($r_{n,l}$), as in
-%			\begin{equation}
-%				r_{n,l} = r_{n,l} + E_{T,({i,l})}.
-%			\end{equation}
-%		\end{itemize}
-%	\end{enumerate}
-%\end{enumerate}
+the rings follows the \textcolor{red}{instrumentation and the ring coverage is bounded to the RoI area. In} addition, the granularity \textcolor{red}{changes from the cell sizes (e.g., barrel to end-cap)} are neglected in order to employ a
+grid-like algorithm.
 
 
-%\input{sections/ringer/tables/granularity}
+\textcolor{red}{Here, the algorithm RoI covers a
+region of the calorimeter, centered in the L1 provided RoI, of
+$0.4\times0.4$ in the $\eta\times\phi$ plane. The algorithm
+starts on the second EM sampling layer (EM2)\footnote{This convention is used for all sampling layers, thus HAD1 stands for the first hadronic layer, HAD2 the second hadronic layer etc.}, where position (given in $\eta\times\phi$ plane) of the cell with
+highest $E_T$ on the algorithm RoI is taken as the center of the cascade
+interaction with the calorimeter. The initial seed cell position is propagated to other calorimeter layers in order to define the axis of the rings in that layer. Than, for each layer, the algorithm refine the seed position searching for the hottest cell inside of the window centered by the EM2 initial seed. The refined seed ($c_{hot,l}$) will be used as start point to build the rings. A ring $R_{n,l}$ contains all cells in calorimeter layer $l$ which are $n$ cells from the refined seed (See Figure~\ref{fig:building_rings_a} for an illustration of the parameters). Formally,}
+
+\textcolor{red}{
+\begin{equation}
+\label{eq:ring_idx}
+R_{n,l} = \left\{c_{n,l} \mid n = \left\lfloor \max{\left( 
+\frac{| \eta_{i,l} - \eta_{hot,l} |}{h_{\eta,l}}, 
+\frac{| \phi_{i,l} - \phi_{hot,l} |}{h_{\phi,l}} 
+\right)} \right\rceil, 
+\forall c_{i,l} \in
+\Theta_{RoI,l}
+\right\},
+\end{equation}
+}
+
+\textcolor{red}{
+\noindent where (analogous to $\phi$ when suitable): $\eta_{i,l}$
+and $\eta_{hot,l}$ are respectively the $c_{i,l}$ and $c_{hot,l}$
+cells position in $\eta$; $h_{\eta,l}$ is the $l^{th}$ layer granularity in $\eta$; $\Theta_{RoI,l}$ is the set of cells
+in the $l^{th}$ layer which are within the Ringer RoI.
+\tablename~\ref{tab:ring_alg_parameters} shows the number rings computed at each layer and the respective granularity.}
+
+\input{sections/ringer/tables/granularity}
+
+
+\textcolor{red}{
+If no cell is available for a given ring, the correspondent ring
+quantity is set to 0.
+The sum of the transverse energies of cells $c_{n,l}$ in the ring $R_{n,l}$ form a vector of discriminating quantities. 
+They are ordered outwards and from the
+innermost layer of the calorimeter and provided the ring-shaped information 
+of the RoI. Figure~\ref{fig:building_rings_b} shows the ring-shaped mean profile differences between electrons and jets particles.} The implementation of this algorithm is simple and the actual code
+was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). 
+
+
+
+
+
+
+
+
+
+%\input{sections/ringer/algorithms/ringer_algorithm}
 
 
 \begin{figure}[!ht]
   \begin{center}
-  %\begin{subfigure}[c]{.48\textwidth}
-  %\centering
-  %\includegraphics[width=\textwidth]{sections/ringer/figures/reco_steps/jets_em1_cells.pdf}
-  %%\caption{}
-  %\end{subfigure}
-  %\hfill
   \begin{subfigure}[c]{.48\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/ringer/figures/reco_steps/ring_em1_mask.pdf}
-  %\caption{}
+  \caption{}
+  \label{fig:building_rings_a}
   \end{subfigure}\\
   \centering
+  
   \begin{subfigure}[c]{.7\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{sections/ringer/figures/reco_steps/data17_zee_mean_rings_profiles_et2_eta0.png}
-  %\caption{}
+  \includegraphics[width=1.1\textwidth]{sections/ringer/figures/reco_steps/data17_zee_mean_rings_profiles_et2_eta0.png}
+  \caption{}
+  \label{fig:building_rings_b}
   \end{subfigure}
-
-
-  \caption{\label{fig:building_rings}
+  \caption{
   Top: illustration of the \fastcalo algorithm for building ring sums in the EM1, sketching of the computation of $n$ for the first four rings in a hypothetical layer.
-  	Bottom: average rings profile from collision data at $30 \leq E_T < 40$ GeV and $0.0 \leq \eta < 0.8$. The embedded profile shows the EM1 layer rings in a logarithmic scale.
-  	 See text for more details.
- }
-  %Left: the individual contributions of the central cells of a simulated
-  %\footnote{The particles was generated with Pythia8 and the shower propagation, using an generic 
-  %calorimeter as volume, was produced by Geant4. We adopt the ATLAS granularity for this example.} 
-  %jet event in the \etaphi axis.  
-  %Top: the computation of $n$ for the first four rings.% as in Equation~\ref{eq:ring_idx_square}. 
-  %Sketch of the computation of $n$ for the first four tings in a
-  %hypothetical layer. 
-%  Bottom: the resulting energy profile as represented in the ring sum space. 
+  	\textcolor{red}{Bottom: average rings profile from collision data at $30 \leq E_T < 40$ GeV and $0.0 \leq \eta < 0.8$ for each layer of the calorimeter. The embedded profile shows the EM1 layer rings in a logarithmic scale. Here, it is possible to observe that most part of the energy for the electrons is absorbed by the eletromagnetic layers. For the jets, the opposite is observed and most part of the energy is absorved by the hadronic layers.}}
   \end{center}
-  \end{figure}
+\end{figure}
 
 
 
 
-
-
-
-
-%\footnotetext{TileGap is the software nomenclature for \itc{} group of cells, as
-%depicted in Figure~\ref{fig:tilecal_cells}.}
-
-
-
-The implementation of this algorithm is simple and the actual code
-was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). %However, the formulation places
-%all the cell energy in $\delta$ functions positioned in the cell center.  As
-%result, the area covered by the rings varies depending on the provided position
-%(\abseta) of the RoI. A way to mitigate this effect is to employ specific
-%models for each $\abseta{}$-region, since the rings fully comprised within each
-%region have the same area. Nonetheless, rings within overlapping
-%\abseta{}-regions lead to a systematic effect resulting to variation in the
-%patterns extracted at such positions and, hence, the alteration in the areas
-%covered by each ring cannot be avoided in this case. %This effect was not handled
-%%for Run~2 operation, where it was preferred to tune the classifier using
-%%collision data and to initiate the developments for low kinematic range
-%%($\et<\SI{15}{\GeV}$).
-
-%\subsubsection{Characterization of the Space Composed by the Ring
-%Sums}\label{top:characterization}
-%/Users/wsfreund/Documents/Pesquisa/HEP/CERN/ID/Online/old/MC15c/distributions_4_eta_bins/ring_distribution_signal_etBin0_etaBin2.pdf
 
 \section{Ring Sums as Discriminant Variables}\label{ssec:ringer_id}
 
@@ -221,12 +147,7 @@ was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). %However, the for
 %variables. Although the use of univariate cuts or a likelihood model could be
 %considered, they have limitations to explore concisely the statistical
 %dependency.
-To deal with the \textcolor{red}{high} redundancy between the ring 
-\textcolor{red}{variables, one procedure could be}
-%variables when compared to shower shapes, one procedure could be 
-to choose a set of rings that, together,
-summarize the shower development. Other strategies could benefit from statistical
-or machine learning processing to unveil the latent discriminating space, as in
+\textcolor{red}{To deal with the high redundancy between the ring variables, we benefit from machine learning processing to unveil} the latent discriminating space, as in
 the case of a Multi-layer Perceptron (MLP) neural-networks~\cite{haykin_2008},
 employed for Run~2 operation. 
 %MLPs require a normalization preprocessing step~\cite{haykin_2008} to adjust the input dynamic range to the neuron activation function employed (Section~\ref{top:pp}). 
@@ -258,7 +179,7 @@ are described in Section~\ref{sec:tuning}.
 The current strategy concatenates all rings in a single \textcolor{red}{vector of 100
 variables}. An absolute normalization using the total RoI energy, as in
 (\ref{eq:ring_norm}), is applied to \textcolor{red}{normalise} the variables. This procedure was
-initially proposed and examined by~\cite{1995_seixas_ringer}, as a manner of
+initially proposed and examined by~\cite{1995_seixas_ringer}, as a way of
 preserving the shower energy profile in fractions of the total energy. The
 absolute term is used to avoid reflecting the values along the axis due to
 negative noise accumulation, a behavior which would impact the physics
@@ -289,10 +210,10 @@ model is drawn from the ensemble for operation based on the nearest (Euclidean
 distance) region on the \eteta \textcolor{red}{space} for which it was designed.
 %In the following, we address the reasons for adopting such an ensemble.
 
-\textcolor{red}{In regard to calorimetry}, the usage of an ensemble with specific models per
+\textcolor{red}{In regards to calorimetry}, the usage of an ensemble with specific models per
 phase space region allows to mitigate fluctuations in the variable profiles
 %(Figure~\ref{fig:ring_distortion}) 
-due to the detector \textcolor{red}{response and energy differences of the showers (see Section~\ref{ssec:calo}).}
+due to the detector \textcolor{red}{response and energy differences of the showers.}
 %response (Section~\ref{ssec:calo}). %and limitations of the online algorithm
 %(Section~\ref{top:algorithm}) 
 %in the observed signatures of the physics objects.
@@ -380,20 +301,19 @@ In this section, we detail the training and decision making (tuning) procedures
 of the \rnn ensemble. Accordingly, we start (Section~\ref{ssec:fom}) with a
 description of figures of merit that were employed.
 
+\textcolor{red}{
 In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble
-%\footnote{
-%  The ensemble is composed by one MLP model for each phase space in plan \eteta as discussed 
-%  in Subsection~\ref{top:nn_ensemble}. The bouduries for each one is defined by the 
-%  Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins}.} 
 models with simulated data and defined the discriminant cut using
 2016 collision data, targeting small signal efficiency discrepancy to triggering 
-without the \rnn{}. The training procedure derived one ensemble for each working
-point. The ensemble was composed by one MLP model for each \textcolor{red}{phase space in ($E_T$, $\eta$) plane, as} discussed 
-in Subsection~\ref{top:nn_ensemble}. The ensemble boundaries are defined by Table~\ref{tab:ensemble_regions}. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
-employed a single ensemble structure for all working points and used
+without the \rnn{} (cut-based trigger). The training procedure derived one ensemble (25 MLP models) for each working
+point (tight, medium, loose, very loose). The ensemble boundaries are defined by Table~\ref{tab:ensemble_regions}. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
+employed a single ensemble} structure for all working points and used
 collision data for training, as it was the case for the derivation of offline
 and final \hlt likelihood models~\cite{aaboud2019electron}.
 % (since 2017~\cite{DAQ-2018-182})
+
+
+
 
 \input{sections/ringer/tables/ensemble}
 
@@ -408,35 +328,6 @@ We explicitly define some convenient figures of merit in \tablename~\ref{tab:fig
 
 
 \input{sections/tuning_strategy/tables/figures_of_merit}
-%The sets $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ of
-%electrons (signal) and fake electrons (background) were selected by a reference
-%method, i.e.\@ employing specialist knowledge, through requesting or vetoing some
-%\tnp{} method and possibly also applying some strong classification method as
-%the offline selection for trigger developments (Section~\ref{ssec:dataset}).
-%Also let the existence of a model $\mathcal{C}$ representing a function
-%$f_{\mathcal{C}} : \Theta \rightarrow \mathbb{R}$ optimized (trained) to
-%perform the binary classification task. From supervised optimization,
-%the model $\mathcal{C}$ outputs $\hat{y}:=f_{\mathcal{C}}(x)$ with target $y$ for
-%a sample $x \in \Theta$. The operation of $\mathcal{C}$ results respectively in
-%the selection of the subsets $\mathcal{O}_{\text{e}|\text{e}}$ and
-%$\mathcal{O}_{\text{e}|\text{b}}$ from $\Theta_{\text{e}}$ and
-%$\Theta_{\text{b}}$ as electrons by defining the decision making procedure
-%$\tau : \mathbb{R} \rightarrow \left\{\text{e},\text{b}\right\}$. We explicitly
-%define some convenient figures of merit in Table~\ref{tab:figures_of_merit}.  It
-%is possible to tune $\mathcal{C}$ to result in a proper working point, (i.e.\@ a
-%targeted value of \pd{} or \pf{}) by adjusting $\tau$. All possible working
-%points of $\mathcal{C}$ are defined by the Receiver Operation Characteristic
-%(ROC)~\cite{van_trees_part1}. The \spindex{}~\cite{dos2006neural} is the square root of the product
-%of the geometric and arithmetic averages of the efficiencies for the signal and
-%background categories. It soon collapses when efficiencies on either signal or
-%background events decrease.  Thus, the \spindex{} index provides a
-%unidimensional space, that allows to tune $\mathcal{C}$ for obtaining high
-%efficiency in a balanced manner for both classes, given by the
-%$\spmax{}:=\max(\spindex{})$ working point.
-
-
-
-
 
 
 

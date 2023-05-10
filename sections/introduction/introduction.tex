@@ -67,24 +67,33 @@ compact the high-dimensional input space (typically of 1,000 cells in a region-o
 
 
 
-In the ATLAS trigger system~\cite{TRIG-2016-01}, low latency online selection
-steps are required for decreasing both processing and readout demand of
-resources by early removal of simpler background, whereas the final decision
-mainly controls the system output rate. In case the trigger system reaches its
-full processing resources, to envisage significant improvements of the selection
-efficiency of early selection algorithms is an efficient solution to release
-resources. Accordingly, these resources can be employed on other physics
-objects or allow the usage of more complex algorithms at later stages in order
-to increase the overall system performance. Moreover, it may turn feasible the
-evaluation of unprecedented physics objects, \textcolor{red}{such as jet substructures or improved calibration,} which could not be properly
-assessed due to processing and readout limitations.
+%In the ATLAS trigger system~\cite{TRIG-2016-01}, low latency online selection
+%steps are required for decreasing both processing and readout demand of
+%resources by early removal of simpler background, whereas the final decision
+%mainly controls the system output rate. In case the trigger system reaches its
+%full processing resources, to envisage significant improvements of the selection
+%efficiency of early selection algorithms is an efficient solution to release
+%resources. Accordingly, these resources can be employed on other physics
+%objects or allow the usage of more complex algorithms at later stages in order
+%to increase the overall system performance. Moreover, it may turn feasible the
+%evaluation of unprecedented physics objects, \textcolor{red}{such as jet substructures %or improved calibration,} which could not be properly
+%assessed due to processing and readout limitations.
 
 
 Among the ATLAS physics objects, the \rnn{} was developed for electrons targeting \textcolor{red}{to meet the processing demands} of the trigger system, which is split into two processing levels.  For electron identification, the inner tracking detector (ID)~\cite{PERF-2007-01} is a complementary source of discriminant \textcolor{red}{information} but \textcolor{red}{it} requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information. This is the case of the first processing level (\licalo), based on hardware, which provides \SI{}2.5{$\mu$\text{s}} latency~\cite{TRIG-2016-01}. In the sequence, the software-based level-two algorithms are processed in the so-called high-level trigger (\hlt{}) employing calorimetry and, then, after a pre-selection, ID information.  
-The \hlt{} is also split into two stages: a fast but efficient computation followed by a precise processing block, \textcolor{red}{which employs offline inspired algorithms that are adapted to the stringent conditions of the trigger system.} Since the early ATLAS design years~\cite{1995_seixas_ringer}, the \rnn{} was proposed and maintained for the first \hlt{} selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables}).
+
+The \hlt{} is also split into two stages: a fast but efficient computation followed by a precise processing block, \textcolor{red}{which employs offline inspired algorithms that are adapted to the stringent conditions of the trigger system.} 
+The \rnn{} was developed for electrons as a way to achieve early discrimination evaluates based only on calorimetry information. It was implemented in the fast reconstruction step of the High Level Trigger (HLT), which is going to be described later.  Since the early~\cite{1995_seixas_ringer}, the \rnn{} was proposed and has been
+pursued as an alternative to the cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables}).
+
+%Since the early ATLAS design years~\cite{1995_seixas_ringer}, the \rnn{} was proposed and maintained for the first \hlt{} selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}. 
+
+
+
+
 %\textcolor{red}{The \rnn{} was developed for electrons as a way to achieve early discrimination evaluates based only calorimetry information. It was implemented in the fast reconstruction step of the High Level Trigger (HLT), which is going to be described later. the so-called high-level trigger (HLT). Since the early ATLAS design years, the \rnn{} was proposed and  maintained for the first HLT selection step, relying only on calorimetry information (\fastcalo{} in the current \hlt{} structure)~\cite{TRIG-2016-01}.  Such a development was pursued as an alternative to cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables})}.
 
-However, the preparation for data taking in 2017 revealed that the considerable increase in the number of inelastic collisions per bunch-cross \textcolor{red}{(here, the online estimation is referred to as $\langle \mu \rangle$)}~\cite{DAPR-2013-01} would require dealing with excessive strain of CPU resources in the trigger system~\cite{ATL-DAQ-PUB-2018-002}, which would impact reduced efficiency for a number of analyses. Particularly, it was more likely for target  signals to overlap in the \textcolor{red}{detector with pile-up events, hence} deteriorating the identification efficiency. Thus, for allowing a more efficient selection under such conditions, the \rnn{} became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions.
+The preparation for data taking in 2017 revealed that the considerable increase in the number of inelastic collisions per bunch-cross \textcolor{red}{(here, the online estimation is referred to as $\langle \mu \rangle$)}~\cite{DAPR-2013-01} would require dealing with excessive strain of CPU resources in the trigger system~\cite{ATL-DAQ-PUB-2018-002}, which would impact reduced efficiency for a number of analyses. Particularly, it was more likely for target  signals to overlap in the \textcolor{red}{detector (pile-up effect), hence deteriorating the identification efficiency. Thus, for allowing a more efficient selection under such conditions, the \rnn{} became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions.
 
 
 %However, the preparation for data taking in 2017 required to deal with
@@ -103,19 +112,18 @@ However, the preparation for data taking in 2017 revealed that the considerable 
 
 
 This paper describes the proposal and performance analyses of the \rnn{}
-algorithm \textcolor{red}{used} in the fast processing phase of the \hlt{}. A review
+algorithm \textcolor{red}{used} in the fast processing phase of the \hlt{}. 
+The ATLAS detector is described in Section~\ref{sec:atlas}. A review
 of other relevant background information is available in
-Section~\ref{sec:context}, in particular: the calorimeter system, the electron
+Section~\ref{sec:context}, in particular: the electron
 trigger and related information. Full details of its identification procedure are
 in Section~\ref{sec:neuralringer}. The training and tuning strategy follow in
 Section~\ref{sec:tuning}, also contemplating its improvements for 2018
 operation. Section~\ref{sec:operation} dedicates to the efficiency measurements,
 describing the expected and experimental results. Comparison of the \rnn with
 the cut-based triggers using statistical methods through the offline perspective
-is performed in Section~\ref{sec:off_ana}. %We discuss some on-going studies in
-%Section~\ref{sec:other_ana}, particularly the evaluation of \rnn{} at high
-%kinematic regimes and its employment for boosted configurations. 
-Finally, the conclusions and prospects are derived in Section~\ref{sec:conclusion}.
+is performed in Section~\ref{sec:off_ana}. Finally, the conclusions and prospects 
+are derived in Section~\ref{sec:conclusion}.
 
 
 %Further information in the following topics are available in the note

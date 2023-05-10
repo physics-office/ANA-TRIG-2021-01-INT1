@@ -5,15 +5,17 @@ In this section, we detail the training and decision making (tuning) procedures
 of the \rnn ensemble. Accordingly, we start (Section~\ref{ssec:fom}) with a
 description of figures of merit that were employed.
 
-In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble\footnote{
+\textcolor{red}{In short, the 2017 procedure (Section~\ref{ssec:2017}) derived the MLP ensemble\footnote{
   The ensemble is composed by one MLP model for each phase space in plan \eteta as discussed 
   in Subsection~\ref{top:nn_ensemble}. The boundaries for each one is defined by the 
   Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins}.} 
 models with simulated data and defined the discriminant cut using
 2016 collision data, targeting small signal efficiency discrepancy to triggering 
-without the \rnn. The training procedure derived one ensemble for each working
-point. On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
-employed a single ensemble structure for all working points and used
+without the \rnn. The training procedure derived one ensemble (25 MLP models) for each working point (tight, medium, loose and very loose). 
+The ensemble boundaries are defined by Table 4.2. 
+
+On the other hand, the 2018 training procedure (Section~\ref{ssec:2018})
+employed a single ensemble }structure for all working points and used
 collision data for training, as it was the case for the derivation of offline
 and final \hlt likelihood models~\cite{aaboud2019electron}.
 % (since 2017~\cite{DAQ-2018-182})

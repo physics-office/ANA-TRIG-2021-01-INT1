@@ -1,0 +1,86 @@
+
+
+
+\chapter{The ATLAS Detector}\label{sec:atlas}
+
+\textcolor{red}{
+The ATLAS detector~\cite{PERF-2007-01} is a multipurpose particle detector. The inner-detector (ID) system is immersed in a 2T  axial magnetic field and provides charged-particle tracking in the range $|\eta|<2.5$.  Three technologies are employed, with thinner granularity nearer to the interaction point~\cite{PERF-2015-08,CERN-LHCC-97-016,Haywood:331064}: a Pixel Detector (92 million channels), a Silicon Microstrip Detector (SCT, 6.3 million channels) and a Transition Radiation Detector (TRT, 350 thousand 189 channels). The TRT offers electron identification capability within its pseudorapidity coverage ($|\eta|\leq 2$) via the detection of transition-radiation photons generated at the interface between the radiator material and detection straws. Track reconstruction requires (pile-up and the event topology dependence) CPU intensive computations due to the complexity of image-processing algorithms fighting against combinatorial backgrounds when associating hits to tracks~\cite{PERF-2015-08}. In 2016, it was the second most-demanding reconstruction algorithm in the HLT.}
+
+\textcolor{red}{Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements with fine-grained granularity~\cite{LARG-2009-01,larg_tdr}. A steel/scintillator-tile hadron calorimeter covers the central pseudorapidity range ($|\eta|< 1.7$)~\cite{TCAL-2017-01,tile_tdr}. The endcap and forward regions are instrumented with LAr calorimeters for both the EM and hadronic energy measurements up to $|\eta|< 4.9$. The muon spectrometer surrounds the calorimeters and is based on three large superconducting air-core toroidal magnets with eight coils each.  The muon spectrometer includes a system of precision chambers for tracking and fast detectors for triggering. A two-level trigger system is used to select events~\cite{aad2020performance}. The first-level trigger is implemented in hardware and uses a subset of the detector information to accept events at a rate below 100 kHz on average. An extensive software suite~\cite{ATL-SOFT-PUB-2021-001} is used in the reconstruction and analysis of real and simulated data.
+}
+
+
+
+
+
+
+
+\begin{comment}
+
+The ATLAS experiment~\cite{PERF-2007-01} is designed to observe particles
+produced in high-energy proton--proton collisions and, hereby not addressed,
+heavy-ion LHC collisions. Its calorimeter system comprises both 
+electromagnetic (ECAL) and hadronic (HCAL)
+sections (Section~\ref{ssec:calo}), which \textcolor{red}{enveloped} an inner \textcolor{red}{tracking system (Section~\ref{sec:track})}. The two-level triggering system reduces data-taking rate \textcolor{red}{from 40 MHz} to approximately \textcolor{red}{1 kHz. Here}, we focus on electron-based channels, which are
+found in many interesting physics phenomena, \textcolor{red}{such as the} the decays of the Higgs
+boson~\cite{HIGG-2012-27,HIGG-2016-33}, for instance.
+
+
+The trigger system is discussed in Section~\ref{sec:atlas_trigger}.
+The standard variables for electron identification are discussed in
+Section~\ref{ssec:std_variables}. The electron triggers are described, in details, in
+Section~\ref{ssec:egamma_trigger}, followed by their nomenclature in
+Section~\ref{ssec:menu}.  
+
+
+
+
+\section{Calorimeter System}\label{ssec:calo}
+
+The calorimeter system covers the pseudorapidity
+range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
+electromagnetic calorimetry is provided by barrel and endcap high-granularity
+lead/Liquid-Argon (LAr) calorimeters, with an additional thin LAr presampler
+(\ps) covering \(|\eta| < 1.8\), in order to correct for energy losses in
+material upstream of the calorimeters~\cite{LARG-2009-01,larg_tdr}. Hadronic
+calorimetry is provided by \textcolor{red}{a} the steel/scintillating-tile calorimeter
+(\tilecal~\cite{TCAL-2017-01,tile_tdr}), \textcolor{red}{constituted} of three barrel structures
+within \(|\eta| < 1.7\), and two copper/LAr hadronic endcap calorimeters
+(\hec)~\cite{cal_tdr}.  The solid angle coverage is completed with forward
+copper/LAr and tungsten/LAr calorimeter modules optimised for electromagnetic
+(EM) and hadronic (HAD) measurements, respectively. The specified calorimeters
+provide full azimuthal ($\phi$) coverage with a total of about 190,000 \textcolor{red}{readout cells. Transition regions between calorimeters are used to locate detector services and induce a sharing of showers between calorimeters that degrades energy measurements in those regions. In particular,} the transition from the barrel to the end-cap within
+$1.37<|\eta|<1.52$ is complemented by scintillator stab ($1.0<|\eta|<1.6$) to
+\textcolor{red}{estimate signal} losses~\cite{cal_tdr}.
+
+The electromagnetic and hadronic systems comprise three sampling layers each along longitudinal (depth) segmentation ~\cite{PERF-2007-01}\footnote{The two
+central layers in HCAL end-cap are summed to result in a single measurement.}.
+Each sampling layer has its own lateral ($\eta\times\phi$) granularity, for detailed information). Besides granularity, the amount of material in front of the detector in each sampling \textcolor{red}{layer also} vary with \abseta, leading to variable expected lateral and longitudinal profiles. \textcolor{red}{Additionally}, the expected
+profile is also dependent on the physics object total energy. \textcolor{red}{In the EM calorimeter}, most of \textcolor{red}{the EM shower} energy is collected in the second layer, while the third layer provides measurements
+of energy deposited in the shower tails. %as shown in Figures~\ref{fig:cal_em_x0} and~\ref{fig:cal_had_lambda}.
+
+The hadronic calorimeters, which surround the EM detectors,
+provide additional discrimination power through further energy measurements of
+possible EM shower tails, as well as rejection of events with activity of
+hadronic origin with three sampling layers. \textcolor{red}{It is worth noting that QCD jets also have a sizeable fraction of their energy deposited in the EM calorimeter from $\pi^{0}\rightarrow\gamma\gamma$
+and other prompt hadronic decays to photons and also bremsstrahlung $\gamma$ radiated by quarks.}
+Although calorimeters are designed 
+to have uniform response for full detector acceptance, there are residual fluctuations 
+dependent on the shower development position~\cite{Wigmans2017}.
+
+\section{Inner Detector}\label{sec:track}
+
+The inner detector, \textcolor{red}{used to reconstruct charged-particle tracks}, is immersed in a
+\textcolor{red}{\SI{2}{\tesla} magnetic} field \textcolor{red}{aligned on the beam axis and produced} by a thin superconducting solenoid
+and covers a pseudorapidity range $|\eta| \lesssim 2.5$~\cite{PERF-2007-01}.
+Three technologies are employed, with thinner granularity nearer to the
+interaction point~\cite{PERF-2015-08,inner_tdr1,inner_tdr2}: \textcolor{red}{a} Pixel Detector (92
+million channels), \textcolor{red}{a} Silicon Microstrip Detector (SCT, 6.3 million channels) and
+\textcolor{red}{a} Transition Radiation Detector (TRT, 350 thousand channels). The TRT offers
+electron identification capability within its pseudorapidity coverage ($|\eta|
+\lesssim 2$) via the detection of transition-radiation photons \textcolor{red}{generated at the interface between the radiator material and detection straws.} Track reconstruction requires (pile-up \textcolor{red}{and the event topology} dependence) CPU intensive
+computations due to the complexity of image-processing algorithms \textcolor{red}{fighting against combinatorial backgrounds when associating hits to tracks ~\cite{PERF-2015-08}. In} 2016, it was the second
+most-demanding reconstruction algorithm in the \hlt{}.
+
+
+\end{comment}
