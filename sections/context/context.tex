@@ -76,7 +76,7 @@ multivariate methods (i.e. boosted decision-trees and neural-networks) for
 modelling a more suitable (and complex) decision boundary
 
 
-\subsection{\rnn{} Based Electron Identification}\label{ssec:rings_concept}
+\subsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
 
 Conceptually, the ring structure aims at exploiting the concentric nature of energy depositions in the calorimeter and the corresponding symmetry in the development of the shower.  Adding the calorimeter cells belonging to a given ring and, thus producing the ring sums, makes it possible to improve the signal-to-noise ratio from individual cells, especially in the tail of the energy distributions along the calorimeter layers.  Moreover, a nonlinear discriminant may profit from the statistical fluctuations in shower development, which are captured by means of the rings' profile, and provide efficient electron selection even in high pileup conditions.
 
@@ -246,53 +246,4 @@ operation between both working points. Each operation point also leads to
 variation in the physics composition (light- and heavy-flavour, photon
 conversions) of background triggered samples. 
 
-
-\begin{comment}
-
-
-\subsection{Electron Trigger Nomenclature}%
-\label{ssec:menu}
-
-A set of complementary electron triggers is employed to comply with the ATLAS
-physics programme~\cite{aad2020performance}. Here, we refer to the related nomenclature for
-defining electron trigger configuration.  At HLT electron triggers are called
-"$e$" followed by a value of \et-threshold used in GeV. A following set of
-object identification options can be applied:
-
-
-
-\begin{itemize}
-\item $lhvloose,~lhloose,~lhmedium,~lhtight$: likelihood-based ID triggers (DEFAULT);
-\item $nod0$: alignment-robust likelihood tune without \trackdO (see able~\ref{tab:IDcuts}) information (DEFAULT);
-\item $etcut$: only \et-cut applied at HLT;
-\item $trkcut$: require minimum number of Si hits on track at HLT;
-\item $idperf$: no track related selection.
-\item $ivarloose$ is an HLT track-based isolation for electrons ($ptvarcone_{20}/p_T<0.1$).
-\end{itemize}
-
-
-
-
-The first two are used for physics triggers and the remaining are used
-for the support triggers. Specifically, two additional options refer to
-a modification in the \fastcalo{} baseline method:
-
-\begin{itemize}
-\item $ringer$: duplicated triggers using the \rnn during its
-  commissioning stage in 2017 (see Section~\ref{sec:operation});
-\item $noringer$: triggers employing the cut-based strategy after Ringer
-  commissioning stage.
-\end{itemize}
-
-
-Typical \licalo (e.g. EM20VHI) selection requires an EM cluster with a
-given threshold (20), which can be  $\eta$-dependent within $-2$ to $+3\,$GeV
-of the nominal threshold (V). Optionally, an \et-dependent veto against energy
-deposited in the hadronic calorimeter behind the electron candidate's
-electromagnetic cluster can be applied (H$\le \max(E_T/23-0.2, 1.0)\,$GeV), as
-well as an \et-dependent electromagnetic isolation, where the effect of the
-latter is compared as a function of the offline electron candidate's transverse
-energy (I$\le \max(E_T/8-1.8, 2.0)\,$GeV).
-
-\end{comment}
 
