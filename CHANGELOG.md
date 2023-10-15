@@ -14,6 +14,64 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.6.0] - 2023-09-13
+
+### Added
+
+- July-August 2023 update of publications.
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
+## [14.5.1] - 2023-09-07
+
+### Added
+
+- Add 2023 computing acknowledgements.
+
+---
+
+## [14.5.0] - 2023-07-18
+
+### Added
+
+- April-June update of publications.
+
+---
+
+## [14.4.0] - 2023-06-29
+
+### Added
+
+- March update of publications.
+
+---
+
+## [14.3.0] - 2023-06-10
+
+### Added
+
+- Add detector description for Run 3.
+
+### Changed
+
+- A few fixes to `atlas-useful.bib`.
+
+### Fixed
+
+- Add `/` back into PATH in `atlaslatexpath.sty` as things otherwise break in LaTeX 2023-05-15.
+
+---
+
 ## [14.2.1] - 2023-04-05
 
 ### Changed

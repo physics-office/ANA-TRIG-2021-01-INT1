@@ -11,13 +11,11 @@
 #
 #################################################################
 
-image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab
-
 # -- VARIABLES --
 variables:
   DOCNAME: ANA-TRIG-2021-01-INT1
   FROZEN: newest
-  IMAGE_POTL: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/potl-2020
+  IMAGE_TAG: latest
   JOBS_SCRIPTS_PATH: "/usr/share/scripts"
 # -- END OF VARIABLES --
 
