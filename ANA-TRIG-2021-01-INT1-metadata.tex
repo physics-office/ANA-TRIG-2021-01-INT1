@@ -19,12 +19,12 @@
 
 % Abstract - % directly after { is important for correct indentation
 \AtlasAbstract{%
-The Neural-Ringer is an ensemble of neural networks (Neural-Ringer) operating int the selection of electrons in the High Level Trigger (HLT) of the ATLAS experiment. In the second half of 2017, the Neural-Ringer was selecting electrons above 15 GeV, as part of an effort to reduce CPU usage and to comply with more stringent data taking conditions. 
+The Neural-Ringer is an ensemble of neural networks operating the selection of electrons in the High Level Trigger (HLT) of the ATLAS experiment. In the second half of 2017, the Neural-Ringer was selecting electrons above 15 GeV, as part of an effort to reduce CPU usage and to comply with more stringent data taking conditions. 
 The ensemble is built from Multi-Layer Perceptron (MLP) models tuned on pseudo-rapidity and
 transverse energy bins, in order to minimize trigger performance impacts from both
 detector response and shower development energy dependencies. The MLPs are fed from calorimetry information formatted into energy sums of concentric rings built around the particle
-axis. This paper describes the algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60~\% decrease in CPU demands for the lowest-threshold unprescaled single-electron trigger, while maintaining electron efficiency nearly unchanged. The analysis results show an overall CPU saving of 8~\%, when considering the
-demands of all electron and photon triggers. This increase of performance  results from a higher jet background rejection with respect to previous algorithms.
+axis. This paper describes the Neural-Ringer algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60~\% decrease in CPU demands for the lowest-threshold unprescaled single-electron trigger, while maintaining electron efficiency nearly unchanged. The analysis results show an overall CPU saving of 8~\%, when considering the
+demands of all electron and photon triggers. This increase of performance results from a higher jet background rejection from previous cut-based selection algorithm.
 }
 
 

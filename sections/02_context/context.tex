@@ -3,16 +3,11 @@
 
 
 
-Here, we focus on electron-based channels, which are found in many interesting physics phenomena, such as the the decays of the Higgs boson~\cite{HIGG-2012-27,HIGG-2016-33}, for instance.  As the \rnn{} algorithm was developed for calorimeter signal processing, Section~\ref{sec:atlas_trigger} describes the calorimeter systems in detail with an emphasis in the standard calorimeter variables for electron identification and introduces the ring sums as alternative features envisaging a compact detailed description for shower developments in the calorimeter. The electron triggers are described in Section~\ref{ssec:egamma_trigger}.
-
-
-
-
+Here, we focus on electron-based channels, which are found in many interesting physics phenomena, such as the decays of the Higgs boson~\cite{HIGG-2012-27,HIGG-2016-33}, for instance.  As the \rnn{} algorithm was developed for calorimeter signal processing, Section~\ref{sec:atlas_trigger} describes the calorimeter systems in detail with an emphasis on the standard calorimeter variables for electron identification and introduces the ring sums as alternative features envisaging a compact detailed description for shower developments in the calorimeter. The electron triggers are described in Section~\ref{ssec:egamma_trigger}.
 
 \section{Calorimetry Based Identification}\label{sec:atlas_trigger}
 
-The calorimeter system covers the pseudorapidity
-range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
+The calorimeter system covers the pseudorapidity\footnote{ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the z-axis along the beam-pipe. The x-axis points from the IP to the centre of the LHC ring, and the y-axis points upward. Cylindrical coordinates (r, $\phi$) are used in the transverse plane, \phi being the azimuthal angle around the beam-pipe. The pseudorapidity is defined in terms of the polar angle $\theta$ as \eta = -$\ln{tan(\theta/2)}$. The angular distance $\Delta R$ is defined as $\Delta R = \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}$ . Transverse momenta and energies are defined as $pT = p\sin\theta$ and $E_{T}$ = $E\sin\theta$, respectively.} range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
 electromagnetic calorimetry is provided by barrel and endcap high-granularity
 lead/Liquid-Argon (LAr) calorimeters, with an additional thin LAr presampler
 (\ps) covering \(|\eta| < 1.8\), in order to correct for energy losses in
@@ -46,34 +41,32 @@ dependent on the shower development position~\cite{Wigmans2017}.
 
 \subsection{Calorimetry in Electron Triggering}\label{ssec:std_variables}
 
-The specificities of the signal and background interaction processes with
-detector instrumentation can be used to construct meaningful and discrimination
-efficient physics variables. Except for the hardware-based calorimeter trigger
+The specificities of the real electron and background interaction processes with
+detector instrumentation can be used to construct meaningful and discriminative physics variables. Except for the hardware-based calorimeter trigger
 and the \rnn (Section~\ref{sec:neuralringer}), electron
 identification~\cite{atlas_electron_id_offline} relies on the variables
 described in Table~\ref{tab:IDcuts}. 
 %A schematic illustration of the ATLAS components employed on these variables can be seen in Figure~\ref{fig:schematic_id_inputs}. 
 The cut-based algorithm in electron
-triggers applies thresholds on the three most discriminating discussed in Table~\ref{tab:IDcuts}. They describe the shape of the electromagnetic shower: \reta{}, \eratio{}, \rhadone{}.
+triggers applies thresholds on the three most discriminating variables discussed in Table~\ref{tab:IDcuts}. Which describe important features of the shape of the electromagnetic showers: \reta{}, \eratio{}, \rhadone{}.
 
 
-\input{sections/context/tables/electron_quantities}
+\input{sections/02_context/tables/electron_quantities}
 
   
 The standard electron identification variables are based on in-depth
 understanding of the signatures left by signal and background.  As a result, information in specific regions of the experiment
-are fused together using a set of a few variables (i.e. 3 variables for describing the shower shape in the EM2). The objective is to reduce the dimensionality of the problem and compose a highly discriminant input space to apply a set of rectangular cuts, which provides a simple yet powerful selection mechanism. The use of variables providing similar information
-(i.e. correlated) is discouraged, once they usually do not aggregate with
+are fused together using a set of a few variables (i.e. 3 variables for describing the shower shape in the second EM layer). The objective is to reduce the dimensionality of the problem and to compose a highly discriminant input space to apply a set of rectangular cuts, which provides a simple yet powerful selection mechanism. The use of variables providing similar information is discouraged, once they usually do not aggregate with
 discriminating power and make analysis more
 complex~\cite{aaboud2019electron}.
 
 In the end of the LHC Run~1~\cite{PERF-2016-01}, the strategy for offline electron identification was improved by the adoption of a multivariate approach, which computes a likelihood discriminant. Here, an approximation is made by assuming a statistical independence between variables ~\cite{kendalls_vol2b}. This likelihood approach was also brought to the final HLT selection in Run 2 (Section~\ref{ssec:egamma_trigger}) to improve overall efficiency. 
 
-In a broader sense, other ATLAS physics objects (i.e. taus and jets), for
+In a broader sense, other ATLAS physics objects like taus and jets, for
 which discrimination relies on less prominent instrumentation and carried out on
 similar signal--background interactions, have successfully applied other
-multivariate methods (i.e. boosted decision-trees and neural-networks) for
-modelling a more suitable (and complex) decision boundary
+multivariate methods like boosted decision-trees and neural-networks for
+modelling a more suitable and complex decision process.
 
 
 \subsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
@@ -81,7 +74,7 @@ modelling a more suitable (and complex) decision boundary
 Conceptually, the ring structure aims at exploiting the concentric nature of energy depositions in the calorimeter and the corresponding symmetry in the development of the shower.  Adding the calorimeter cells belonging to a given ring and, thus producing the ring sums, makes it possible to improve the signal-to-noise ratio from individual cells, especially in the tail of the energy distributions along the calorimeter layers.  Moreover, a nonlinear discriminant may profit from the statistical fluctuations in shower development, which are captured by means of the rings' profile, and provide efficient electron selection even in high pileup conditions.
 
 
-Nonetheless, some observations concerning the description of a shower through rings are worth making. First, the standard shower shape variables (or simply shower shapes) cannot be obtained through operations starting from the rings.  Thus, the rings represent an alternative for shower development description and not a possible replacement for the shower shapes.  Therefore, a strategy considering both variables altogether (rings and shower shapes) might explore a complementary discriminating information in the future.
+Nonetheless, some observations concerning the description of a shower through rings are worth making. First, the standard shower shape variables, or simply shower shapes, cannot be obtained through operations starting from the rings.  Thus, the rings represent an alternative for shower development description and not a possible replacement for the shower shapes.  Therefore, a strategy considering both rings and shower shapes might explore a complementary discriminating information in the future.
 
 Second, one should also notice
 that the rings do not use the same sensors more than once for each variable.
@@ -89,18 +82,15 @@ This is not strictly true for the shower shapes, although it is fairly unusual.
 In contrast, pattern recognition through modern machine learning
 algorithms~\cite{Engelbrecht2007,Goodfellow2016}, as convolution
 neural-networks~\cite{Gu2018}, build variables processing several times
-the same sensors. Additionally, as providing dimension reduction and keeping the physics interpretation of the shower development, the shower shapes are also suited bringing insights through univariate analysis carried out on each
+the same sensors. Additionally, as providing dimension reduction and keeping the physics interpretation of the shower development, the shower shapes are also suited bringing insights through uni-variate analysis carried out on each
 single dimension composing the input space.
 Thus, an alternative ring-based trigger strategy was developed and the shower shapes were used to evaluate how the physics properties of the showers were captured by the neural networks trained on calorimeter information formatted into ring sums. 
 
 
-
-
-
 At each calorimeter sampling layer, the energy deposition of an incoming particle is extracted by building concentric rings of cells (\figurename~\ref{fig:calo_rings}), or simply rings. All rings in the \ecal sampling layers are
-centered around their most energetic (hottest) cell, a reasonable
+centered around their most energetic cell, a reasonable
 approximation of the energy barycenter of the shower for online
-operation. Focusing on EM objects, rings are built using as axis center the position of the hottest cell in the second electromagnetic layer, collecting the largest fraction of the total absorbed electron energy.
+operation. Focusing on EM objects, rings are built using as axis center the position of the most energetic cell cell in the second electromagnetic layer, collecting the largest fraction of the total absorbed electron energy.
 
 The ring building process covers the whole $0.4\times0.4$ (\etaphi axis) RoI
 seeded by \licalo, resulting in 100 rings in total across all calorimeter layers.
@@ -132,7 +122,7 @@ Section~\ref{top:algorithm}.
 	\caption{\label{fig:calo_rings}
 		Sketch to illustrate the ring-shaped energy description. See
 		Section~\ref{top:algorithm} for more details. 
-		The hottest cell is in red, while the consecutive neighbouring rings are represented by a cycle 
+		The most energetic cell is in red, while the consecutive neighbouring rings are represented by a cycle 
 		of non-colored and black cells.
 	}
 \end{figure}
@@ -146,8 +136,8 @@ Section~\ref{top:algorithm}.
 Electron triggers~\cite{aad2020performance} begin with
 the search for an EM energy deposit in the calorimeter with a \licalo{} sliding
 window algorithm ~\cite{Franchino:2730851} using coarse granularity calorimeter information, in order to
-fulfill the targeted latency requirements ($2.5\mu s$). This selects a RoI of $0.4\times 0.4$
-in the $\eta\times\phi$ axis and applies a minimal transverse energy and object
+fulfill the targeted latency requirements in $2.5\mu s$. This selects a RoI of $0.4\times 0.4$
+in the $\eta\times\phi$ plane and applies a minimal transverse energy and object
 multiplicity requirements, which depend on the trigger
 specifications~\cite{TRIG-2016-01}.
  
@@ -168,14 +158,14 @@ interesting to release CPU resources before this selection stage.
   %\hspace{0.01\textwidth}
   \begin{subfigure}[c]{.48\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{sections/context/figures/ElectronChain_Run2_cutbased.pdf}
+  \includegraphics[width=\textwidth]{sections/02_context/figures/ElectronChain_Run2_cutbased.pdf}
   \caption{noringer chain (2017).}
   %\label{fig:cutbased_chain}
   \end{subfigure}
   \hfill
   \begin{subfigure}[c]{.48\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{sections/context/figures/ElectronChain_Run2_ringer.pdf}
+  \includegraphics[width=\textwidth]{sections/02_context/figures/ElectronChain_Run2_ringer.pdf}
   \caption{ringer chain (2017).}
   %\label{fig:ringer_chain}
   \end{subfigure}
@@ -194,13 +184,16 @@ interesting to release CPU resources before this selection stage.
 
 % http://acode-browser1.usatlas.bnl.gov/lxr/source/aa/Trigger/TrigHypothesis/TrigEgammaHypo/python/TrigL2CaloHypoCutDefs.py
 
-A precise electron candidate energy is later computed(\hltcalo). Final HLT selection makes use of a likelihood
-approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}, based on the estimation of marginal probability density function (pdf) for the discriminating variables ($\vec{x}$) given in Table~\ref{tab:IDcuts}, which is built using adaptive Gaussian Kernel Density Estimation (KDE)~\cite{Silverman2018,TMVA}. The
-resulting kernels, obtained (since 2017) from runs of the previous year, and
-earlier from simulation data, are approximated by histograms with thin
-granularity (generally employing 500 bins) and then interpolated to give the
-signal and background probability values computed for the $i$th variable
-($P_{s(b),i}(x_i)$). The discriminant value is computed by
+A precise electron candidate energy is later computed (\hltcalo). Final HLT selection makes use of a likelihood
+approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}, based on the estimation of marginal probability density function (pdf) for the discriminating variables ($\vec{x}$) given in Table~\ref{tab:IDcuts}. The discriminant value is computed by:
+
+
+%, which is built using adaptive Gaussian Kernel Density Estimation (KDE)~\cite{Silverman2018,TMVA}. The
+%resulting kernels, obtained (since 2017) from runs of the previous year, and
+%earlier from simulation data, are approximated by histograms with thin
+%granularity (generally employing 500 bins) and then interpolated to give the
+%signal and background probability values computed for the $i$th variable ($P_{s(b),i}(x_i)$). 
+
 
 \begin{equation}
   d_{\mathcal{L}} = \frac{\mathcal{L}_{s}}{\mathcal{L}_{s} + \mathcal{L}_{b}},
@@ -215,19 +208,19 @@ signal and background probability values computed for the $i$th variable
 
 
 
-\noindent Roughly\footnote{A transformation is employed to allow
+\noindent and $P_{s(b),i}(x_i)$ is the signal (or background) probability values computed for the $i$th variable. Roughly\footnote{A transformation is employed to allow
 easier computation of the proper threshold~\cite{aaboud2019electron}.},
 the decision is taken upon the comparison of $d_{\mathcal{L}}$ with a
 threshold linearly corrected for \avgmu{}, in order to mitigate electron trigger
-efficiency loss due to pile-up the effect caused by proton-proton collisions in the the same or surrounding bunch crossings. The mean number of interactions per crossing (\avgmu{}) corresponds to the
-mean of the Poisson distribution of the number of interactions per crossing calculated for each colliding bunch pair. In addition, some other requirements may be
+efficiency loss due to pile-up the effect caused by proton-proton collisions in the same or surrounding bunch crossings. The mean number of interactions per crossing (\avgmu{}) corresponds to the
+mean of the Poisson distribution of the number of interactions per crossing calculated for each colliding bunch pair. In addition, some other requirements are
 applied under specific variables to improve the final
 decision~\cite{aaboud2019electron}
 
 To account for detector response evolution with
 respect to \Et\footnote{Projection of the energy ($E$) in the transverse plane,
 computed by $E\cdot\sin(\theta)$ or $E\cdot\cosh(\eta)$.} and
-$\eta$, both the KDE and discriminant requirements are computed in delimited ($\eta\times~E_{T})$
+$\eta$, both the KDE and discriminant requirements are computed in delimited ($\eta\times E_{T})$
 regions in this plane (boundaries defined in the Section~\ref{top:nn_ensemble}).
 A finer-grained grid in \Et is employed for the derivation of the discriminant
 requirements to obtain a relatively smooth efficiency transition. Additionally,
@@ -243,7 +236,7 @@ and the \vloose{} ones emphasize potential electron observations, hence
 resulting, specially for the latter, in higher output rate than an equivalent
 tighter chain, but with substantial lower purity.  \medium{} allows a middle-term
 operation between both working points. Each operation point also leads to
-variation in the physics composition (light- and heavy-flavour, photon
+variation in the physics composition (e.g., light- and heavy-flavour, photon
 conversions) of background triggered samples. 
 
 
