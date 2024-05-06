@@ -9,8 +9,8 @@ This section reports the \rnn{} operation in both 2017
 are computed with respect to offline electrons, as indicated in
 Section~\ref{ssec:dataset}\footnote{For efficiency measurements in this section,
 	fake electrons are selected always employing \veto\vloose{} offline likelihood
-	working point.}. Firstly, we detail the algorithm cycle during Run~2
-(Section~\ref{ssec:run2_rnn_cycle}).
+	working point.}. Firstly, the detail of the algorithm cycle used during Run~2
+(Section~\ref{ssec:run2_rnn_cycle}) is presented.
 
 \section{Run~2 \rnn{} Cycle}\label{ssec:run2_rnn_cycle}
 
@@ -30,11 +30,11 @@ can be partitioned into four chronological stages:
     disagreements between the \fastcalo{} methods from an offline
     perspective (Section~\ref{sec:off_ana}), a duplicated trigger pair, i.e.
     with and without \rnn{}, was kept operating unprescaled during this period
-    (\SI{39.0}{\per\femto\barn}). Here, we compare the efficiencies of the
-    duplicated triggers in 2017 (Section~\ref{ssec:2017_ringer_operation});
+    (\SI{39.0}{\per\femto\barn}). Here, the efficiencies of the
+    duplicated triggers in 2017 (Section~\ref{ssec:2017_ringer_operation}) are compared;
   \item Finally, the duplicated trigger was removed for 2018 operation.
-    Therefore, we evaluate 2018 \rnn{} operation relying on a comparison with
-    2017 efficiency in Section~\ref{ssec:2018_ringer_operation}.
+    Therefore, the evaluation of 2018 \rnn{} operation relying on a comparison with
+    2017 efficiency is presented in Section~\ref{ssec:2018_ringer_operation}.
 \end{enumerate}
 
 \section{2017 Operation}\label{ssec:2017_ringer_operation}
@@ -49,10 +49,9 @@ operation of both triggers was observed in terms of signal efficiency using the
 integrated luminosity along the period, as shown in
 Figure~\ref{fig:e28_triggers}. The trigger
 turn-on curves exhibit similar profile. In $\eta$, \rnn{} shows a reasonably symmetric
-profile with respect to positive and negative $\eta$, while a
-\SI{3}{\%} efficiency loss is observed at $-2.01<\eta<-1.81$. In addition, a difference of about half to one percentage point may be observed in $\eta$ because of the transition region between the endcap and barrel. Besides
+profile with respect to positive and negative $\eta$. In addition, a difference of about half to one percentage point may be observed in $\eta$ because of the transition region between the endcap and barrel. Besides
 aforementioned points, overall efficiency fluctuations are smaller than a few
-per-mill. Although a slight more prominent efficiency loss with respect to
+per-mille. Although a slightly more prominent efficiency loss with respect to
 \avgmu{} is observed in Figure~\ref{fig:e28_comp_mu} for the \rnn{} trigger, the
 electron efficiency was kept nearly the same. Such loss occurs after the
 linear threshold correction limit of $\avgmu=40$ that was employed during 2017.
@@ -60,7 +59,7 @@ linear threshold correction limit of $\avgmu=40$ that was employed during 2017.
 Other important triggers were assessed by comparing the trigger efficiencies on
 2017 data collected before and after switching to the \rnn{} algorithms.  As it can be observed in Figure~\ref{fig:2017_ts1}, the electron efficiency was also kept nearly unchanged for relevant single electron triggers. Note that results in
 this plot are computed with two different data taking periods: with or
-without the \rnn{} algorithm. The loosest likelihood trigger with 17 GeV energy threshold shows the efficiency in the lowest-energy-threshold 
+without the \rnn{} algorithm. %The loosest likelihood trigger with 17 GeV energy threshold shows the efficiency in the lowest-energy-threshold 
 
 
 
@@ -88,7 +87,7 @@ without the \rnn{} algorithm. The loosest likelihood trigger with 17 GeV energy 
   \label{fig:e28_comp_mu}
   \end{subfigure}
   \caption{\label{fig:e28_triggers}HLT electron efficiency as a function of \et{}
-    (a), \eta{} (b) and \avgmu{} (c) for the duplicated single electron trigger
+    (a), \eta{} (b) and \avgmu{} (c) for the duplicated single electron isolated trigger
     requiring $\et{} > \SI{28}{\GeV}$ and \tight{} selection with and without the
     \rnn{} algorithm. Efficiencies are measured employing 2017 data collected.}
   \end{center}
@@ -117,7 +116,7 @@ without the \rnn{} algorithm. The loosest likelihood trigger with 17 GeV energy 
   \caption{Efficiency of three single electron triggers as a function of
   \et (a), \eta (b) and \avgmu (c). Open (closed) markers contain
   the efficiency measurements on runs before (after) the first technical stop, thus referring to
-  triggers being executed without (with) the \rnn{} algorithm.
+  triggers being executed without (with) the \rnn{} algorithm. For 2017 collision data, the higher \avgmu{} values were reached only after the technical stop. 
   }%
   \label{fig:2017_ts1}
   \end{center}
@@ -159,7 +158,7 @@ considering the low \et{} and the end-cap regions.
   %\hfill
   \caption{\label{fig:e28_triggers_fake} \fastcalo %\footnotemark{} 
   fake electron efficiency as a function of \et (a), \eta (b) and \avgmu (c) for the
-  duplicated single electron trigger requiring $\et > \SI{28}{\GeV}$ and \tight
+  duplicated single electron isolated trigger requiring $\et > \SI{28}{\GeV}$ and \tight
   selection with and without the \rnn{} algorithm. Efficiencies are measured
   employing 2017 data collected after the first technical stop.}%
   
@@ -171,7 +170,8 @@ considering the low \et{} and the end-cap regions.
 Besides the capability of improving early fake rejection, the usage of the
 \rnn{} also contributed to reduce the final fake rate
 (Figure~\ref{fig:e28_triggers_fake_hlt}) by a factor of 2, mostly coming from
-the transition regions in the calorimeter.
+the transition regions in the calorimeter. The discussion about CPU and final rate reduction will be covered in the next section.
+
  %This fake rate reduction when measured with
 %respect to the offline electron selection does not seem to have impacted in the
 %output rate (see Appendix~\ref{ssec:primary_rate_wrt_luminosity})\footnote{This
@@ -199,7 +199,7 @@ the transition regions in the calorimeter.
 \caption{}
 \end{subfigure}
 \caption{HLT fake electron efficiency as a function of \et (a), \eta (b) and
-\avgmu (c) for the duplicated single electron trigger requiring $\et >
+\avgmu (c) for the duplicated single electron isolated trigger requiring $\et >
 \SI{28}{\GeV}$ and \tight selection with and without the \rnn{} algorithm.
 Efficiencies are measured employing 2017 data collected after the first technical stop.}%
 \label{fig:e28_triggers_fake_hlt}

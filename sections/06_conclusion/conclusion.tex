@@ -1,4 +1,4 @@
-\chapter{Conclusion and Perspectives}\label{sec:conclusion}
+\chapter{Conclusion}\label{sec:conclusion}
 %-------------------------------------------------------------------------------
 
 
@@ -19,12 +19,11 @@ better the signal efficiency with respect to pile-up with respect to the
 previous cut-based strategy it replaced.
 
 
-
 In the second half of 2017, the \rnn{} algorithm replaced such a cut-based strategy
 in the \fastcalo{} decision step and became the baseline algorithm
 for triggering events containing electrons above \SI{15}{\GeV}, as part of the ATLAS online system CPU reduction campaign. The \fastcalo{} selection is crucial for CPU demands, as a more
 efficient algorithm allows to avoid heavier computations in the
-sequential steps.  It was the first time a neural network method was employed as
+subsequent steps.  It was the first time a neural network method was employed as
 a baseline selection algorithm for event selection in the ATLAS trigger system.
 During 2017 operation, based on neural networks trained with simulated data,
 reduction factors of 13 in the \fastcalo{} and of 2 in
@@ -39,47 +38,11 @@ mentioned trigger with respect to 2017.
 
 \begin{comment}
     
-It should be emphasized that, 
-despite being based on a machine learning method, the \rnn{}
-contrasts with standard data-oriented developments for the importance of the
-application context and domain knowledge in its design. The goal of the ATLAS
-experiment is to comply with its physics programme, i.e.\@ to provide insights on
-complex physics processes. In order to achieve such physics understanding, it is
-more interesting to design a sufficiently efficient selector while preserving
-interpretability of its behavior than reaching ultimate selection efficiency.
-Particularly, fully data-oriented approaches may achieve higher efficiencies but
-mostly compromise the understanding of the model behavior. On the other edge,
-a cut-based strategy based on discriminating variables to exploit individual
-properties of the process allows a lower efficiency to draw conclusive evaluations due to the available statistics. The optimum strategy is to provide as
-much understanding as possible with enough efficiency, a point that might lie
-within the two individual approaches. We believe that a good strategy to achieve it is by
-finding an optimal level of constraints based on domain knowledge to the model
-possibilities. The main one in the \rnn{} is the ring sums themselves, which
-disallow the networks to exploit more complex patterns. Despite having hints
-that more discriminating information might exist, a representation learning
-approach would result in patterns difficult to interpret.
-
-
-
-% Machine learning, extrapolation
-Another claim for designing models accounting for the application context
-is the extrapolation to other operating conditions, which is an important challenge in
-the development  of the \rnn. In the particular case of 
-%of the \rnn{}. There are two usual cases in HEP experiments.
-%Many physics processes decay into physics objects resulting in atypical data,
-%e.g.\@ high kinematic regimes. In the particular case of 
-trigger developments, the ever-increasing luminosity makes the experiments operate in harsher and
-unprecedented conditions. Since there is few or no data available, it requires
-domain knowledge to allow predicting and, specially, customizing the model to
-operate under these conditions. Relying on simulation also requires domain
-knowledge for defining the generation process which may be imperfect, potentially compromising the model extrapolation.
-
-\end{comment}
 
 
 % Quadrant and agreement analysis
-The \rnn{} was also studied through the offline likelihood perspective,
-reference for physics analysis, to bring additional insights on its behavior. By
+The \rnn{} was also studied through the offline likelihood perspective 
+to bring additional insights on its behavior. By
 taking advantage of the low dimensionality, low correlation and high
 interpretability power of the variables employed in the likelihood, we derived
 the profiles of the disjoint decision cases of the 2017 duplicate trigger pair.
@@ -102,9 +65,9 @@ operation.
 Finally, the presented results show that it is possible to tighten the requirements for online operation while still resulting in high agreement with the offline
 selection. More generally, it demonstrates that designing a solution from scratch using the application specificities can provide new effective
 strategies. We hope that it can serve as motivation for other developments in
-HEP, particularly when considering the trigger side.
+HEP, particularly when considering the trigger applications.
 
-\section{Perspective}
+\section{Outlook}
 
 
 Preliminary evaluations have shown the potential of the \rnn{} algorithm for
@@ -169,3 +132,5 @@ calibration.
 The \rnn{} software has been extended to the offline framework. Currently,
 the offline ring description is available for all electrons with $\et>\SI{14}{\GeV}$. This is an on-going activity.
 
+
+\end{comment}
