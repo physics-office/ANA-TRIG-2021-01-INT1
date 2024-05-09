@@ -14,7 +14,7 @@ Additionally, these variables are interesting since they compact the input space
 in a set of few variables with low correlation and high interpretability power. 
 %One should keep in mind that the \rnn{} algorithm had access only to the ring description during Run~2 operation.
 
-As indicated in Table~\ref{tab:quadrant_vs_agreement}, two analyzes were performed to assessing the
+As indicated in Table~\ref{tab:quadrant_vs_agreement}, two analyses were performed to assess the
 trigger performance with and without \rnn{}, when applied to the tag (Agreement Analysis) and
 to the probe (Quadrant Analysis). The Tag \& Probe events have one probe electron that was not 
 used to decide the selection of that event at the trigger level.
@@ -63,13 +63,13 @@ changing the number of \tnp{} pairs. Such evaluation of any possible systematic 
 As observed in the efficiency measurements during Run~2 data taking, the \rnn{} allowed more effective \fastcalo{} operation in triggers with electrons above \SI{15}{\GeV}  with respect to the previous cut-based approach. 
 
 
-In this section, it was evaluated how the most efficient trigger configuration 
-improved the online system in terms of resource requirements. First, the CPU 
-requirements at the \fastcalo{} level is discussed in~\ref{top:fastcalo_cpu}). Finally, 
-the full impact of CPU requirements of the \rnn{} in a primary electron trigger is evaluated in~\ref{top:cpu_e26}).
+%In this section, it was evaluated how the most efficient trigger configuration 
+%improved the online system in terms of resource requirements. First, the CPU 
+%requirements at the \fastcalo{} level is discussed in~\ref{top:fastcalo_cpu}). Finally, 
+%the full impact of CPU requirements of the \rnn{} in a primary electron trigger is evaluated in~\ref{top:cpu_e26}).
 
 
-\subsection{Estimated CPU Impact}\label{top:fastcalo_cpu}
+%\subsection{Estimated CPU Impact}\label{top:fastcalo_cpu}
 
 
 The overhead required to computed the NN decision by running a single electron trigger with and without the \rnn algorithm, in two individual non-concurrent executions using the same dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) with 256 Gb@1333 of memory and a SL6 OS.}, was evaluated
@@ -144,7 +144,14 @@ in the CPU demands.
 
 \section{Quadrant Analysis}\label{ssec:quadrant}
 
-The Quadrant Analysis was developed to compare the decision of two classifiers. Given signal candidates and two classifiers, these are the possibilities: either both accept or reject the candidates or only one accepts the candidates. The four possible decision quadrants are evaluated from shower shape distributions.
+The Quadrant Analysis was developed to compare the decision of two classifiers. Given signal candidates and two classifiers, these are the possibilities: either both accept or reject the candidates or only one accepts the candidates. The four possible decision quadrants are evaluated from shower shape distributions. Furthermore, in this analysis, it's also possible to compare the disagreement between two classifiers. The disagreement between two classifiers $\textbf{A}$ and $\textbf{B}$ can be defined as:
+
+\begin{equation}
+    \text{disagreement} = \frac{N_{\textbf{A}}+N_{\textbf{B}}}{N_{\textbf{A}}+N_{\textbf{B}}+N_{\textbf{AB}}+N_{!\textbf{AB}}}
+    \label{eq:disagreement}
+\end{equation}
+where $N_{\textbf{A}}$ ($N_{\textbf{B}}$) is the total of candidates accepted by classifier $\textbf{A}$ ($\textbf{B}$) and $N_{\textbf{AB}}$ ($N_{\textbf{!AB}}$) is the total of candidates accepted (rejected) by both classifiers.
+
 In this approach, only data collected by the primary triggers whose selection is from its offline equivalent are considered\footnote{I.e., if a \tight{} trigger leg is being evaluated, it also applied the \tight{} offline selection to the candidate.}.
 Results in Section~\ref{top:quadrant_results} show
 trigger selection performance using \tight{} requirement for the duplicated triggers during 2017.
@@ -159,9 +166,10 @@ algorithm~\cite{aaboud2019electron}.
 
 
 
-As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement, obtained by summing the cases accepted only by a single trigger between both triggers, is small and bounded for most cases at 1\% level for the coverage of all calorimetry variables. 
+As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement, %obtained by summing the cases accepted only by a single trigger between both triggers, 
+is small and bounded for most cases at 1\% level for the coverage of all calorimetry variables. 
 This behavior is also observed for \et{} slices. 
-One should note that the working points of both triggers are not  exactly the same, although the \rnn{} aimed at keeping the same signal efficiency as being achieved by the cut-based strategy and was operating as desired.  
+One should note that the working points of both triggers are not exactly the same, although the \rnn{} aimed at keeping the same signal efficiency as being achieved by the cut-based strategy and was operating as desired.  
 %Thus, much of the differences reflect this difficulty. 
 In other words, 
 %One should note that the integral of the single trigger cases is related to the limitation in the precision of setting the working point of both triggers to be exactly the same. In other words, 
@@ -175,27 +183,27 @@ For all variables in this region, both triggers behave very similarly (see Figur
 \centering
 \begin{subfigure}[c]{.49\textwidth}
 \centering
-\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/HLT_e28_lhtight_nod0_noringer_ivarloose_HLT_e28_lhtight_nod0_ivarloose_reta_et4_eta1.pdf}
+\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/reta.pdf}
 \caption{}
 \label{fig:quadrant_calo_variables_30GeV_eta}
 \end{subfigure}
 %\hfill
 \begin{subfigure}[c]{.49\textwidth}
 \centering
-\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/HLT_e28_lhtight_nod0_noringer_ivarloose_HLT_e28_lhtight_nod0_ivarloose_rphi_et4_eta1.pdf}
+\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/rphi.pdf}
 \caption{}
 \end{subfigure} 
 %\end{figure}
 %\begin{figure}[p]\ContinuedFloat
 \begin{subfigure}[c]{.49\textwidth}
 \centering
-\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/HLT_e28_lhtight_nod0_noringer_ivarloose_HLT_e28_lhtight_nod0_ivarloose_eratio_et4_eta1.pdf}
+\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/eratio.pdf}
 \caption{}
 \end{subfigure}
 \hfill
 \begin{subfigure}[c]{.49\textwidth}
 \centering
-\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/HLT_e28_lhtight_nod0_noringer_ivarloose_HLT_e28_lhtight_nod0_ivarloose_rhad_et4_eta1.pdf}
+\includegraphics[width=\textwidth]{sections/05_analysis/figures/quadrant_plots/rhad.pdf}
 \caption{}
 \end{subfigure} \\
 
@@ -206,7 +214,7 @@ For all variables in this region, both triggers behave very similarly (see Figur
 	likelihood and for the $0.6<\abseta{}<0.8$ and
 	$30<\et{}~[\text{GeV}]<35$ slices. 
 	The top pad in each figure shows the raw number of observations for the four mutually exclusive cases: both with and without \rnn{}
-	triggered (black); triggered only with \rnn{} (blue); triggered only without \rnn{} (red); neither one triggered (gray). With the same color code, the bottom pad contains the percentage of each group with respect to the number of events selected by any trigger. The disagreement is defined by $(N_{blue}+N_{red})/(N_{blue}+N_{red}+N_{black}+N_{gray})$.
+	triggered (black); triggered only with \rnn{} (blue); triggered only without \rnn{} (red); neither one triggered (gray). The bottom pad contains disagreement as defined in the Equation \eqref{eq:disagreement}.
 }
 %Quadrant analysis plots for the offline-reconstructed
 %calorimetry variables employed in the
@@ -223,7 +231,7 @@ the trigger does not show a dependence on ID variables, as shown in Figure~\ref{
 %\centering
 %\begin{subfigure}[c]{.49\textwidth}
 \centering
-\includegraphics[width=.5\textwidth]{sections/05_analysis/figures/quadrant_plots/HLT_e28_lhtight_nod0_noringer_ivarloose_HLT_e28_lhtight_nod0_ivarloose_trackd0pvunbiased_et4_eta1.pdf}
+\includegraphics[width=.5\textwidth]{sections/05_analysis/figures/quadrant_plots/d0.pdf}
 
 \caption{\label{fig:quadrant_track_variables_30GeV}
 Quadrant analyses plots for the offline-reconstructed ID variable $d_0$ employed in the
