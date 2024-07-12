@@ -1,5 +1,5 @@
 
-\chapter{\rnn{} Performance}%
+\section{\rnn{} Performance}%
 \label{sec:off_ana}
 
 This section is dedicated to a more detailed assessments of the \rnn{} behavior 
@@ -58,7 +58,7 @@ the tag selection cannot, in principle, alter the profile of the probes besides
 changing the number of \tnp{} pairs. Such evaluation of any possible systematic effect caused by the introduction of the \rnn{} in the extraction of the likelihood PDFs, employed for offline and final HLT selection, is performed by the Agreement Analysis.
 
 \FloatBarrier
-\section{Impact on CPU Demands} \label{ssec:cpu_reduction}
+\subsection{Impact on CPU Demands} \label{ssec:cpu_reduction}
 
 As observed in the efficiency measurements during Run~2 data taking, the \rnn{} allowed for a more effective \fastcalo{} operation in triggers with electrons above \SI{15}{\GeV}  with respect to the previous cut-based approach. 
 
@@ -144,7 +144,7 @@ In this measurement, where about 3,400 events from the EB stream were considered
 in the CPU demands.
 
 
-\section{Quadrant Analysis}\label{ssec:quadrant}
+\subsection{Quadrant Analysis}\label{ssec:quadrant}
 
 The Quadrant Analysis was developed to compare the decision of two classifiers. Given signal candidates and two classifiers, these are the possibilities: either both accept or reject the candidates or only one accepts the candidates. The four possible decision quadrants are evaluated from shower shape distributions. Furthermore, in this analysis, it's also possible to compare the disagreement between two classifiers. The disagreement between two classifiers $\textbf{A}$ and $\textbf{B}$ can be defined as:
 
@@ -158,7 +158,7 @@ In this approach, only data collected by the primary triggers with an equivalent
 Results in Section~\ref{top:quadrant_results} show
 trigger selection performance using \tight{} requirement for the duplicated triggers during 2017.
 
-\subsection{Results}\label{top:quadrant_results}
+\subsubsection{Results}\label{top:quadrant_results}
 
 
 
@@ -245,7 +245,7 @@ likelihood for the $0.6<\abseta{}<0.8$ and $35<\et{}~[\text{GeV}]<40$ slice. The
 
 
 \FloatBarrier
-\section[Homogeneity Tests]{Homogeneity Tests}\label{ssec:agreement}
+\subsection[Homogeneity Tests]{Homogeneity Tests}\label{ssec:agreement}
 
 In this 
 analysis, the impact of using different triggers, \rnn{} and cut-based, on the likelihood algorithm is evaluated. This study requires a pair of duplicated triggers, composed by an $E_T > 28$ GeV isolated and Tight selection with and without the \rnn{}, operating online together. 
@@ -254,7 +254,7 @@ This analysis is performed using \Zee{} \tnp{} data, which were selected with th
 
 
 
-\subsection{Method}\label{top:homogeneity_method}
+\subsubsection{Method}\label{top:homogeneity_method}
 
 
 
@@ -291,7 +291,7 @@ the trigger with (without) \rnn{} in $j$th histogram bin and in the $i$th
 $\et{}\times\abseta{}$ region.
 
 
-\subsection{Results}\label{top:agreement_homogeneity_results}
+\subsubsection{Results}\label{top:agreement_homogeneity_results}
 
 
 

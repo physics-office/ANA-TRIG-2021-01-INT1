@@ -1,12 +1,12 @@
 % \section{\rnn Development Context}\label{sec:context}
-\chapter{Online Electron Selection}\label{sec:context}
+\section{Online Electron Selection}\label{sec:context}
 
 
 The optimal performance in the measurement of electrons and photons plays a fundamental role in searches for new particles, in the measurement of Standard Model cross-sections, and in the precise measurement of the properties of fundamental particles such as the Higgs~\cite{HIGG-2012-27,HIGG-2016-33} and W bosons. Here, the electron-based selection is described. As the \rnn{} algorithm was developed for calorimeter signal processing, Section~\ref{sec:atlas_trigger} describes the calorimeter systems in detail with an emphasis on the standard calorimeter variables for electron identification and introduces the ring sums as alternative features envisaging a compact detailed description for shower developments in the calorimeter. The electron triggers are described in Section~\ref{ssec:egamma_trigger}.
 
 
 
-\section{Calorimetry Based Identification}\label{sec:atlas_trigger}
+\subsection{Calorimetry Based Identification}\label{sec:atlas_trigger}
 
 The calorimeter system covers the pseudorapidity\footnote{ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the z-axis along the beam-pipe. The x-axis points from the IP to the centre of the LHC ring, and the y-axis points upward. Cylindrical coordinates (r, $\phi$) are used in the transverse plane, \phi being the azimuthal angle around the beam-pipe. The pseudorapidity is defined in terms of the polar angle $\theta$ as \eta = -$\ln{tan(\theta/2)}$. The angular distance $\Delta R$ is defined as $\Delta R = \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}$ . Transverse momenta and energies are defined as $pT = p\sin\theta$ and $E_{T}$ = $E\sin\theta$, respectively.} range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
 electromagnetic calorimetry is provided by barrel and endcap high-granularity
@@ -39,7 +39,7 @@ dependent on the shower development position~\cite{Wigmans2017}.
 
 
 
-\subsection{Physics-Inspired Calorimetric Electron Identification}\label{ssec:std_variables}
+\subsubsection{Physics-Inspired Calorimetric Electron Identification}\label{ssec:std_variables}
 
 The specificities of the real electron and background interaction processes with
 detector instrumentation can be used to construct meaningful and discriminative physics variables. Except for the hardware-based calorimeter trigger
@@ -70,7 +70,7 @@ In the end of the LHC Run~1~\cite{PERF-2016-01}, the strategy for offline electr
 
 \newpage
 
-\subsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
+\subsubsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
 
 At each calorimeter sampling layer, the energy deposition of an incoming particle is extracted by building concentric rings of cells (\figurename~\ref{fig:calo_rings}), or simply ``rings''. All rings in the \ecal sampling layers are
 centered around their most energetic cell, a reasonable
@@ -137,7 +137,7 @@ Thus, an alternative ring-based trigger strategy was developed and the shower sh
 
 
 
-\section{Electron Triggers}\label{ssec:egamma_trigger}
+\subsection{Electron Triggers}\label{ssec:egamma_trigger}
 
 
 Electron triggers~\cite{aad2020performance} begin with
