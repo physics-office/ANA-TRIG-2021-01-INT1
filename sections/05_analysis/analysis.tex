@@ -6,9 +6,9 @@ This section is dedicated to a more detailed assessments of the \rnn{} behavior
 in the period 2017-2018 with respect to the previous electron trigger cut-based strategy.
 Using \Zee{} \tnp{} selection, the agreement between the two triggers and
 possible biases, caused by the introduction of the \rnn{} using the variables
-employed by the likelihood algorithm, were investigated
+employed by the likelihood algorithm, were investigated.
 Since offline and final HLT electron
-selections are based on such variables, limiting the evaluation to them suffice
+selections are based on such variables, limiting the evaluation to them suffices
 to understand any possible impact of the \rnn{} algorithm in most analyses.
 Additionally, these variables are interesting since they compact the input space
 in a set of few variables with low correlation and high interpretability power. 
@@ -58,9 +58,9 @@ the tag selection cannot, in principle, alter the profile of the probes besides
 changing the number of \tnp{} pairs. Such evaluation of any possible systematic effect caused by the introduction of the \rnn{} in the extraction of the likelihood PDFs, employed for offline and final HLT selection, is performed by the Agreement Analysis.
 
 \FloatBarrier
-\section{Impact on CPU Demands} %\label{ssec:cpu_reduction}
+\section{Impact on CPU Demands} \label{ssec:cpu_reduction}
 
-As observed in the efficiency measurements during Run~2 data taking, the \rnn{} allowed more effective \fastcalo{} operation in triggers with electrons above \SI{15}{\GeV}  with respect to the previous cut-based approach. 
+As observed in the efficiency measurements during Run~2 data taking, the \rnn{} allowed for a more effective \fastcalo{} operation in triggers with electrons above \SI{15}{\GeV}  with respect to the previous cut-based approach. 
 
 
 %In this section, it was evaluated how the most efficient trigger configuration 
@@ -72,8 +72,7 @@ As observed in the efficiency measurements during Run~2 data taking, the \rnn{} 
 %\subsection{Estimated CPU Impact}\label{top:fastcalo_cpu}
 
 
-The overhead required to computed the NN decision by running a single electron trigger with and without the \rnn algorithm, in two individual non-concurrent executions using the same dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) with 256 Gb@1333 of memory and a SL6 OS.}, was evaluated
-It should be mentioned that, in order to reduce implementation efforts, electron triggers executing the \rnn{} information compute their information after the cut-based reconstruction, whose decision is not computed. As a result of this, the \rnn{} electron 
+The overhead required to compute the NN decision by running a single electron trigger with and without the \rnn algorithm, in two individual non-concurrent executions using the same dedicated node\footnote{It was used a techlab node Xeon Phi 7120 (1.7 GHz, 32 threads) with 256 Gb@1333 of memory and a SL6 OS.}, was evaluated. It should be mentioned that, in order to reduce implementation efforts, electron triggers executing the \rnn{} information compute their information after the cut-based reconstruction, whose decision is not computed. As a result of this, the \rnn{} electron 
 triggers always demand additional \fastcalo processing time.
 
 Figures~\ref{fig:fastcalo_fex_time} and~\ref{fig:fastcalo_hypo_time} show the comparison of the total CPU time per event for the feature extraction and hypothesis algorithms in the \fastcalo respectively.
@@ -94,7 +93,7 @@ reconstructed observable algorithm for multiple RoIs in the same bunch-crossing 
 	\includegraphics[width=.7\textwidth]{sections/05_analysis/figures/EgammaFex_TotalTime}
 	\centering
 	\caption{\label{fig:fastcalo_fex_time}
-		Total CPU time per event for the feature extraction algorithms in the \fastcalo step of electron rerunning triggers with (white) and without (yellow) \rnn{} using EB events ($\avgmu=45$ peak). Detail on the right shows the CPU time of the ring variable extraction.  
+		Total CPU time per event for the feature extraction algorithms in the \fastcalo step of electron offline rerunning triggers with (white) and without (yellow) \rnn{} using EB events ($\avgmu=45$ peak). Detail on the right shows the CPU time of the ring variable extraction.  
 	}
 \end{figure}
 
@@ -103,7 +102,7 @@ reconstructed observable algorithm for multiple RoIs in the same bunch-crossing 
 	\centering
 	\caption{\label{fig:fastcalo_hypo_time}
 		Total CPU time per event for the hypothesis testing algorithms
-		in the \fastcalo step of electron rerunning triggers with (white) and without (yellow) \rnn{} using EB events ($\langle \mu \rangle = 45$ peak). The center histogram represents the CPU time to store the \rnn{} output in persistent file format.}
+		in the \fastcalo step of electron offline rerunning triggers with (white) and without (yellow) \rnn{} using EB events ($\langle \mu \rangle = 45$ peak). The center histogram represents the CPU time to store the \rnn{} output in persistent file format.}
 \end{figure}
 
 A multi-modal structure can be observed in the feature extraction distributions
@@ -122,8 +121,7 @@ Specifically, \rnn{} hypothesis testing is considerably more demanding
 to store the neural network output \SI{0.07 \pm 0.02}{\ms/\text{event}}, 
 than the cut-based selection
 (\SI{0.02}{\ms/\text{event}}), however small with respect to the feature
-extraction values. 
-
+extraction values. However, the time increase when compared to the average execution time of a single electron trigger across the entire HLT is still negligible ($\approx 500$ ms in Run 2).
 
 Taking into account the referred values, the \rnn{} can require a
 relative increase of up to \SI{50}{\%} in the \fastcalo{} CPU time per event
@@ -131,11 +129,15 @@ with respect to the trigger without \rnn{}\footnote{It is expected that the resu
 	dependent on the trigger configuration due to presence of pile-up. Reported
 	results are for e17\_lhvloose\_nod0.}. Nonetheless, the \rnn{} contributes to
 a more discriminating selection, allowing to reduce CPU demanding triggers
-by reducing the processing of fake electron in subsequent steps that are more computationally demanding.
+by reducing the processing of fake electrons in subsequent steps that are more computationally demanding.
+
+
+
+
 
 
 The potential of saving CPU usage by
-avoiding the computation of fake candidates with the \rnn algorithms was demonstrated using algorithms with the lowest-transverse-energy-threshold unprescaled single electron tight trigger. This trigger algorithm was executed with
+avoiding the computation of fake candidates with the \rnn algorithms was demonstrated using the unprescaled single electron tight trigger with the lowest transverse energy threshold. This trigger was executed with
 and without the \rnn{} algorithm using a dedicated node for processing.
 In this measurement, where about 3,400 events from the EB stream were considered, the \rnn{} algorithm provided an overall
 \SI{60}{\%} reduction (\SI{30.72}{\milli\second} to \SI{10.36}{\milli\second})
@@ -150,9 +152,9 @@ The Quadrant Analysis was developed to compare the decision of two classifiers. 
     \text{disagreement} = \frac{N_{\textbf{A}}+N_{\textbf{B}}}{N_{\textbf{A}}+N_{\textbf{B}}+N_{\textbf{AB}}+N_{!\textbf{AB}}}
     \label{eq:disagreement}
 \end{equation}
-where $N_{\textbf{A}}$ ($N_{\textbf{B}}$) is the total of candidates accepted by classifier $\textbf{A}$ ($\textbf{B}$) and $N_{\textbf{AB}}$ ($N_{\textbf{!AB}}$) is the total of candidates accepted (rejected) by both classifiers.
+where $N_{\textbf{A}}$ ($N_{\textbf{B}}$) is the total of candidates accepted exclusively by classifier $\textbf{A}$ ($\textbf{B}$) and $N_{\textbf{AB}}$ ($N_{\textbf{!AB}}$) is the total of candidates accepted (rejected) by both classifiers.
 
-In this approach, only data collected by the primary triggers whose selection is from its offline equivalent are considered\footnote{I.e., if a \tight{} trigger leg is being evaluated, it also applied the \tight{} offline selection to the candidate.}.
+In this approach, only data collected by the primary triggers with an equivalent offline selection are considered\footnote{I.e., if a \tight{} trigger leg is being evaluated, it also applied the \tight{} offline selection to the candidate.}.
 Results in Section~\ref{top:quadrant_results} show
 trigger selection performance using \tight{} requirement for the duplicated triggers during 2017.
 
@@ -160,16 +162,14 @@ trigger selection performance using \tight{} requirement for the duplicated trig
 
 
 
-The Quadrant Analysis starts with the variable \reta{} for being one of the
-most electron-jet discriminant variables employed in the likelihood
+The Quadrant Analysis starts with the variable \reta{} for being one of the best electron-jet discriminant variables employed in the likelihood
 algorithm~\cite{aaboud2019electron}. 
 
 
 
-As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement, %obtained by summing the cases accepted only by a single trigger between both triggers, 
-is small and bounded for most cases at 1\% level for the coverage of all calorimetry variables. 
+As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement is small and bounded for most cases at the 1\% level for the coverage of all calorimetry variables. 
 This behavior is also observed for \et{} slices. 
-One should note that the working points of both triggers are not exactly the same, although the \rnn{} aimed at keeping the same signal efficiency as being achieved by the cut-based strategy and was operating as desired.  
+One should note that the working points of both triggers are not exactly the same, although the \rnn{} aims at keeping the same signal efficiency as the cut-based strategy and was operating as desired.  
 %Thus, much of the differences reflect this difficulty. 
 In other words, 
 %One should note that the integral of the single trigger cases is related to the limitation in the precision of setting the working point of both triggers to be exactly the same. In other words, 
@@ -177,7 +177,7 @@ the difference in height of the blue and red profiles in Figure~\ref{fig:quadran
 From the operation, it was realized that such working point matching was better in the $0.6<\abseta{}<0.8$ region. Hence, comparison between profiles is simpler to be performed there.
 %Hence, comparison between profiles is simpler to be performed in the $0.6<\abseta{}<0.8$, which exhibits very similar performance.
 
-For all variables in this region, both triggers behave very similarly (see Figure~\ref{fig:quadrant_calo_variables_30GeV}), even if some slight shifts can be observed in few profiles. This is the case of \reta{} and \rphi{}, where the \rnn{} trigger is consistently collecting slightly more events in signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The \rnn{} trigger behavior shows an even lower effect in the \rhad{}, where tighter tails are observed, resulting in fewer electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slight bias towards collecting more events in the signal region with the \rnn{} trigger. Interestingly, a few events are accepted by the trigger with \rnn{}, when $0.5<\eratio{}<0.7$, probably due to electrons resulting from premature showers with barycenter near the edge of two strips
+For all variables in this region, both triggers behave very similarly (see Figure~\ref{fig:quadrant_calo_variables_30GeV}), even if some slight shifts can be observed in few profiles. This is the case of \reta{} and \rphi{}, where the \rnn{} trigger is consistently collecting slightly more events in the signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The \rnn{} trigger behavior shows an even lower effect in the \rhad{}, where tighter tails are observed, resulting in fewer electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slightly bias towards collecting more events in the signal region with the \rnn{} trigger. Interestingly, a few events are accepted by the trigger with \rnn{}, when $0.5<\eratio{}<0.7$, probably due to electrons resulting from premature showers with barycenter near the edge of two strips
 
 \begin{figure}[h!]
 \centering
@@ -260,7 +260,7 @@ This analysis is performed using \Zee{} \tnp{} data, which were selected with th
 
 The problem is approached based on homogeneity tests on histograms~\cite{homogeneity_test}, in order to check for (systematic) effects of the trigger configuration. It is based on a test originally developed by Pearson~\cite{pearson1911probability} and popularly employed in many fields beyond High Energy Physics (HEP), e.g. social sciences~\cite{wickens2014multiway} and health~\cite{ma2015homogeneity}, usually labelled as contingency or consistency tests.
 
-In order to benefit from the test without having to customize it to the ATLAS particular analysis setup, the following method was followed. First, the data was spitted into two
+In order to benefit from the test without having to customize it to the ATLAS particular analysis setup, the following method was followed. First, the data was split into two
 statistically independent groups attempting to keep data taking conditions as
 similar as possible by successively taking data to each group from small
 consecutive periods.
